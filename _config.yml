@@ -1,5 +1,7 @@
+timezone: Asia/Seoul
+
 title: gnasah blog
-author: Aigars Dzerviniks
+author: gnasah
 description: hi
 
 highlighter: null
