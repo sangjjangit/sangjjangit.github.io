@@ -6,8 +6,8 @@ title: 깃허브 블로그 만들기
 대충정리
 겨우 하나 올려보네...
 
-----------------------
 
+//---
 1. 깃허브 리파지토리 
 유저명.github.io
 index.html 
@@ -35,7 +35,7 @@ Jekyll 은 정적 사이트 생성기로, Ruby 환경 설정이 필요함.
 https://pages.github.com/
 
 
----
+//---
 Dependency Error: Yikes! It looks like you don't have kramdown-parser-gfm or one of its dependencies installed. In order to use Jekyll as currently configured, you'll need to install this gem. The full 
 error message from Ruby is: 'cannot load such file -- kramdown-parser-gfm' If you run into trouble, you can find helpful resources at https://jekyllrb.com/help/!
   Conversion error: Jekyll::Converters::Markdown encountered an error while converting '_posts/~.md':
@@ -47,7 +47,7 @@ error message from Ruby is: 'cannot load such file -- kramdown-parser-gfm' If yo
 그리고 bundle install 로 설치를 진행한다.
 이후 bundle exec jekyll serve 명령어로 정상적으로 실행 되는걸 확인할 수 있다.
 
----
+//---
 
 cannot load such file -- webrick
 
