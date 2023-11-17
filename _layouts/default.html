@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% include head.html %}
+  </head>
+  <body>
+    <main>
+      {% if page.title == "Home" %}
+      <header class="">
+      {% else %}
+      <header>
+      {% endif %}
+      </header>
+
+      {{ content }}
+
+    </main>
+  </body>
+</html>
