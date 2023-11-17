@@ -1,1 +1,15 @@
-title: hi
+# timezone: Asia/Seoul
+
+# title: gnasah blog
+# author: gnasah
+# description: hi
+
+# highlighter: null
+# permalink: /:title
+
+url: https://gnasah.github.io
+baseurl:
+
+# Custom options:
+# color_scheme: azul|ruby|amber|avocado
+# color_scheme: avocado
