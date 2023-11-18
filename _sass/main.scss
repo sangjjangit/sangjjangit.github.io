@@ -55,7 +55,7 @@ main {
     padding: 20px;
     flex: 2;
     width: 100%;
-    word-wrap: break-word;
+    word-wrap: b;
 }
 
 section {
@@ -96,7 +96,7 @@ footer {
 
 .post a:hover {
     color: #fa0;
-    text-decoration: underline;
+    // text-decoration: underline;
 }
 
 .pretty-button {
