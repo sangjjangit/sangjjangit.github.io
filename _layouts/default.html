@@ -12,33 +12,15 @@
         {% seo %}
     </head>
     <body>
-        <header>
-            <!-- h1 -->
-            {% include head.html %}
-            <!-- nav -->
-            {% include navigation.html %}
-        </header>
-
-        <div class="container">
-            <aside class="sidebar">
-                <h2>Sidebar</h2>
-                <ul>
-                    <li>category1</li>
-                    <li>category2</li>
-                </ul>
-            </aside>
-            <main>
-                <section>
-                    {{ content }}
-                </section>
-            </main>
-        </div>
-        <footer>
-            <p>&copy; 2023 Website Name. All Rights Reserved.</p>
-            <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgnasah.github.io&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a>
-        </footer>
+        {% include header.html %}
+        {% include nav.html %}
+        {% include main.html %}
+        {% include footer.html %}
+        
 
         <!-- scripts -->
-        <script src="{{ '/assets/js/script.js' | relative_url }}"></script>
+        <!-- Script pointing to jekyll-search.js -->
+        <!-- <script src="/assets/js/simple-jekyll-search.min.js" type="text/javascript"></script>
+        <script src="{{ '/assets/js/script.js' | relative_url }}"></script> -->
     </body>
 </html>

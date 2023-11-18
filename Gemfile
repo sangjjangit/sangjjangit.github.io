@@ -14,3 +14,7 @@ end
 
 # admin
 gem 'jekyll-admin', group: :jekyll_plugins
+
+# timezone?
+gem 'tzinfo'
+gem 'tzinfo-data'
