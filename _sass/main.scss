@@ -54,10 +54,11 @@ nav ul li a:hover {
 main {
     padding: 20px;
     flex: 2;
+    width: 100%;
+    word-wrap: break-word;
 }
 
 section {
-    // max-width: 1200px;
     margin-bottom: 40px;
 }
 
@@ -145,11 +146,8 @@ code {
     font-family: Consolas, monospace;
 }
 
-// @media screen and (max-width:600px) {
-//     pre {
-//         grid-template-columns: 1fr;
-//     }
-//     code {
+// @media screen and (max-width:400px) {
+//     .post {
 //         grid-template-columns: 1fr;
 //     }
 // }
