@@ -13,6 +13,9 @@
     </head>
     <body>
         <header>
+            <!-- h1 -->
+            {% include head.html %}
+            <!-- nav -->
             {% include navigation.html %}
         </header>
         <main>
@@ -21,7 +24,11 @@
             </section>
         </main>
         <footer>
-            footer
+            <p>&copy; 2023 Website Name. All Rights Reserved.</p>
+            <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fgjbae1212%2Fhit-counter"/></a>
         </footer>
+
+        <!-- scripts -->
+        <script src="{{ '/assets/js/script.js' | relative_url }}"></script>
     </body>
 </html>
