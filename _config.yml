@@ -55,3 +55,11 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+# google Analytics
+analytics:
+  provider: "google-gtag"
+            # false (default), "google", "google-universal", "google-gtag", "custom"
+  google:
+    tracking_id: "G-D00PXPVGBG"
+    anonymize_ip: # true, false(default)
