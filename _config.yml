@@ -74,3 +74,18 @@ kramdown:
     syntax_highlighter_opts:
         block:
             line_numbers: true
+
+# jekyll admin config
+# jekyll_admin:
+#   hidden_links:
+#     - posts
+#     - pages
+#     - staticfiles
+#     - datafiles
+#     - configuration
+#   homepage: "pages"
+
+  # collections:
+  # posts:
+  #   output: true
+  #   sidebar_label: News
