@@ -1,7 +1,8 @@
 <!doctype html>
-<html>
+<html lang="en">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{{ page.title }}</title>
         <!--
         <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
@@ -11,7 +12,16 @@
         {% seo %}
     </head>
     <body>
-        {% include navigation.html %}
-        {{ content }}
+        <header>
+            {% include navigation.html %}
+        </header>
+        <main>
+            <section>
+                {{ content }}
+            </section>
+        </main>
+        <footer>
+            footer
+        </footer>
     </body>
 </html>
