@@ -57,6 +57,7 @@ main {
 }
 
 section {
+    // max-width: 1200px;
     margin-bottom: 40px;
 }
 
@@ -129,6 +130,30 @@ footer {
         outline: none;
     }
 }
+
+// 코드 블럭
+pre {
+    white-space: pre-wrap;
+    // background-color: #f7f7f7;
+    // padding: 10px;
+    // border-radius: 5px;
+    font-family: Consolas, monospace;
+    // overflow-x: hidden;
+}
+
+code {
+    font-family: Consolas, monospace;
+}
+
+// @media screen and (max-width:600px) {
+//     pre {
+//         grid-template-columns: 1fr;
+//     }
+//     code {
+//         grid-template-columns: 1fr;
+//     }
+// }
+
 // --------------------------------------------------- 여기까지 사용하고 있음. 20231119
 .container {
     display: flex;

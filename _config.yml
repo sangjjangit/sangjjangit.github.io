@@ -65,3 +65,11 @@ analytics:
     anonymize_ip: # true, false(default)
 
 timezone: Asia/Seoul
+
+# code block line
+markdown: kramdown
+kramdown:
+    highlighter: rouge
+    syntax_highlighter_opts:
+        block:
+            line_numbers: true
