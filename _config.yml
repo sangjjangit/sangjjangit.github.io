@@ -71,9 +71,9 @@ timezone: Asia/Seoul
 markdown: kramdown
 kramdown:
     highlighter: rouge
-    syntax_highlighter_opts:
-        block:
-            line_numbers: true
+#     syntax_highlighter_opts:
+#         block:
+#             line_numbers: true
 
 # jekyll admin config
 # jekyll_admin:

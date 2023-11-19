@@ -1,16 +1,9 @@
 ---
 layout: default
 ---
-
-<!--카테고리 문자-->
-{% assign cate = '' %}
-{% for category in page.categories %}
-    {% assign cate = cate | append: category | append: ', ' %}
-{% endfor %}
-
 <section class="post">
-    <h2>{{ cate | append: page.title }}</h2>
-    <p class="flow-text">
+    <article>
+        <h2>{{ page.title }}</h2>
         <ul>
             <li>
                 {{ page.date | date: "%Y/%m/%d" }} - {{ page.author }}
@@ -26,8 +19,8 @@ layout: default
                 {% endfor %}
             </li>
         </ul>
-    </p>
-    
-    {{ content }}
+        
+        {{ content }}
+</article>
 </section>
 <a href="{{ site.url }}" class="pretty-button">목록으로</a>
