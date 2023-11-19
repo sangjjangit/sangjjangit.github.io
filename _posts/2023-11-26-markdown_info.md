@@ -1,13 +1,15 @@
 ---
 layout: post
 title: 마크다운
-author: sang
 categories:
     - markdown
 tags:
     - markdown
     - study
+date: 2023-11-26 00:00:00
+author: sang
 ---
+
 
 제목 # 으로 한다. ## 여러개 붙이면 글자크기가 커짐.
 # 제목
