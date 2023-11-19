@@ -7,5 +7,19 @@ layout: default
         <h2>{{ post.title }}</h2>
     </a>
     <p class="flow-text">{{ post.excerpt }}</p>
+    
+    <p class="flow-text">
+        {{ post.date | date: "%Y-%m-%d" }}
+        /
+        categories -
+        {% for category in post.categories %}
+            <span>{{ category }}</span>
+        {% endfor %}
+        /
+        tags -
+        {% for tag in post.tags %}
+            <span>{{ tag }}</span>
+        {% endfor %}
+    </p>
 </section>
 {% endfor%}
