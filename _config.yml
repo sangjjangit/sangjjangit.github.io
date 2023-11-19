@@ -89,3 +89,5 @@ kramdown:
   # posts:
   #   output: true
   #   sidebar_label: News
+
+# permalink : search
