@@ -1,4 +1,4 @@
-# gnasah.github.io
+# sangjjangit.github.io
 
 jekyll 정적 웹 생성기를 통한 반응형 웹 블로그 생성.
 
