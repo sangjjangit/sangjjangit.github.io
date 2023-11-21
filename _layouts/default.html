@@ -1,0 +1,23 @@
+<html>
+    <head>
+        {% include head.html %}
+    </head>
+    <body>
+        <header>
+            {% include header.html %}
+        </header>
+        <nav>
+            {% include nav.html %}
+        </nav>
+        <aside>
+            {% include aside.html %}
+        </aside>
+        <main>
+            {{ content }}
+        </main>
+        <footer>
+            {% include footer.html %}
+        </footer>
+        <script src="{{ '/assets/js/script.js' | relative_url }}"></script>
+    </body>
+</html>
