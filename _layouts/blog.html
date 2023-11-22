@@ -1,26 +1,47 @@
 ---
 layout: default
 ---
+
+{% for post in site.posts %}
+{% assign tmp = post.date | date: '%Y' %}
+{% assign year = year | append: tmp | append: ','%}
+{% assign years = year | split: ',' | uniq %}
+{% endfor %}
+
 <div>
     blog list
     <ul>
-    {% for post in site.posts %}
-        <li>
-            {{ post.date | date: '%Y-%m-%d' }}
-            <a href='{{ post.url }}'>{{ post.title }}</a>
-            {{ post.last_modified_at | date: '%Y-%m-%d %H:%M:%S' }}
+
+        {% for item in years %}
+        <li data-list-name="{{ item }}">
+            {{ item }}
+            
+            {% for post in site.posts %}
+
+                {% assign postYear = post.date | date: '%Y' %}
+
+                {% if item == postYear %}
+                <ul>
+                    <li>
+                        
+                        {{ post.date | date: '%Y-%m-%d' }}
+                        <a href='{{ post.url }}'>{{ post.title }}</a>
+                        {{ post.last_modified_at | date: '%Y-%m-%d %H:%M:%S' }}
+                        
+                    </li>
+                </ul>
+                {% endif %}
+
+            {% endfor %}
         </li>
-    <!-- </ul>
-    {{ post.url }}
-    {{ post.date | date: '%Y-%m-%d %H:%M:%S' }} -->
-        <!-- {{ post.layout }}
-        
-        {{ post.date }}
-        {{ post.categories }}
-        {{ post.excerpt }} -->
-    {% endfor %}
+        {% endfor %}
     </ul>
 </div>
+<!-- {% for post in site.posts %}
+{% assign tmp = post.date | date: '%Y'  | append: ',' %}
+{% assign year = year | append: tmp %}
+{% assign years = year | split: ',' | uniq %}
+{% endfor %} -->
 
 <!-- layout: post
 title:  "Welcome to Jekyll!"

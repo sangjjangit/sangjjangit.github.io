@@ -10,7 +10,24 @@
             {% include nav.html %}
         </nav>
         <aside>
-            {% include aside.html %}
+            {{ page.name }}
+            {% if page.url contains 'categories' %}
+
+                {% include aside_categories.html %}
+
+            {% elsif page.url contains 'tags' %}
+
+                {% include aside_tags.html %}
+
+            {% elsif page.url contains 'search' %}
+
+                {% include aside_search.html %}
+
+            {% else %}
+
+                {% include aside_blog.html %}
+
+            {% endif %}
         </aside>
         <main>
             {{ content }}

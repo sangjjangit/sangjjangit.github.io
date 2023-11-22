@@ -1,0 +1,37 @@
+---
+layout: default
+---
+<div>
+    tags list
+    <ul>
+        
+        {% for item in site.tags %}
+        <li data-list-name="{{ item[0] }}">
+
+            {{ item[0] }}
+
+            {% for post in site.posts %}
+            
+                {% if post.tags contains item[0] %}
+                <ul>
+                    <li>
+                    
+                        {{ post.date | date: '%Y-%m-%d' }}
+                        <a href='{{ post.url }}'>{{ post.title }}</a>
+                        {{ post.last_modified_at | date: '%Y-%m-%d %H:%M:%S' }}
+                        
+                    </li>
+                </ul>
+                {% endif %}
+
+            {% endfor %}
+        
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<!-- layout: post
+title:  "Welcome to Jekyll!"
+date:   2023-11-21 18:52:26 +0900
+categories: jekyll update -->

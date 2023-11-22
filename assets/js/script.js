@@ -1,45 +1,42 @@
-// window.onload = function () {
-//     // // alert('test');
-//     const homeId = document.getElementById('homeId');
-//     // alert(homeId);
-//     // homeId.innerHTML = 'hi homeId, Hello World!!'
+window.onload = function () {
 
-//     // // const navId = document.getElementById('navId');
-//     // // alert(navId);
-//     // // navId.innerHTML = 'hi navId, navvvvvvvvvvv';
+    // aside menu click event
+    const elements = document.querySelectorAll('[data-aside-name]');
+    for(let i =0; i < elements.length; i++){
+        elements[i].addEventListener('click', app.toggleList);
+    }
 
-//     const navId = document.querySelector('#navId');
-//     // alert(navId);
-//     // navId.innerHTML = 'hi navId, navvvvvvvvvvv';
-//     // alert(app.home(homeId.id));
-//     //alert(app.home(navId.id));
-//     console.log(app);
-//     app.innerHTML(homeId);
-//     app.innerHTML(navId);
+    document.querySelector('.menu-trigger').addEventListener('click', app.menuTrigger);
+}
 
-//     // alert();
-//     console.log(app2);
-//     console.log(app2.home(homeId.id));
-//     console.log(app2.home(navId.id));
-//     app2.innerHTML(homeId);
-//     app2.innerHTML(navId);
-
-// }
-// const app2 = {
-//     home: function (id) {
-//         return id + 'is this app2';
-//     }
-//     , innerHTML: function (obj) {
-//         obj.innerHTML = obj.id + " is this app2";
-//     }
-// };
-// const app = (function() {
-//     /* 실행코드 */
-//     const home = function (id) {
-//         return id + 'is this';
-//     }
-//     const innerHTML = (obj) => {
-//         obj.innerHTML = obj.id + " is this";
-//     }
-//     return {home, alert, innerHTML};
-// }());
+const app = {
+    toggleList : function (event) {
+        const asideName = event.target.dataset.asideName;
+        if( asideName === "ALL"){
+            document.querySelectorAll('[data-list-name]').forEach(function (obj, idx) {
+                obj.style.display = "block";
+            });
+        }else{
+            document.querySelectorAll('[data-list-name]').forEach(function (obj, idx) {
+                if(asideName !== obj.dataset.listName){
+                    obj.style.display = "none";
+                }else{
+                    obj.style.display = "block";
+                }
+            });
+        }
+    },
+    menuTrigger : function (event) {
+        console.log(document.querySelector('main').style.width)
+        const mainWidth = document.querySelector('main').style.width;
+        if(mainWidth === '' || mainWidth === '80%'){
+            document.querySelector('main').style.width = '100%'
+            document.querySelector('aside').style.width = '0%'
+            document.querySelector('aside').style.padding = '0px'
+        }else{
+            document.querySelector('main').style.width = '80%'
+            document.querySelector('aside').style.width = '20%'
+            document.querySelector('aside').style.padding = '20px'
+        }
+    }
+}

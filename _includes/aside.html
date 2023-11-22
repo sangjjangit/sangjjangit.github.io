@@ -1,43 +1,29 @@
-<ul>
-    {% for post in site.posts %}
-
-    {% assign year = post.date | date: '%Y' %}
-    {% assign previous_year = post.previous.date | date: '%Y' %}
-
-    {% if forloop.first %}
-    <li onclick="toggle(this);">
-        {{ year }}
-        <ul style="display: block;">
-    {% endif %}
-
-        <li>
-            {{ post.date | date: '%Y-%m-%d' }}
+<div>
+    <ul>
+        <li class="aside_year" value="0">
+        ALL
         </li>
+        {% for post in site.posts %}
 
-    {% if forloop.last %}
-        </li>
-    </ul>
-    {% else %}
+        {% assign year = post.date | date: '%Y' %}
+        {% assign previous_year = post.previous.date | date: '%Y' %}
 
-        {% if year != previous_year %}
-            </ul>
-        </li>
-        <li onclick="toggle(this);">
-            {{ previous_year }}
-            <ul style="display: block;">
+        {% if forloop.first %}
+        <li class="aside_year" value="{{ year }}">
+            {{ year }}
         {% endif %}
-    {% endif %}
 
-    {% endfor %}
-</ul>
-<script>
-    function toggle(obj) {
-        console.log(obj.children[0].style.display)
-        let display = obj.children[0].style.display;
-        if(display === 'block') {
-            obj.children[0].style.display = 'none'
-        }else{
-            obj.children[0].style.display = 'block'
-        }
-    }
-</script>
+        {% if forloop.last %}
+        </li>
+        {% else %}
+
+            {% if year != previous_year %}
+            </li>
+            <li class="aside_year" value="{{ previous_year }}">
+                {{ previous_year }}
+            {% endif %}
+        {% endif %}
+
+        {% endfor %}
+    </ul>
+</div>
