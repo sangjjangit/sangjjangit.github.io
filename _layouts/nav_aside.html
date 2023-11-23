@@ -14,8 +14,8 @@ nav section
             </a>
         </li>
         {% for nav in site.data.navs %}
-            <li data-nav-name="{{ nav.name }}">
-<a href="{{ nav.link }}">{{ nav.name }}</a>
+            <li>
+<a data-nav-name="{{ nav.name }}" href="{{ nav.link }}">{{ nav.name }}</a>
 </li>
         {% endfor %}
     </ul>
