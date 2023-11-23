@@ -25,6 +25,8 @@ const app = {
 
 asideToggle : function (event) {
 
+event.preventDefault(); // 링크 기본 동작 중단
+
 
         const navName = event.target.dataset.navName;
 
