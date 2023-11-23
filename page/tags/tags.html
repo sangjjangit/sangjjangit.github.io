@@ -1,6 +1,22 @@
 ---
-layout: main
+layout: whole
 ---
+
+
+<aside>
+<div data-aside-group="Tags">
+    <code data-aside-name="ALL">
+        ALL
+    </code>
+    {% for item in site.tags %}
+    <code data-aside-name="{{ item[0] }}">
+        {{ item[0] }}
+    </code>
+    {% endfor %}
+</div>
+</aside>
+
+<main>
 <div>
     tags list
     <ul>
@@ -30,6 +46,7 @@ layout: main
         {% endfor %}
     </ul>
 </div>
+</main>
 
 <!-- layout: post
 title:  "Welcome to Jekyll!"
