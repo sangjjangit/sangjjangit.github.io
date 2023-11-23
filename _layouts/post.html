@@ -1,11 +1,33 @@
 ---
 layout: default
 ---
-{{ content }}
-
-
 <div>
-    <a href="{{ page.previous.url }}">{{ page.previous.title }}</a>
-    /
-    <a href="{{ page.next.url }}">{{ page.next.title }}</a>
+    <div>
+        <h3>{{ page.title }}</h3>
+
+        <small>
+            {% if page.date %}
+                {{ page.date | date: '%Y-%m-%d %H:%M:%S' }}
+            {% endif %}
+
+            {% if page.author %}
+                {{ ' - ' | append: page.author }}
+            {% endif %}
+        </small>
+    </div>
+    <div>
+        <article>
+            {{ content }}
+        </article>
+    </div>
+    <div>
+        
+        {% if page.next.url %}
+            <a href="{{ page.next.url }}">{{ 'next (' | append: page.next.title | append: ')' }}</a>
+        {% endif %}
+        
+        {% if page.previous.url %}
+        <a href="{{ page.previous.url }}">{{ 'prev (' | append: page.previous.title | append: ')' }}</a>
+        {% endif %}
+    </div>
 </div>
