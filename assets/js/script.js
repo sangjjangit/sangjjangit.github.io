@@ -5,7 +5,14 @@ window.onload = function () {
     // nav click event
     const navElements = document.querySelectorAll('[data-nav-name]');
     for(let i =0; i < navElements.length; i++){
-        navElements[i].addEventListener('click', app.asideToggle);
+        // navElements[i].addEventListener('click', app.asideToggle);
+
+
+navElements[i].addEventListener('mouseup', app.asideToggle);
+
+
+navElements[i].addEventListener('touchend', app.asideToggle);
+
 
 //app.asideToggle(navElements[i]);
     };
@@ -25,7 +32,7 @@ const app = {
 
 asideToggle : function (event) {
 
-event.preventDefault(); // 링크 기본 동작 중단
+// event.preventDefault(); // 링크 기본 동작 중단
 
 
         const navName = event.target.dataset.navName;
