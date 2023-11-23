@@ -1,15 +1,30 @@
 window.onload = function () {
 
+
+
+    // nav click event
+    const navElements = document.querySelectorAll('[data-nav-name]');
+    for(let i =0; i < navElements.length; i++){
+        navElements[i].addEventListener('click', app.asideToggle);
+    };
+
+
+
     // aside menu click event
     const elements = document.querySelectorAll('[data-aside-name]');
     for(let i =0; i < elements.length; i++){
         elements[i].addEventListener('click', app.toggleList);
-    }
+    };
 
     document.querySelector('.menu-trigger').addEventListener('click', app.menuTrigger);
 }
 
 const app = {
+
+asideToggle : function (event) {
+},
+
+
     toggleList : function (event) {
         const asideName = event.target.dataset.asideName;
         if( asideName === "ALL"){
