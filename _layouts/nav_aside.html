@@ -2,7 +2,23 @@ layout: whole
 ---
 <nav>
 nav section
+
+<div>
+    <ul>
+        <li>
+            <a class="menu-trigger" href="#">
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+        </li>
+        {% for nav in site.data.navs %}
+            <li><a href="{{ nav.link }}">{{ nav.name }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
 </nav>
+
 <aside>
 aside section
 </aside>
