@@ -7,7 +7,7 @@ window.onload = function () {
     for(let i =0; i < navElements.length; i++){
         navElements[i].addEventListener('click', app.asideToggle);
 
-app.asideToggle(navElements[i]);
+//app.asideToggle(navElements[i]);
     };
 
 
