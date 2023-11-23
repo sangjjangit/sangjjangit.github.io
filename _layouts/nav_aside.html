@@ -58,5 +58,17 @@ aside section
 </div>
 
 
+
+<div data-aside-group="tags">
+    <code data-aside-name="ALL">
+        ALL
+    </code>
+    {% for item in site.tags %}
+    <code data-aside-name="{{ item[0] }}">
+        {{ item[0] }}
+    </code>
+    {% endfor %}
+</div>
+
 </aside>
 {{ content }}
