@@ -22,6 +22,17 @@ window.onload = function () {
 const app = {
 
 asideToggle : function (event) {
+
+
+        const navName = event.target.dataset.navName;
+
+document.querySelectorAll('[data-aside-group]').forEach(function (obj, idx) {
+                if(navName !== obj.dataset.asideGroup){
+                    obj.style.display = "none";
+                }else{
+                    obj.style.display = "block";
+                }
+            });
 },
 
 
