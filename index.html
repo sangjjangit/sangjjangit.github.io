@@ -2,6 +2,15 @@
 layout: blog
 ---
 
+
+
+{% for post in site.posts %}
+{% assign tmp = post.date | date: '%Y' %}
+{% assign year = year | append: tmp | append: ','%}
+{% assign years = year | split: ',' | uniq %}
+{% endfor %}
+
+
 <main>
 <div>
     blog list
