@@ -1,29 +1,11 @@
-<div>
-    <ul>
-        <li class="aside_year" value="0">
-        ALL
-        </li>
-        {% for post in site.posts %}
-
-        {% assign year = post.date | date: '%Y' %}
-        {% assign previous_year = post.previous.date | date: '%Y' %}
-
-        {% if forloop.first %}
-        <li class="aside_year" value="{{ year }}">
-            {{ year }}
-        {% endif %}
-
-        {% if forloop.last %}
-        </li>
-        {% else %}
-
-            {% if year != previous_year %}
+<aside>
+    <div>
+        <ul>
+        {% for item in site.data.menu %}
+            <li>
+                <a href="{{ item.link }}">{{ item.name }}</a>
             </li>
-            <li class="aside_year" value="{{ previous_year }}">
-                {{ previous_year }}
-            {% endif %}
-        {% endif %}
-
         {% endfor %}
-    </ul>
-</div>
+        </ul>
+    </div>
+</aside>

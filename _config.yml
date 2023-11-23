@@ -18,22 +18,24 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Your awesome title
-email: your-email@example.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+title: SangJJanGit
+# email: your-email@example.com
+# description: >- # this means to ignore newlines until "baseurl:"
+#   Write an awesome description for your new site here. You can edit this
+#   line in _config.yml. It will appear in your document head meta (for
+#   Google search results) and in your feed.xml site description.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username:  jekyll
+url: "https://sangjjangit.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+# twitter_username: jekyllrb
+github_username:  sangjjangit
 
 # Build settings
 #theme: minima
 plugins:
   - jekyll-feed
   - jekyll-last-modified-at
+  - jekyll-sitemap
+  - jekyll-seo-tag
 
 # Exclude from processing.
 # The following items will not be processed, by default.
@@ -57,3 +59,29 @@ plugins:
 
 last-modified-at:
 ​    date-format: '%Y-%m-%d %H:%M:%S' #(like "04-Jan-14").
+
+timezone: Asia/Seoul
+
+# google Analytics
+# analytics:
+#   provider: "google-gtag"
+#             # false (default), "google", "google-universal", "google-gtag", "custom"
+#   google:
+#     tracking_id: "G-D00PXPVGBG"
+#     anonymize_ip: # true, false(default)
+
+# jekyll-archives:
+#   enabled:
+#     - categories
+#     - tags
+#     - archives
+#   layouts:
+#     category: archive-taxonomy
+#     tag: archive-taxonomy
+#     archives: archive-taxonomy
+#   permalinks:
+#     category: /categories/:year:month:day/:title
+#     tag: /tags/:year:month:day/:title
+#     archives: /archives/:year:month:day/:title
+
+permalink: :categories/:year:month:day/:title

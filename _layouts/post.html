@@ -1,23 +1,11 @@
 ---
-<!-- layout: default -->
-layout: main
+layout: default
 ---
-
-<h1>{{ page.title }}</h1>
-<p>{{ page.date | date: '%Y-%m-%d %H:%M:%S' }}</p>
-
-{% for category in page.categories %}
-    <p>{{ category }}</p>
-{% endfor %}
-
-<article>
-    {{ content }}
-</article>
+{{ content }}
 
 
-<!-- ---
-layout: post
-title:  "Welcome to Jekyll!"
-date:   2023-11-21 18:52:26 +0900
-categories: jekyll update
---- -->
+<div>
+    <a href="{{ page.previous.url }}">{{ page.previous.title }}</a>
+    /
+    <a href="{{ page.next.url }}">{{ page.next.title }}</a>
+</div>

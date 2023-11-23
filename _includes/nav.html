@@ -1,40 +1,4 @@
-{% for item in site.posts %}
-{% assign tmp = item.date | date: '%Y' %}
-{% assign year = year | append: tmp | append: ','%}
-{% assign years = year | split: ',' | uniq %}
-{% endfor %}
-
-{% for item in site.categories %}
-{% assign tmp =  %}
-{% assign year = year | append: tmp | append: ','%}
-{% assign years = year | split: ',' | uniq %}
-{% endfor %}
-
-
-{% for post in site.posts %}
-{% assign tmp = post.date | date: '%Y' %}
-{% assign year = year | append: tmp | append: ','%}
-{% assign years = year | split: ',' | uniq %}
-{% endfor %}
-
-<div>
-    <ul>
-        <li>
-            <a class="menu-trigger" href="#">
-                <span></span>
-                <span></span>
-                <span></span>
-            </a>
-        </li>
-        {% for nav in site.data.navs %}
-            <li><a href="{{ nav.link }}">{{ nav.name }}</a></li>
-        {% endfor %}
-    </ul>
-</div>
-<!-- <nav>
-    <ul>
-        {% for item in site.data.navigation %}
-            <li><a href="{{ item.link }}" {% if page.url == item.link %}class="current"{% endif %}>{{ item.name }}</a></li>
-        {% endfor%}
-    </ul>
-</nav> -->
+<nav>
+    nav page
+    search section
+</nav>

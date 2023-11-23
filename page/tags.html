@@ -1,0 +1,26 @@
+---
+layout: default
+permalink: /tags/
+---
+<div>
+    tags page
+
+    <div>
+        <span class="tag" data-name="ALL">ALL</span>
+        {% for item in site.tags %}
+            <span class="tag" data-name="{{ item[0] }}">{{ item[0] }}</span>
+        {% endfor %}
+    </div>
+    <div>
+        <ul>
+            {% for item in site.posts %}
+                <li data-list="{{ item.tags | join: ' ' }}">
+                    {{ item.date | date: '%Y-%m-%d' }}
+                    <a href="{{ item.url }}">{{ item.title }}</a>
+                    {{ item.last_modified_at | date: '%Y-%m-%d %H:%M:%S' }}
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+</div>

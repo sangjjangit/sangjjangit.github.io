@@ -1,8 +1,0 @@
-- name: Blog
-  link: /
-- name: Categories
-  link: /page/categories/categories.html
-- name: Tags
-  link: /page/tags/tags.html
-- name: Search
-  link: /page/search/search.html

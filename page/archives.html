@@ -1,0 +1,56 @@
+---
+layout: default
+permalink: /archives/
+---
+<div>
+    archives page
+    <div>
+        {% for item in site.posts %}
+            {% assign tmp = item.date | date: '%Y' %}
+            {% assign year = year | append: tmp | append: ','%}
+            {% assign years = year | split: ',' | uniq %}
+        {% endfor %}
+        
+        <span class="tag" data-name="ALL">ALL</span>
+        {% for item in years %}
+            <span class="tag" data-name="{{ item }}">{{ item }}</span>
+        {% endfor %}
+    </div>
+    <div>
+        <ul>
+            {% for post in site.posts %}
+        
+            {% assign year = post.date | date: '%Y' %}
+            {% assign previous_year = post.previous.date | date: '%Y' %}
+        
+            {% if forloop.first %}
+            <li data-list="{{ year }}">
+                {{ year }}
+                <ul>
+            {% endif %}
+        
+                <li>
+                    
+                    {{ post.date | date: '%Y-%m-%d' }}
+                    <a href='{{ post.url }}'>{{ post.title }}</a>
+                    {{ post.last_modified_at | date: '%Y-%m-%d %H:%M:%S' }}
+                </li>
+        
+            {% if forloop.last %}
+                </li>
+            </ul>
+            {% else %}
+        
+                {% if year != previous_year %}
+                    </ul>
+                </li>
+                <li data-list="{{ previous_year }}">
+                    {{ previous_year }}
+                    <ul>
+                {% endif %}
+            {% endif %}
+        
+            {% endfor %}
+        </ul>
+    </div>
+</div>

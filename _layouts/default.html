@@ -3,38 +3,48 @@
         {% include head.html %}
     </head>
     <body>
-        <header>
-            {% include header.html %}
-        </header>
-        <nav>
-            {% include nav.html %}
-        </nav>
-        <aside>
-            {{ page.name }}
-            {% if page.url contains 'categories' %}
+        {% include header.html %}
+        {% include nav.html %}
+        {% include aside.html %}
 
-                {% include aside_categories.html %}
+        <div class="backbar"><-</div>
+        <div class="asidebar">IIIII</div>
+        <div class="backToTop">Top</div>
 
-            {% elsif page.url contains 'tags' %}
-
-                {% include aside_tags.html %}
-
-            {% elsif page.url contains 'search' %}
-
-                {% include aside_search.html %}
-
-            {% else %}
-
-                {% include aside_blog.html %}
-
-            {% endif %}
-        </aside>
         <main>
             {{ content }}
         </main>
-        <footer>
-            {% include footer.html %}
-        </footer>
+
+        {% include footer.html %}
         <script src="{{ '/assets/js/script.js' | relative_url }}"></script>
+        <script>
+
+            // side bar
+            document.querySelector('div.asidebar').addEventListener('click', (e) => {
+                document.querySelector('aside').classList.add('show');
+            });
+            document.querySelector('aside').addEventListener('click', (e) => {
+                document.querySelector('aside').classList.remove('show');
+            });
+
+            // back bar
+            document.querySelector('div.backbar').addEventListener('click', (e) => {
+                window.history.back();
+            });
+
+            // backToTop
+            window.addEventListener('scroll', (e) => {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.querySelector('div.backToTop').style.display = "block";
+                } else {
+                    document.querySelector('div.backToTop').style.display = "none";
+                }
+            });
+            
+            document.querySelector('div.backToTop').addEventListener('click', (e) => {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            });
+        </script>
     </body>
 </html>
