@@ -1,3 +1,21 @@
+{% for item in site.posts %}
+{% assign tmp = item.date | date: '%Y' %}
+{% assign year = year | append: tmp | append: ','%}
+{% assign years = year | split: ',' | uniq %}
+{% endfor %}
+
+{% for item in site.categories %}
+{% assign tmp =  %}
+{% assign year = year | append: tmp | append: ','%}
+{% assign years = year | split: ',' | uniq %}
+{% endfor %}
+
+
+{% for post in site.posts %}
+{% assign tmp = post.date | date: '%Y' %}
+{% assign year = year | append: tmp | append: ','%}
+{% assign years = year | split: ',' | uniq %}
+{% endfor %}
 
 <div>
     <ul>
