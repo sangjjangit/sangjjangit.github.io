@@ -6,6 +6,8 @@ window.onload = function () {
     const navElements = document.querySelectorAll('[data-nav-name]');
     for(let i =0; i < navElements.length; i++){
         navElements[i].addEventListener('click', app.asideToggle);
+
+app.asideToggle(navElements[i]);
     };
 
 
