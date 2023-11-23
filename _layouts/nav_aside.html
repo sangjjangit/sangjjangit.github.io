@@ -21,5 +21,26 @@ nav section
 
 <aside>
 aside section
+
+
+
+{% for post in site.posts %}
+{% assign tmp = post.date | date: '%Y' %}
+{% assign year = year | append: tmp | append: ','%}
+{% assign years = year | split: ',' | uniq %}
+{% endfor %}
+<div data-aside-group="blog">
+    <ul>
+        <li data-aside-name="ALL">
+        ALL
+        </li>
+        {% for item in years %}
+        <li data-aside-name="{{ item }}">
+            {{ item }}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
 </aside>
 {{ content }}
