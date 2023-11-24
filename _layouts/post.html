@@ -16,18 +16,18 @@ layout: default
         </small>
     </div>
     <div>
-        <article>
+        <article class="markdown-body">
             {{ content }}
         </article>
     </div>
     <div>
         
         {% if page.next.url %}
-            <a href="{{ page.next.url }}">{{ 'next (' | append: page.next.title | append: ')' }}</a>
+            <a href="{{ page.next.url }}">{{ 'prev (' | append: page.next.title | append: ')' }}</a>
         {% endif %}
         
         {% if page.previous.url %}
-        <a href="{{ page.previous.url }}">{{ 'prev (' | append: page.previous.title | append: ')' }}</a>
+        <a href="{{ page.previous.url }}">{{ 'next (' | append: page.previous.title | append: ')' }}</a>
         {% endif %}
     </div>
 </div>

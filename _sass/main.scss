@@ -9,6 +9,7 @@ body {
     margin: 0;
     padding: 0;
     // font-family: Arial, Helvetica, sans-serif;/*폰트 변경*/
+    line-height: 1.6;
 }
 
 header {
@@ -19,6 +20,9 @@ header {
 nav {
     background-color: #e1e1e1;
     padding: 10px;
+    text-align: end;
+    // width: 80%;
+    // float: right;
     // position: absolute;
 }
 
@@ -36,17 +40,26 @@ nav {
 aside {
     background-color: #d1d1d1;
     width: 20%;
+    // height: 100%;
     float: left;
     padding: 20px;
+
 }
 
 main {
     // position: relative;
     background-color: #c1c1c1;
     width: 80%;
+    // height: 100%;
     float: left;
     padding: 20px;
     word-wrap: break-word;
+}
+
+footer {
+    background-color: #b1b1b1;
+    padding: 20px;
+    clear: both;
 }
 
 .asidebar {
@@ -67,12 +80,32 @@ main {
     border: 1px solid red;
 }
 
+@media (max-width:768px) {
+    main {
+        width: 100%;
+        float: none;
+    }
+    nav {
+        width: 100%;
+        float: none;
+    }
+    .asidebar {
+        display: block;
+    }
+    .backbar {
+        display: block;
+    }
+    aside {
+        display: none;
+    }
+}
+
 .backToTop {
     display: none; /* Hidden by default */
     position: fixed; /* Fixed/sticky position */
     bottom: 10px; /* Place the button at the bottom of the page */
     right: 10px; /* Place the button 30px from the right */
-    z-index: 99; /* Make sure it does not overlap */
+    z-index: 9999; /* Make sure it does not overlap */
     border-radius: 20px;
     border: 1px solid red;
     // border: none; /* Remove borders */
@@ -99,56 +132,37 @@ main {
     cursor: pointer;
 }
 
-footer {
-    background-color: #b1b1b1;
-    padding: 20px;
-    clear: both;
-}
-
-@media (max-width:768px) {
-    main {
-        width: 100%;
-        float: none;
-    }
-    .asidebar {
-        display: block;
-    }
-    .backbar {
-        display: block;
-    }
-    aside {
-        display: none;
-    }
-}
-
 .show {
     position: absolute;
     display: block;
     z-index: 9999;
     float: right;
     width: 50%;
+    height: auto;
     top: 5px;
     right: 5px;
 }
 
-article {
-    background-color: #a1a1a1;
-    padding: 10px;
-    border-radius: 5px;
-    line-height: 1.6;
-}
+// article {
+//     background-color: #a1a1a1;
+//     padding: 10px;
+//     border-radius: 5px;
+//     line-height: 1.6;
+//     word-wrap: break-word;
+// }
 
-pre {
-    font-family: Consolas, monospace;
-    background-color: #f7f7f7;
-    padding: 5px;
-    border-radius: 5px;
-    overflow-x: auto;
-    margin: 5px;
-}
-code {
-    font-family: Consolas, monospace;
-}
+// pre {
+//     font-family: Consolas, monospace;
+//     background-color: #f7f7f7;
+//     padding: 5px;
+//     border-radius: 5px;
+//     overflow-x: auto;
+//     margin: 5px;
+// }
+
+// code {
+//     font-family: Consolas, monospace;
+// }
 
 /* about profile */
 .box {
@@ -167,4 +181,18 @@ code {
 
 .profileText {
     text-align: center;
+}
+
+.markdown-body {
+    box-sizing: border-box;
+    min-width: 200px;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 45px;
+}
+
+@media (max-width: 767px) {
+    .markdown-body {
+        padding: 15px;
+    }
 }

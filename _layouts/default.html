@@ -4,13 +4,14 @@
     </head>
     <body>
         {% include header.html %}
+
         {% include nav.html %}
-        {% include aside.html %}
 
         <div class="backbar"><-</div>
         <div class="asidebar">IIIII</div>
         <div class="backToTop">Top</div>
 
+        {% include aside.html %}
         <main>
             {{ content }}
         </main>
