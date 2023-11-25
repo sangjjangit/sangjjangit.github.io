@@ -5,14 +5,10 @@ layout: default
     <ul>
         {% for item in site.posts %}
             <li>
-                <p>
-                    {{ item.date | date: '%Y-%m-%d' }}
+                {{ item.date | date: '%Y-%m-%d' }}
                     <a href="{{ item.url }}">
-                        {{ item.title }}<br />
-                        {{ item.excerpt }}
-                    </a>
+                        {{ item.title }}</a>
                     {{ item.last_modified_at | date: '%Y-%m-%d %H:%M:%S' }}
-                </p>
             </li>
         {% endfor %}
     </ul>
