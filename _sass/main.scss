@@ -1,3 +1,4 @@
+
 /* Reset styles */
 * {
     margin: 0;
@@ -8,7 +9,6 @@
 body {
     margin: 0;
     padding: 0;
-    // font-family: Arial, Helvetica, sans-serif;/*폰트 변경*/
     line-height: 1.6;
 }
 
@@ -21,37 +21,17 @@ nav {
     background-color: #e1e1e1;
     padding: 10px;
     text-align: end;
-    // width: 80%;
-    // float: right;
-    // position: absolute;
 }
-
-// nav ul {
-//     list-style-type: none;
-//     display: flex;
-//     // justify-content: center;
-// }
-
-// nav ul li {
-//     // display: inline-block;
-//     margin-right: 20px;
-// }
 
 aside {
     background-color: #d1d1d1;
     width: 20%;
-    // height: 100%;
-    float: left;
     padding: 20px;
-
 }
 
 main {
-    // position: relative;
     background-color: #c1c1c1;
     width: 80%;
-    // height: 100%;
-    float: left;
     padding: 20px;
     word-wrap: break-word;
 }
@@ -62,66 +42,32 @@ footer {
     clear: both;
 }
 
-.asidebar {
-    display: none;
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    border-radius: 5px;
-    border: 1px solid red;
-
-}
+.asidebar,
 .backbar {
     display: none;
     position: absolute;
     top: 5px;
-    left: 5px;
     border-radius: 5px;
     border: 1px solid red;
 }
 
-@media (max-width:768px) {
-    main {
-        width: 100%;
-        float: none;
-    }
-    nav {
-        width: 100%;
-        float: none;
-    }
-    .asidebar {
-        display: block;
-    }
-    .backbar {
-        display: block;
-    }
-    aside {
-        display: none;
-    }
-}
-
 .backToTop {
-    display: none; /* Hidden by default */
-    position: fixed; /* Fixed/sticky position */
-    bottom: 10px; /* Place the button at the bottom of the page */
-    right: 10px; /* Place the button 30px from the right */
-    z-index: 9999; /* Make sure it does not overlap */
+    display: none;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 9999;
     border-radius: 20px;
     border: 1px solid red;
-    // border: none; /* Remove borders */
-    // outline: none; /* Remove outline */
-    // background-color: red; /* Set a background color */
-    // color: white; /* Text color */
-    cursor: pointer; /* Add a mouse pointer on hover */
-    padding: 10px; /* Some padding */
-    // border-radius: 10px; /* Rounded corners */
-    font-size: 18px; /* Increase font size */
+    cursor: pointer;
+    padding: 10px;
+    font-size: 18px;
 }
 
 .backToTop:hover {
-    background-color: #555; /* Add a dark-grey background on hover */
+    background-color: #555;
 }
-  
+
 .tag {
     font-family: Consolas, monospace;
     background-color: #444;
@@ -143,28 +89,6 @@ footer {
     right: 5px;
 }
 
-// article {
-//     background-color: #a1a1a1;
-//     padding: 10px;
-//     border-radius: 5px;
-//     line-height: 1.6;
-//     word-wrap: break-word;
-// }
-
-// pre {
-//     font-family: Consolas, monospace;
-//     background-color: #f7f7f7;
-//     padding: 5px;
-//     border-radius: 5px;
-//     overflow-x: auto;
-//     margin: 5px;
-// }
-
-// code {
-//     font-family: Consolas, monospace;
-// }
-
-/* about profile */
 .box {
     background-color: #bdbdbd;
     width: 150px;
