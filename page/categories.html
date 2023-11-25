@@ -12,7 +12,7 @@ permalink: /categories/
         {% endfor %}
     </div>
     <div>
-        <ul>
+        <ul class="list">
             {% for item in site.posts %}
                 <li data-list="{{ item.categories | join: ' ' }}">
                     {{ item.date | date: '%Y-%m-%d' }}
