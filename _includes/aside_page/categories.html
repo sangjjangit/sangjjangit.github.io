@@ -1,0 +1,94 @@
+<div class="categories">
+    <nav>
+        <ul class="tree_categories">
+            
+            <!-- -------------------- 부모/자식 찾기 ( 2레벨 )
+            <br/> -->
+            {% assign tmp = site.categories | sort %}
+            {% for item in site.categories %}
+                {% assign category = item[0] %}
+                {% assign size = item[1].size %}
+                {% assign cnt = cnt | append: item[1].size | append: ',' %}
+                {% assign list = category | split: '/' %}
+                {% assign parent = parent | append: list[0] | append: ',' %}
+                {% if list[1] %}
+                    {% assign child = child | append: category | append: '|' | append: size | append: ',' %}
+                {% endif %}
+                <!-- <li>
+                    {{ parent }} 
+                    <br/>
+                    {{ child }}
+                    <br/>
+                    {{ size }}
+
+                </li> -->
+            {% endfor %}
+            <!-- --------------------
+            <br/> -->
+            {% assign idx = 0 %}
+            {% assign cnts = cnt | split: ',' %}
+            {% assign parents = parent | split: ',' | uniq %}
+            {% assign children = child | split: ',' | uniq %}
+            <!-- {{ parents }}            
+            --------------------
+            <br/>
+            {{ children }}
+            -------------------- 부모/자식 찾기 ( 2레벨 ) 끝
+            <br/> -->
+
+            <!-- 화면 보여주기 -->
+            <!-- 
+                건수 - 부모카테고리는 cnt 로 사용하고 있음.
+                       자식카테고리는 자식카테고리에 묶여서 사용하고 있음
+            -->
+
+            <li>
+                <a href="/" data-name="ALL">ALL</a>
+                <span class="n_cnt">({{ site.posts | size }})</span>
+            </li>
+            {% for parent in parents %}
+            <li>
+                {% assign removeStr = parent | append: '/' %}
+                <a href="/categories/" data-name="{{ parent }}">{{ parent }}</a>
+                <span class="n_cnt">({{ cnts[idx] }})</span>
+                {% assign idx = idx | plus: 1 %}
+                
+                {% for child in children %}
+                    {% if forloop.first %}
+                    <ul class="sub_tree_categories">
+                    {% endif %}
+                    {% if child contains removeStr %}
+                        <li>
+                            {% assign tmp_child = child | remove: removeStr | split: '|' %}
+                            <a href="/categories/" data-name="{{ parent | append: '/' | append: tmp_child[0] }}">{{ tmp_child[0] }}</a>
+                            <span class="n_cnt">({{ tmp_child[1] }})</span>
+                            <!-- - {{ cnts[idx] }}-->
+                            {% assign idx = idx | plus: 1 %}
+                        </li>
+                    {% endif %}
+                    {% if forloop.last %}
+                    </ul>
+                    {% endif %}
+                {% endfor %}
+            </li>
+                
+            {% endfor %}
+        </ul>
+    </nav>
+</div>
+
+<style>
+.categories {
+    overflow: auto;
+    line-height: 1.4;
+    margin-bottom: 40px;
+    .tree_categories {
+        margin: 10;
+        padding: 0;
+        list-style: none;
+    }
+    .sub_tree_categories {
+        /* list-style: none; */
+    }
+}
+</style>

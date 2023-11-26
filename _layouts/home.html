@@ -1,0 +1,64 @@
+---
+layout: default
+---
+<style>
+.count {
+    margin: 20px;
+    .red {
+        color: red;
+    }
+}
+.list-article {
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 1px 1px 1px 1px #aaa;
+    margin-bottom: 15px;
+    .categories {
+        color: #333;
+        font-size: 13px;
+    }
+    .date {
+        color: #999;
+        font-size: 13px;
+    }
+    .title {
+        margin-bottom: 5px;
+    }
+    .excerpt {
+        overflow: hidden;
+        height: 61px;
+        line-height: 1.5;
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+}
+</style>
+<div class="count">
+    <b>number of posts : 
+        <span class="red">{{ site.posts.size }}</span>
+    </b>
+</div>
+
+<div>
+    {% for post in site.posts %}
+    <article class="list-article">
+        <div>
+            <a href="">
+                <strong class="title">{{ post.title }}</strong>
+                <div class="excerpt">{{ post.excerpt }}</div>
+            </a>
+            <div>
+                <a href="" class="categories">
+                    {% if post.categories[1] %}
+                        {{ post.categories[1] }}
+                    {% else %}
+                        {{ post.categories[0] }}
+                    {% endif %}
+
+                </a>
+                <span class="date">{{ post.date | date: '%Y-%m-%d' }}</span>
+            </div>
+        </div>
+    </article>
+    {% endfor %}
+</div>

@@ -1,0 +1,21 @@
+<html>
+    <head>
+        {% include head.html %}
+    </head>
+    <body>
+        <header>
+            {% include header.html %}
+        </header>
+        <div class="content">
+            <main>
+                {{ content }}
+            </main>
+            <aside>
+                {% include aside.html %}
+            </aside>
+        </div>
+        <footer>
+            {% include footer.html %}
+        </footer>
+    </body>
+</html>

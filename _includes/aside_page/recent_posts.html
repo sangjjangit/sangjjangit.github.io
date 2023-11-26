@@ -1,0 +1,55 @@
+<div class="recent_posts">
+    <h3 class="sub_title">Title</h3>
+    <ul class="recent_list">
+        {% assign posts = site.posts %}
+        <li>
+            <a href="{{ posts[0].url }}" class="recent_link">
+                <div class="recent_post">
+                    <strong>{{ posts[0].title }}</strong>
+                    <span>{{ posts[0].date | date:'%Y-%m-%d %H:%M' }}</span>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ posts[1].url }}" class="recent_link">
+                <div class="recent_post">
+                    <strong>{{ posts[1].title }}</strong>
+                    <span>{{ posts[1].date | date:'%Y-%m-%d %H:%M' }}</span>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ posts[2].url }}" class="recent_link">
+                <div class="recent_post">
+                    <strong>{{ posts[2].title }}</strong>
+                    <span>{{ posts[2].date | date:'%Y-%m-%d %H:%M' }}</span>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<style>
+.recent_posts {
+    overflow: hidden;
+    margin-left: 10;
+    margin-bottom: 40px;
+    .recent_link {}
+    .recent_list {
+        padding: 0;
+        list-style: none;
+    }    
+    .recent_list li {
+        margin-bottom: 15px;
+    }
+    .recent_post {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 2px;
+        font-size: 14px;
+        line-height: 1.54;
+        color: #333;
+    }
+}
+</style>

@@ -1,0 +1,28 @@
+<div class="tags">
+    <h3 class="sub_title">Tags</h3>
+    <div class="tag_list">
+        {% for tag in site.tags %}
+        <a href="/tags/" data-name="{{ tag[0] }}">{{ tag[0] }}</a>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+.tags {
+    overflow: hidden;
+    margin-left: 10;
+    margin-bottom: 40px;
+    /* border-style: ridge; */
+    /* .tag_title {
+        color: #333;
+        font-size: 15px;
+        font-weight: 500;
+    } */
+    .tag_list a {
+        margin-right: 5px;
+        font-size: 14px;
+        line-height: 1.4;
+        color: #777;
+    }
+}
+</style>

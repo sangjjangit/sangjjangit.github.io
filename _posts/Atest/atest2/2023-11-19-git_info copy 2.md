@@ -1,0 +1,87 @@
+---
+title: Atest/atest2 사용법
+layout: post
+author: sang
+categories:
+    - Atest
+    - Atest/atest2
+
+tags:
+- git
+- github
+- study
+date: '2023-11-19 23:30:00'
+---
+
+---
+
+좀만 더 빨리 깃을 썻더라면..
+아쉬움과 함께..
+
+---
+
+1. 깃을 설치해야 된다.
+- 깃 설치 다운로드(https://git-scm.com/)에서 설치파일을 받아서 설치한다.
+- 콘솔창(cmd) 에서 git -v 를 해서 설치확인을 한다.
+```bash
+git -v
+```
+
+2. github 가입
+- 홈페이지 가입하고, 레파지토리를 만든다.
+
+3. 기본 설정
+- 내가 github 에 올리고자하는 프로젝트 폴더
+
+```bash
+git init
+```
+- 해당 명령어를 실행하면 숨긴 폴더 .git 파일이 생성된다.
+
+```bash
+git config user.name "사용자명"
+git config user.email "사용자이메일"
+```
+
+- 사용자를 등록하고, 원격지 주소를 설정한다.
+
+```bash
+git remote add origin github_url
+```
+
+- 초기 작업하면서 새로운 프로젝트 폴더에 대한 보안폴더 설정에 대한 git console의 가이드가 나오면, 가이드대로 하면 된다.
+
+- 여기까지하면 소스 올릴 준비는 끝.
+
+4. 가장 많이 쓰는 명령어
+
+- 소스 스테이징
+
+```bash
+git add -A
+or
+git add --add
+```
+
+- 소스 커밋
+
+```bash
+git commit -m "커밋내용, 코멘트"
+-m 을 붙이지 않고, 
+git commit 을 할 경우는 코멘트를 넣으라는 콘솔멘트 및 vi편집기가 나옴.
+vi 명령어로 코멘트를 작성한다.
+```
+
+- 소스 github 올리기
+
+```bash
+git push origin main
+git push 리모트별명 브랜치명
+
+origin 은
+git remote add origin https://github.com/gnasah/gnasah.github.io.git
+git remote add 별명 주소
+origin 이라는 별명으로 주소를 설정한다.
+
+해당 내용은  .git 폴더 속 config 파일에 명시되어 있다.
+```
