@@ -1,0 +1,10 @@
+<div>
+    {% for tags in site.tags %}
+        {% assign tag = tags[0] %}
+        {% assign posts = tags[1] %}
+
+        <a href="/tags?{{tag}}">
+            {{ tag | append:'(' | append: posts.size | append: ')' }}
+        </a>
+    {% endfor %}
+</div>

@@ -1,0 +1,15 @@
+<div>
+    <input id="searchParam" type="text" />
+</div>
+<script>
+    document.querySelectorAll('#searchParam').forEach((obj, idx) => {
+        obj.addEventListener('keyup', (e) => {
+            console.log(e)
+            if(e.key === "Enter"){
+                localStorage.setItem("search", document.getElementById('searchParam').value);
+                //location.href = '/search?param='+document.getElementById('searchParam').value
+                location.href = '/search';
+            }
+        });
+    });
+</script>

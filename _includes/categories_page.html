@@ -1,0 +1,16 @@
+
+{% assign category = page.permalink | remove: '/' %}
+<div>
+    <h1>
+        {{ category }}
+    </h1>
+</div>
+
+{% for post in site.categories[category] %}
+
+
+    <!-- home.html 목록과 동일함.-->
+    {% include post_list.html %}
+    
+    
+{% endfor %}

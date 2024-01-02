@@ -1,0 +1,52 @@
+<!-- 1. 부모 카테고리 찾기 -->
+{% assign firsts = '' | split: ',' %}
+{% for post in site.posts %}
+{% assign firsts = firsts | push: post.categories[1] | uniq | sort %}
+{% endfor %}
+
+<!-- 
+    2. 부모 카테고리 기준으로 자식 카테고리 찾기
+    2-1. [부모1, [자식들], 부모2, [자식들]] 형태 배열 만들기
+ -->
+{% assign categories = '' | split: ',' %}
+{% for first in firsts %}
+    {% assign second = '' | split: ',' %}
+    {% for post in site.posts %}
+        {% if first == post.categories[1] %}
+            {% assign second = second | push: post.categories[2] | uniq | sort %}
+        {% endif %}
+    {% endfor %}
+    {% assign categories = categories | push: first | push: second %}
+{% endfor %}
+
+<div>
+    <ul>
+        {% for category in categories %}
+            {% assign idx = forloop.index | minus: 1 %}
+            {% assign val = idx | modulo: 2 %}
+            {% if val == 0 %}
+                <li>
+                    <a href="/{{ category }}" data-value="{{ category }}">
+                        {{ category | append: '(' | append: site.categories[category].size | append: ')' }}
+                    </a>
+                    {% assign children = categories[forloop.index] %}
+                    {% for child in children %}                
+                        {% if child %}
+                            {% if forloop.first %}
+                            <ul>
+                            {% endif %}
+                                <li>
+                                    <a href="/{{ child }}" data-value="{{ child }}">
+                                        {{ child | append: '(' | append: site.categories[child].size | append: ')' }}
+                                    </a>
+                                </li>
+                            {% if forloop.last %}
+                            </ul>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>

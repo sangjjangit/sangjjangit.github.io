@@ -1,0 +1,36 @@
+---
+layout: default
+---
+<article>
+    <section>
+        <div>
+            {% case page.categories.size %}
+                {% when 3 %}
+                    {{ page.categories[1] | append: ' / ' | append: page.categories[2] }}
+                {% when 2 %}
+                    {{ page.categories[1] }}
+                {% else %}
+                    {{ page.categories[0] }}
+            {% endcase %}
+        </div>
+        <div>
+            <strong>
+                {{ page.title }}
+            </strong>
+        </div>
+    </section>
+    <section>
+        {{ content }}
+    </section>
+    <section style="display: flex;">
+        {% for tag in page.tags %}
+        <div style="padding-left: 5px;">
+            {{ tag }}
+        </div>
+        {% endfor %}        
+    </section>
+    <section style="display: flex;">
+        <div>{{ page.previous.title }}</div>
+        <div>{{ page.next.title }}</div>
+    </section>
+</article>

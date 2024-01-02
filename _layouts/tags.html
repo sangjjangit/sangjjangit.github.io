@@ -1,0 +1,63 @@
+---
+layout: default
+---
+
+tags page
+<br />
+
+<div class="tag_title">
+
+</div>
+
+<div>
+    {% for tags in site.tags %}
+        {% assign tag = tags[0] %}
+        {% assign posts = tags[1] %}
+        <div class="tag_list" id="{{ tag }}" style="display: none;">
+            {% for post in posts %}
+            
+
+            <!-- home.html 목록과 동일함.-->
+            {% include post_list.html %}
+
+
+
+
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>
+
+
+<script>
+    // window.onload = function () {
+    //     this.addEventListener('hashchange', () => {
+    //         console.log('hashchange')
+    //         const pathname = window.location.hash;
+    //         console.log(pathname)
+    //     });
+    // }
+    const search = window.location.search.replace('?', '');
+    console.log('search', search);
+
+    document.querySelector('div.tag_title').innerHTML = '<h1>' + search + '</h1>'
+
+    document.querySelectorAll('div.tag_list').forEach((obj, idx) => {
+        console.log(obj.id, idx);
+        if(obj.id === search){
+            obj.style.display = "block"
+        }else{
+            obj.style.display = "none"
+        }
+    });
+</script>
+
+<!-- // 해시 변경 이벤트 감시
+window.addEventListner('hashchange', handleHashChange);
+handleHashChange();
+
+function handleHashChange() {
+    // 변경 후의 해시값
+    const hash = location.hash;
+    document.querySelector('.log').innerHTML = `현재 앵커는 ${hash]입니다.`;
+} -->

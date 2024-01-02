@@ -1,0 +1,71 @@
+<html>
+    <head>
+        {% include head.html %}
+    </head>
+    <body>
+        <header>
+            {% include header.html %}
+        </header>
+        <div class="contents">
+            <aside>
+                {% include profile.html %}
+                {% include categories.html %}
+                {% include tags.html %}
+            </aside>
+            <main>
+                {{ content }}
+            </main>
+        </div>
+        <footer>
+            {% include footer.html %}
+        </footer>
+    </body>
+</html>
+<style>
+    body {
+        /* border-style: solid; */
+        margin: 0;
+        padding: 0;
+    }
+    header, footer {
+        padding: 10px;
+        text-align: center;
+        border-style: solid;
+        /* min-height: 5%; */
+    }
+    .contents {
+        margin: 0 auto;
+        /* min-height: 100%; */
+        display: flex;
+    }
+    main {
+        border-style: solid;
+        flex-grow: 1;
+        width: 80%;
+        nav {
+            text-align: right;
+            border-style: solid;
+        }
+    }
+    aside {
+        border-style: solid;
+        width: 20%;
+    }
+    a {
+        text-decoration-line: none;
+        color: black;
+    }
+    @media (max-width: 1200px) {
+        .contents {
+            width: 100%;
+        }
+    }
+    @media (max-width: 768px) {
+        main {
+            flex-direction: column;
+        }
+        aside {
+            display: none;
+        }
+    }
+</style>

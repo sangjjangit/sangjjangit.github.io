@@ -1,0 +1,16 @@
+---
+layout: default
+page: categories
+---
+111
+{{ site.categories }}
+
+<br/>
+
+{% for post in site.posts %}
+    {% assign categories = post.categories %}
+    {% assign permalink = post.permalink %}
+    categories: {{categories}} / permalink: {{permalink}}
+    <br/>
+    
+{% endfor %}

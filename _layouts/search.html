@@ -1,0 +1,38 @@
+---
+layout: default
+---
+
+<!-- HTML elements for search -->
+<input id="search-input" type="text" placeholder="Search blog posts..">
+<section id="results-container" class="post">
+</section>
+
+<!-- Script pointing to jekyll-search.js -->
+<script src="/assets/js/simple-jekyll-search.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+window.simpleJekyllSearch = SimpleJekyllSearch({
+    searchInput: document.getElementById('search-input'),
+    resultsContainer: document.getElementById('results-container'),
+    json: '/assets/json/search.json',
+    searchResultTemplate: '<a href="{url}" title="{desc}" target="_blank"><h2>{title}</h2></a>',
+})
+window.onload = function(){    
+        const searchParam = localStorage.getItem('search');
+        document.getElementById('search-input').value = searchParam;
+        document.querySelectorAll('#search-input')[0].focus();
+        window.simpleJekyllSearch.search(searchParam);
+}
+// sjs.search(document.getElementById('search-input').value);
+// window.simpleJekyllSearch = new SimpleJekyllSearch({
+//     searchInput: document.getElementById('searchKey'),
+//     resultsContainer: document.getElementById('results-container'),
+//     json: '/assets/json/search.json',
+//     // searchResultTemplate: '<li><a href="{url}" title="{desc}" target="_blank">{title}</a></li>',
+//     searchResultTemplate: '<a href="{url}" title="{desc}" target="_blank"><h2>{title}</h2></a>',
+//     noResultsText: '검색결과가 존재하지 않습니다.',
+//     limit: 10000,
+//     fuzzy: false,
+//     exclude: ['Welcome']
+// });
+</script>
