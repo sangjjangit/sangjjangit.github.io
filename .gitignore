@@ -3,3 +3,4 @@ _site
 .jekyll-cache
 .jekyll-metadata
 vendor
+bootstrap-5.3.3-examples
