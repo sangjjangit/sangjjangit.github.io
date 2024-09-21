@@ -1,12 +1,10 @@
 ---
 layout: post
 title: "[jekyll] 깃블로그 만들기"
-date: 2024-09-21
+date: 2024-09-21 18:00:00 +0900
 categories: Blog
 excerpt: "깃블로그 README.md"
 ---
-
-# jekyll-sangjjang
 
 ### Ruby
 1. Ruby 다운로드
@@ -33,6 +31,7 @@ jekyll new jekyll-sangjjang
 cd jekyll-sangjjang
 bundle install
 ```
+
 ### Jekyll 서버 실행
 ```bash
 bundle exec jekyll serve

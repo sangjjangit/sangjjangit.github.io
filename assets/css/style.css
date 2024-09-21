@@ -36,3 +36,65 @@ footer {
     padding: 1rem;
     /* margin-top: auto; - grid에서는 필요 없음 */
 }
+
+/******************************** md */
+
+h1, h2, h3 {
+    color: #333;
+}
+
+h1 {
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+}
+
+p {
+    margin: 10px 0;
+}
+
+ul, ol {
+    margin: 10px 20px;
+}
+
+pre {
+    background-color: #f4f4f4; /* 배경색 */
+    padding: 10px; /* 패딩 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    overflow: auto; /* 넘칠 경우 스크롤 */
+    margin: 10px 0; /* 위 아래 여백 */
+}
+
+code {
+    /*background: #eaeaea; !* 인라인 코드 배경색 *!*/
+    padding: 2px 4px; /* 패딩 */
+    border-radius: 4px; /* 모서리 둥글게 */
+    font-family: monospace; /* 폰트 스타일 */
+}
+
+
+blockquote {
+    border-left: 4px solid #ccc;
+    padding: 10px 20px;
+    color: #555;
+    margin: 10px 0;
+}
+
+/******************************** a tag */
+a {
+    color: #3498db; /* 링크 색상 */
+    text-decoration: none; /* 기본 밑줄 제거 */
+    transition: color 0.3s ease, border-bottom 0.3s ease; /* 색상과 밑줄 전환 효과 */
+}
+
+a:hover {
+    color: #2c3e50; /* 마우스 오버 시 색상 변경 */
+    border-bottom: 2px solid #2c3e50; /* 마우스 오버 시 밑줄 추가 */
+}
+
+a:visited {
+    color: #8e44ad; /* 방문한 링크 색상 */
+}
+
+a:active {
+    color: #c0392b; /* 클릭 시 색상 */
+}
