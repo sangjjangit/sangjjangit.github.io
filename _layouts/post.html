@@ -2,12 +2,10 @@
 layout: index
 ---
 
-<article>
-    <h1>{{ page.title }}</h1>
-    <p><em>Posted on {{ page.date | date: "%B %d, %Y" }}</em></p>
-    <div>
-        {{ content }}
-    </div>
-</article>
+<h1>{{ page.title }}</h1>
+<p><em>Posted on {{ page.date | date: "%B %d, %Y" }}</em></p>
+<div>
+    {{ content }}
+</div>
 
-<a href="{{ site.baseurl }}/post/">Back to Home</a>
+<a href="{{ site.baseurl }}/">Back to Home</a>

@@ -4,17 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ site.title }}</title>
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
 </head>
 <body>
 {% include header.html %}
 
 <main>
-    <section>
-        {% include post-list.html %}
-    </section>
-    <article>
-        {{content}}
-    </article>
+    {{content}}
 </main>
 
 {% include footer.html %}
