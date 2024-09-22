@@ -98,8 +98,10 @@ excerpt: "유니티를 시작하다."
   - class Monster
     - 몬스터 필수 기능
     - 인공지능, 애니메이션, 공격과 방어, 물리, 기타 필수
+  
   - class Orc : Monster
     - 초록색 피부, 오크 애니메이션, 오크 스킬, 오크 고유기능
+  
   - class OrcChieftan : Orc
     - 대장모자, 새로운 무기, 스킬, 대장 고유기능
 
