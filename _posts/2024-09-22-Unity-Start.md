@@ -144,7 +144,7 @@ excerpt: "유니티를 시작하다."
     - 필자도 열리지 않아서 별도로 비주얼 스튜디오를 실행해서 파일을 드래그앤드랍으로 열었다.
   - C#파일을 수정하고 저장하면 유니티 에디터에 반영된다.
   - 예제 소스 샘플
-```C#
+```
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
