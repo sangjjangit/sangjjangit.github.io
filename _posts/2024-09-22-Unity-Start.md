@@ -158,7 +158,7 @@ public class HelloCode : MonoBehaviour
         string characterName = "라라";
         char bloodType = 'A';
         int age = 27;
-        float height = 161.9f; // 32bit // 3.1234567 // 7자리소수점까지정확히..
+        float height = 161.9f; // float:32bit // 3.1234567 // 7자리소수점까지정확히..
         bool isFemale = true;
         
         Debug.Log("characterName: " + characterName);
