@@ -189,3 +189,55 @@ public class HelloCode : MonoBehaviour
 - 프로젝트(Project)창에 C#파일을 드래그해서 GameObject에 드랍한다.
 - 인스펙터(Inspector)창에서 컴포넌트가 추가된 것을 볼수 있다.
 - 게임플레이(중앙상단) 버튼을 클릭해서 Console 로그를 확인한다.
+
+---
+
+### 게임 오브젝트
+
+```C#
+public class Animal
+{
+    public string name;
+    public string sound;
+
+    public void PlaySound(){
+        Debug.Log(name + " : " + sound);
+    }
+}
+
+```
+```C#
+public class Zoo : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+        Animal tom = new Animal();
+        tom.name = "톰";
+        tom.sound = "냐옹!";
+        
+        tom.PlaySound();
+    }
+}
+```
+- 오브젝트 연결
+  - 하이어리키(Hierarchy)창에서 [+]버튼으로 Create Empty로 빈오브젝트 생성
+  - 프로젝트(Project)창에 Zoo 스크립트를 드래그해서 GameObject에 드랍한다.
+
+```C#
+public class Jumper : MonoBehaviour
+{
+    public Rigidbody myRigidbody;
+    
+    // Start is called before the first frame update
+    void Start()
+    {
+        myRigidbody.AddForce(0, 500, 0);
+    }
+}
+```
+- 변수로 컴포넌트 사용하기
+  - 하이어리키(Hierarchy)창에서 [+]버튼으로 3D Object - Cube 생성
+  - 인스펙터(Inspector)창에 Rigidbody 컴포넌트를 추가한다.
+  - 프로젝트(Project)창에 Jumper 스크립트를 Cube에 드래그앤드랍한다.
+  - 인스펙터(Inspector)창에 Rigidbody 컴포넌트를 Jumper 컴포넌트의 My Rigidbody 에 드래그앤드랍한다.
