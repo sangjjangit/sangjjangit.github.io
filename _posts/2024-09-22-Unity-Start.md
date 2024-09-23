@@ -33,6 +33,7 @@ excerpt: "유니티를 시작하다."
 ### 유니티 에디터 둘러보기
 
 - 예제소스 : <https://github.com/IJEMIN/Unity-Programming-Essence-2021>
+- 예제번호 : 02
 
 1. 기존 프로젝트 불러오기
 - 유니티 허브 실행 > Projects 탭에서 Add
@@ -228,7 +229,7 @@ public class Zoo : MonoBehaviour
 public class Jumper : MonoBehaviour
 {
     public Rigidbody myRigidbody;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -241,3 +242,12 @@ public class Jumper : MonoBehaviour
   - 인스펙터(Inspector)창에 Rigidbody 컴포넌트를 추가한다.
   - 프로젝트(Project)창에 Jumper 스크립트를 Cube에 드래그앤드랍한다.
   - 인스펙터(Inspector)창에 Rigidbody 컴포넌트를 Jumper 컴포넌트의 My Rigidbody 에 드래그앤드랍한다.
+
+---
+
+### 닷지 게임
+
+- 예제소스 : <https://github.com/IJEMIN/Unity-Programming-Essence-2021>
+- 예제번호 : 06, 07, 08
+
+
