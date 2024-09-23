@@ -39,11 +39,11 @@ blockquote {
 
 /* article 스타일 */
 article {
-  padding: 20px;
-  background-color: #fafafa;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+  /* padding: 10px; */
+  /* background-color: #fafafa; */
+  /* border-radius: 8px; */
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
+  /* margin-bottom: 20px; */
   max-width: 800px;
   margin: 20px auto; /* 중앙 정렬 */
   width: 800px;
