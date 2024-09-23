@@ -73,6 +73,14 @@ article hr {
   text-decoration: underline;
 } */
 
+
+.back-to-home {
+  text-align: right; /* 오른쪽 정렬 */
+  margin-top: 20px; /* 위쪽 여백 추가 */
+  margin-right: 20px
+}
+
+
 /* 반응형 */
 @media (max-width: 768px) {
   article {

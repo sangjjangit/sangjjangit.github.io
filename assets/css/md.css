@@ -37,3 +37,18 @@ blockquote {
   color: #555;
   margin: 10px 0;
 }
+
+.back-to-home {
+  text-align: right; /* 오른쪽 정렬 */
+  margin-top: 20px; /* 위쪽 여백 추가 */
+}
+
+.back-to-home a {
+  text-decoration: none; /* 밑줄 제거 */
+  color: #3498db; /* 링크 색상 */
+}
+
+.back-to-home a:hover {
+  text-decoration: underline; /* 호버 시 밑줄 추가 */
+  color: #2980b9; /* 호버 시 색상 변경 */
+}
