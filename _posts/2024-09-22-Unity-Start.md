@@ -2,7 +2,7 @@
 layout: post
 title: "[Unity] 시작"
 date: 2024-09-22 13:48:00 +0900
-categories: Blog
+categories: Unity
 excerpt: "유니티를 시작하다."
 ---
 
