@@ -21,11 +21,10 @@ pre {
   border-radius: 5px; /* 모서리 둥글게 */
   overflow: auto; /* 넘칠 경우 스크롤 */
   margin: 10px 0; /* 위 아래 여백 */
-}
-
-code {
-  /*background: #eaeaea; !* 인라인 코드 배경색 *!*/
-  color:#ffffff;
+  code {
+    /*background: #eaeaea; !* 인라인 코드 배경색 *!*/
+    color:#ffffff;
+  }
 }
 
 /* blockquote {
