@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[jekyll] 깃블로그 만들기"
-date: 2024-09-21 18:00:00 +0900
+date: 2024-09-21 18:07:00 +0900
 categories: Blog
 excerpt: "깃블로그 README.md"
 ---
