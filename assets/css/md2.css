@@ -16,7 +16,7 @@ ul, ol {
 }
 
 pre {
-  background-color: #f4f4f4; /* 배경색 */
+  background-color: #222222; /* 배경색 */
   padding: 10px; /* 패딩 */
   border-radius: 5px; /* 모서리 둥글게 */
   overflow: auto; /* 넘칠 경우 스크롤 */
@@ -25,17 +25,15 @@ pre {
 
 code {
   /*background: #eaeaea; !* 인라인 코드 배경색 *!*/
-  padding: 2px 4px; /* 패딩 */
-  border-radius: 4px; /* 모서리 둥글게 */
-  font-family: monospace; /* 폰트 스타일 */
+  color:#ffffff;
 }
 
-blockquote {
+/* blockquote {
   border-left: 4px solid #ccc;
   padding: 10px 20px;
   color: #555;
   margin: 10px 0;
-}
+} */
 
 /* article 스타일 */
 article {
