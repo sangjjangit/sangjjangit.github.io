@@ -7,13 +7,16 @@
         {% endfor %}
     </ul>
 </div> -->
-<div>
+<section class="archive">
     <ul class="post-list">
         {% for post in site.posts %}
         <li class="post-item">
-            <span class="post-date">{{ post.date | date: "%F" }}</span>
-            <a href="{{ post.url }}" class="post-link">{{ post.title }}</a>
+            <a href="{{ post.url }}">
+                <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+                <span class="post-title">{{ post.title }}</span>
+                <br/><small>{{ post.excerpt }}</small>
+            </a>
         </li>
         {% endfor %}
     </ul>
-</div>
+</section>

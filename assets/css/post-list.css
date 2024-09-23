@@ -17,16 +17,14 @@
 
 /* 날짜 스타일 */
 .post-date {
-  font-size: 14px;
   color: #888;
   display: inline-block;
   margin-right: 10px;
 }
 
 /* 링크 스타일 */
-.post-link {
-  color: #3498db;
-  font-size: 18px;
+.post-title {
+  /* color: #3498db; */
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s ease;
