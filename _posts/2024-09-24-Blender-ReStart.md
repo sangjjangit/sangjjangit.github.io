@@ -7,6 +7,7 @@ excerpt: "블렌더로 3D모델링을 시작하다."
 ---
 
 - 결국을 책을 새로 샀다.
+- 책/영상정보 : <https://www.youtube.com/@kkamanggoniTV>
 
 ### 블렌더
 - 오픈소스 3D 콘텐츠 제작 프로그램
