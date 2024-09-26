@@ -1,0 +1,15 @@
+<section class="archive">
+    {% for category in site.categories %}
+    <ul class="post-list">
+        {% for post in category[1] %}
+        <li class="post-item">
+            <a href="{{ post.url }}">
+                <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+                <span class="post-title">{{ post.title }}</span>
+                <br/><small>{{ post.excerpt }}</small>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+</section>

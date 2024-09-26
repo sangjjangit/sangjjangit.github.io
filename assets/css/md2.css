@@ -21,9 +21,15 @@ pre {
   border-radius: 5px; /* 모서리 둥글게 */
   overflow: auto; /* 넘칠 경우 스크롤 */
   margin: 10px 0; /* 위 아래 여백 */
+  overflow-x: auto; /* 가로 스크롤 추가 */
+  white-space: pre-wrap; /* 긴 줄이 있으면 자동으로 줄바꿈 */
+  word-wrap: break-word; /* 긴 단어는 줄바꿈 */
+  max-width: 100%; /* 부모 요소의 너비에 맞게 조정 */
+  font-family: monospace; /* 고정폭 폰트 */
   code {
     /*background: #eaeaea; !* 인라인 코드 배경색 *!*/
     color:#ffffff;
+    display: block;
   }
 }
 
