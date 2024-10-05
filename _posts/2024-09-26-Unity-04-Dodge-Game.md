@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[Unity] 닷지 게임"
+title: "[Unity] 닷지 게임 - 플레이어"
 date: 2024-09-26 21:15:00 +0900 
 categories: Unity
 excerpt: "유니티의 닷지 게임을 만들며 익히기"
@@ -101,5 +101,20 @@ public class PlayerController : MonoBehaviour
     }
 }
 ```
+- 입력 매니저
+특정 키에 직접 이벤트를 줄 경우, 단축키를 변경시, 소스 수정은 불가피하다.
+입력 이름을 통해서 동작하게 한다.
+```
+if([마우스 왼쪽 버튼] 클릭) {
+    // 총 발사
+}
+if("발사"에 대응되는 버튼을 클릭) {
+    // 총 발사
+}
+```
 
+- 입력 매너저 설정 창
+  - 유니티 에디터 메뉴 > Edit > Project Settings
+  - Project Seetings > Input Manager
+  
 ---
