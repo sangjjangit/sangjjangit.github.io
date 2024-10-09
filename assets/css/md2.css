@@ -32,6 +32,13 @@ pre {
     display: block;
   }
 }
+code {
+  background-color: #222222; /* 배경색 */
+  color:#ffffff;
+  padding: 3px; /* 패딩 */
+  border-radius: 3px; /* 모서리 둥글게 */
+  font-family: monospace; /* 고정폭 폰트 */
+}
 
 /* blockquote {
   border-left: 4px solid #ccc;
