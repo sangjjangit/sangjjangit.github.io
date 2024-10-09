@@ -3,6 +3,7 @@ layout: post
 title: "[Unity] 닷지 게임 - 탄알/탄알생성기"
 date: 2024-10-05 14:50:00 +0900 
 categories: Unity
+tag: 레트로의 유니티 게임 프로그래밍 에센스
 excerpt: "유니티의 닷지 게임을 만들며 익히기"
 ---
 
