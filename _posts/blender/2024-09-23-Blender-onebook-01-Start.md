@@ -3,6 +3,8 @@ layout: post
 title: "[Blender] 시작"
 date: 2024-09-23 20:35:00 +0900
 categories: Blender
+book: 한 권으로 끝내는 블렌더 교과서
+tag: onebook
 excerpt: "블렌더로 3D모델링을 시작하다."
 ---
 

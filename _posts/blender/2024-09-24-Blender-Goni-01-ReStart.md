@@ -3,6 +3,8 @@ layout: post
 title: "[Blender] 다시 시작"
 date: 2024-09-24 21:11:00 +0900
 categories: Blender
+book: 이토록 쉬운 까망고니의 블렌더 트레이닝
+tag: Goni
 excerpt: "블렌더로 3D모델링을 시작하다."
 ---
 

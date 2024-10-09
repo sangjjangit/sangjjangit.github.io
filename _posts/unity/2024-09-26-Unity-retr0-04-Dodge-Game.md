@@ -3,7 +3,8 @@ layout: post
 title: "[Unity] 닷지 게임 - 플레이어"
 date: 2024-09-26 21:15:00 +0900 
 categories: Unity
-tag: 레트로의 유니티 게임 프로그래밍 에센스
+book: 레트로의 유니티 게임 프로그래밍 에센스
+tag: retr0
 excerpt: "유니티의 닷지 게임을 만들며 익히기"
 ---
 

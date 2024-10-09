@@ -3,7 +3,8 @@ layout: post
 title: "[Unity] 방향,크기,회전"
 date: 2024-10-06 20:54:00 +0900 
 categories: Unity
-tag: 레트로의 유니티 게임 프로그래밍 에센스
+book: 레트로의 유니티 게임 프로그래밍 에센스
+tag: retr0
 excerpt: "벡터 수학, 유니티 C# 벡터, 쿼터니언"
 ---
 

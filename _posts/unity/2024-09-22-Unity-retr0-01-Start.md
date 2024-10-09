@@ -3,7 +3,8 @@ layout: post
 title: "[Unity] 유니티 맛보기/유니티 에디터"
 date: 2024-09-22 13:48:00 +0900 
 categories: Unity
-tag: 레트로의 유니티 게임 프로그래밍 에센스
+book: 레트로의 유니티 게임 프로그래밍 에센스
+tag: retr0
 excerpt: "유니티를 시작하다."
 ---
 

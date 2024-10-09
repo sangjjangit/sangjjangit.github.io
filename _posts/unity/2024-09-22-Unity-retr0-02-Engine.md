@@ -3,7 +3,8 @@ layout: post
 title: "[Unity] 유니티 엔진 동작 원리"
 date: 2024-09-22 13:50:00 +0900 
 categories: Unity
-tag: 레트로의 유니티 게임 프로그래밍 에센스
+book: 레트로의 유니티 게임 프로그래밍 에센스
+tag: retr0
 excerpt: "유니티의 동작 원리를 파악하다."
 ---
 

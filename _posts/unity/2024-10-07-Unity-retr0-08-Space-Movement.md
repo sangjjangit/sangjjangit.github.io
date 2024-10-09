@@ -4,6 +4,7 @@ title: "[Unity] 공간, 움직임"
 date: 2024-10-07 21:47:00 +0900 
 categories: Unity
 book: 레트로의 유니티 게임 프로그래밍 에센스
+tag: retr0
 excerpt: "유니티 공간, 오브젝트 이동/회전, 평행이동"
 ---
 

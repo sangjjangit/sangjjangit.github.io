@@ -33,7 +33,9 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
-permalink: /:year/:month/:day/:title/
+# permalink: /:year/:month/:day/:title/
+# permalink: /:year:month:day/:title/
+permalink: /:year/:categories/:title/
 
 markdown: kramdown
 kramdown:
