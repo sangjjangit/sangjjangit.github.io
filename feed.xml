@@ -1,0 +1,1214 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2024-10-12T12:43:19+00:00</updated><id>/feed.xml</id><title type="html">Sangjjangit</title><subtitle>summy reading books</subtitle><entry><title type="html">[Unity] 2D 러너 게임</title><link href="/2024/unity/Unity-retr0-09-Unit-Run/" rel="alternate" type="text/html" title="[Unity] 2D 러너 게임" /><published>2024-10-12T10:50:00+00:00</published><updated>2024-10-12T10:50:00+00:00</updated><id>/2024/unity/Unity-retr0-09-Unit-Run</id><content type="html" xml:base="/2024/unity/Unity-retr0-09-Unit-Run/"><![CDATA[<h3 id="유니런-2d-게임">유니런 2D 게임</h3>
+
+<ul>
+  <li>예제소스 : <a href="https://github.com/IJEMIN/Unity-Programming-Essence-2021">https://github.com/IJEMIN/Unity-Programming-Essence-2021</a></li>
+  <li>예제번호 : 11, 12, 13</li>
+  <li>씬과 코드는 를 제외한 모든 에엣은 준비된 상태에서 코딩과 기능 구현에 집중한다.</li>
+</ul>
+
+<h3 id="프로젝트-열기">프로젝트 열기</h3>
+<ul>
+  <li>유니티 허브 실행</li>
+  <li>폴더 11 &gt; Uni-Run 폴더 선택 &gt; 열기</li>
+  <li>새 씬(Scene) 만들기
+    <ul>
+      <li>Ctrl + N</li>
+      <li>Basic 2D 탬플릿 선택</li>
+      <li>Main 이름으로 씬 저장</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="시작지점--데드존">시작지점 / 데드존</h3>
+<ul>
+  <li>시작 지점에는 캐릭터가 서 있을 기본 발판과 낙사 판정 영역을 만든다.</li>
+  <li>프로젝트 창 Sprites 폴더 &gt; Platform_Long 스프라이트를 하이어라키 창으로 드래그앤드랍</li>
+  <li>하이어라키 창에 생성된 Platform_Long을 Start Platform 이름 변경</li>
+  <li>Start Platform 오브젝트 인스펙터 창
+    <ul>
+      <li>위치 변경 : (0,-1,0)</li>
+      <li>Box Collider 2D 컴포넌트 추가(Add Component &gt; Physics 2D &gt; Box Collider 2D)</li>
+    </ul>
+  </li>
+  <li>플레이어 캐릭터가 죽게 하는 낙사 판정 영역(데드존)을 만든다.</li>
+  <li>빈 게임 오브젝트 생성(하이어라키 창 + &gt; Create Empty)</li>
+  <li>생성한 오브젝트 인스펙터 창
+    <ul>
+      <li>이름 : Deadzone</li>
+      <li>위치 : (0,-8,0)</li>
+      <li>Box Collider 2D 컴포넌트 추가(Add Component &gt; Physics 2D &gt; Box Collider 2D)</li>
+      <li>Box Collider 2D 컴포넌트 Is Trigger 체크, Size (50,2) 변경</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="캐릭터-스프라이트">캐릭터 스프라이트</h3>
+<ul>
+  <li>프로젝트 창에서 Sprites 폴더 &gt; 사용할 스프라이트는 Toko_Die, Toko_jump, Toko_Run</li>
+  <li>
+    <p>스프라이트 시트는 여러 이미지를 하나의 이미지 파일로 합친 것이다.</p>
+  </li>
+  <li>Toko_Run 스프라이트 편집
+    <ul>
+      <li>프로젝트 창 &gt; Toko_Run 선택</li>
+      <li>인스펙터 창 &gt; Sprite Mode를 Multiple 변경</li>
+      <li>Apply 버튼 클릭 &gt; Sprite Editor 버튼 클릭</li>
+      <li>스프라이트 편집 창 &gt; Slice 버튼 클릭</li>
+      <li>Type은 Grid by Cell Size, Pixel Size는 (64,64)</li>
+      <li>Apply 버튼 클릭 &gt; Sprite Editor 닫기</li>
+      <li>프로젝트 창에서 Toko_Run 스프라이트 펼치서 확인</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="캐릭터-오브젝트">캐릭터 오브젝트</h3>
+<ul>
+  <li>플레이어 오브젝트 생성
+    <ul>
+      <li>프로젝트 창에서 Toko_Run 스프라이트 펼치기 &gt; Toko_Run_0 스프라이트를 하이어라키 창으로 드래그앤드랍</li>
+      <li>Toko_Run_0 오브젝트 인스펙터 창
+        <ul>
+          <li>이름 Player, 태그 Player, 위치 (-6,2,0) 변경</li>
+          <li>Rigidbody 2D 컴포넌트 추가(Add Component &gt; Physics 2D &gt; Rigidbody 2D)</li>
+          <li>Rigidbody 2D 컴포넌트 Collision Detection : Continuous 변경</li>
+          <li>Rigidbody 2D 컴포넌트 Constraints 펼치기 &gt; Freeze Rotation : Z 체크</li>
+          <li>Circle Collider 2D 컴포넌트 추가(Add Component &gt; Physics 2D &gt; Circle Collider 2D)</li>
+          <li>Circle Collider 2D 컴포넌트 Offset : (0,-0.57), Radius : 0.2 변경</li>
+          <li>Audio Source 컴포넌트 추가(Add Component &gt; Audio &gt; Audio Source)</li>
+          <li>Audio Source 컴포넌트 AudioClip 필드 옆의 선택 버튼 &gt; 선택 창에서 jump 오디오 더블 클릭</li>
+          <li>Audio Source 컴포넌트 Play On Awake 체크 해제(Play On Awake: 오디오 소스 컴포넌트가 활성화되었을 때 최초 1회 오디오를 자동 재생 옵션)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="캐릭터-애니메이션">캐릭터 애니메이션</h3>
+<ul>
+  <li>프로젝트 창 Assets 폴더 하위 새폴더 생성(프로젝트 창 + &gt; Folder)
+    <ul>
+      <li>폴더명 : Animations</li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>Toko_Run 애니메이션
+    <ul>
+      <li>상단메뉴 Window &gt; Animation &gt; Animation 클릭 &gt; 애니메이션 창이 열린다.</li>
+      <li>애니메이션 창 Create 클릭 &gt; 애니메이션 클릭 저장 창이 열린다.
+        <ul>
+          <li>저장할 새로운 애니메이션 클립명 : Run</li>
+          <li>Assets 폴더 &gt; Animations 폴더에 저장</li>
+        </ul>
+      </li>
+      <li>프로젝트 창 &gt; Sprites 폴더 &gt; Toko_Run 스프라이트 펼치기</li>
+      <li>Shift + 클릭 으로 Toko_Run_0 ~ Toko_Run_7 선택 후 애니메이션 창의 타임라인으로 드래그앤드랍</li>
+      <li>샘플 레이트 필드 활성화(애니메이션 창의 점3개(…) 버튼 클릭 &gt; Show Sample Rate 체크)</li>
+      <li>애니메이션 창에서 Samples : 16 변경</li>
+    </ul>
+  </li>
+  <li>Toko_Jump 애니메이션(Samples : 6)</li>
+  <li>Toko_Die 애니메이션(Samples : 6)
+    <ul>
+      <li>위의 방법과 같이, 애니메이션 클립을 만든다.</li>
+      <li>Die 애니메이션 클립은 인스펙터 창에서 Loop Time 체크 해제해준다.</li>
+    </ul>
+  </li>
+</ol>
+
+<ul>
+  <li>상황에 맞는 애니메이션을 재생하려면 애니메이터 컨트롤러가 필요하다.</li>
+</ul>
+
+<hr />]]></content><author><name></name></author><category term="Unity" /><category term="retr0" /><summary type="html"><![CDATA[플레이어 제작]]></summary></entry><entry><title type="html">[Unity] 공간, 움직임</title><link href="/2024/unity/Unity-retr0-08-Space-Movement/" rel="alternate" type="text/html" title="[Unity] 공간, 움직임" /><published>2024-10-07T12:47:00+00:00</published><updated>2024-10-07T12:47:00+00:00</updated><id>/2024/unity/Unity-retr0-08-Space-Movement</id><content type="html" xml:base="/2024/unity/Unity-retr0-08-Space-Movement/"><![CDATA[<h3 id="유니티-공간">유니티 공간</h3>
+<ul>
+  <li>x,y,z 좌표계</li>
+  <li>전역 공간
+    <ul>
+      <li>전역공간은 월드의 중심이라는 절대 기존이 존재하는 공간, 월드 공간이라고도 부른다.</li>
+      <li>(0,0,0)이 존재하며 모든 오브젝트가 원점에서 얼마만큼 떨어져 있냐가 오브젝트의 좌표가 된다.</li>
+      <li>씬(Scene) 창 상단에 (피벗/센터) 전환, (로컬/글로벌) 전환 버튼이 있다.</li>
+      <li>피벗: 오브젝트의 실제 기준점을 기준으로 오브젝트를 배치</li>
+      <li>센터: 눈으로 보이는 중점을 기준으로 오브젝트를 배치</li>
+      <li>글로벌(전역) 모드 : 전역공간에서 오브젝트의 좌표는 오브젝트가 게임 월드의 원점(0,0,0)에서 게임 월드의 x,y,z 방향으로 각각 얼마만큼 떨어져 있냐를 결정.</li>
+    </ul>
+  </li>
+  <li>오브젝트 공간
+    <ul>
+      <li>전역 좌표계와 원점을 기준으로 배치하는 전역 공간과 반대로 오브젝트 공간은 오브젝트 자신의 x,y,z 방향(오브젝트 좌표계)를 배치 기준으로 사용한다.</li>
+      <li>씬(Scene) 창 상단의 로컬 모드</li>
+      <li>게임 월드에서의 오브젝트 실제 위치가 어디든 상관없이 오브젝트 공간에서 오브젝트의 위치는 항상 (0,0,0)이다.</li>
+      <li>오브젝트 공간에서의 평행이동은 오브젝트는 가만히 있고, 주변 풍경이 움직이는 것으로 이해할 수 있다.</li>
+    </ul>
+  </li>
+  <li>지역 공간
+    <ul>
+      <li>게임 월드나 오브젝트 자신이 아닌 자신의 부모 오브젝트를 기준으로 한 지역좌표계로 좌표를 측정한다.</li>
+      <li>부모-자식 오브젝트에서 자식 오브젝트의 인스펙터(Inspector)창의 수치는 부모 오브젝트 기준이다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="오브젝트의-이동과-회전">오브젝트의 이동과 회전</h3>
+<ul>
+  <li>하이어리키(Hierarchy) 창 + &gt; 3D Object 로 부모-자식 오브젝트 준비</li>
+  <li>프로젝트(Project) 창 + &gt; C# Script</li>
+  <li>Move 스크립트 작성
+    <div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+<span class="cm">/**/</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Move</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+  <span class="k">public</span> <span class="n">Transform</span> <span class="n">childTransform</span><span class="p">;</span> <span class="c1">// 움직일 자신 오브젝트의 트랜스폼</span>
+
+  <span class="c1">// Start is called before the first frame update</span>
+  <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
+  <span class="p">{</span>
+      <span class="n">transform</span><span class="p">.</span><span class="n">position</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="p">-</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span> <span class="c1">// 자신의 전역 위치</span>
+      <span class="n">childTransform</span><span class="p">.</span><span class="n">localPosition</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span> <span class="c1">// 자식의 지역 위치</span>
+
+      <span class="n">transform</span><span class="p">.</span><span class="n">rotation</span> <span class="p">=</span> <span class="n">Quaternion</span><span class="p">.</span><span class="nf">Euler</span><span class="p">(</span><span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">30</span><span class="p">,</span> <span class="m">0</span><span class="p">));</span> <span class="c1">// 자신의 전역 회전</span>
+      <span class="n">childTransform</span><span class="p">.</span><span class="n">localRotation</span> <span class="p">=</span> <span class="n">Quaternion</span><span class="p">.</span><span class="nf">Euler</span><span class="p">(</span><span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">60</span><span class="p">,</span> <span class="m">0</span><span class="p">));</span> <span class="c1">// 자식의 지역 회전</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Update is called once per frame</span>
+  <span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
+  <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKey</span><span class="p">(</span><span class="n">KeyCode</span><span class="p">.</span><span class="n">UpArrow</span><span class="p">))</span> <span class="p">{</span>
+          <span class="n">transform</span><span class="p">.</span><span class="nf">Translate</span><span class="p">(</span><span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span> <span class="p">*</span> <span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">);</span> <span class="c1">// 초당 속도로 평행이동</span>
+      <span class="p">}</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKey</span><span class="p">(</span><span class="n">KeyCode</span><span class="p">.</span><span class="n">DownArrow</span><span class="p">))</span> <span class="p">{</span>
+          <span class="n">transform</span><span class="p">.</span><span class="nf">Translate</span><span class="p">(</span><span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="p">-</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span> <span class="p">*</span> <span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">);</span> <span class="c1">// 초당 속도로 평행이동</span>
+      <span class="p">}</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKey</span><span class="p">(</span><span class="n">KeyCode</span><span class="p">.</span><span class="n">LeftArrow</span><span class="p">))</span> <span class="p">{</span>
+          <span class="n">transform</span><span class="p">.</span><span class="nf">Rotate</span><span class="p">(</span><span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">180</span><span class="p">)</span> <span class="p">*</span> <span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">);</span> <span class="c1">// 자신을 초당 회전</span>
+          <span class="n">childTransform</span><span class="p">.</span><span class="nf">Rotate</span><span class="p">(</span><span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">180</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span> <span class="p">*</span> <span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">);</span> <span class="c1">// 자식을 초당 회전</span>
+      <span class="p">}</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKey</span><span class="p">(</span><span class="n">KeyCode</span><span class="p">.</span><span class="n">RightArrow</span><span class="p">))</span> <span class="p">{</span>
+          <span class="n">transform</span><span class="p">.</span><span class="nf">Rotate</span><span class="p">(</span><span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="p">-</span><span class="m">180</span><span class="p">)</span> <span class="p">*</span> <span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">);</span> <span class="c1">// 자신을 초당 회전</span>
+          <span class="n">childTransform</span><span class="p">.</span><span class="nf">Rotate</span><span class="p">(</span><span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="p">-</span><span class="m">180</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span> <span class="p">*</span> <span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">);</span> <span class="c1">// 자식을 초당 회전</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="벡터-연산">벡터 연산</h3>
+<ul>
+  <li>벡터의 속기
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Vector3 position = Vector3.up;</code>와 <code class="language-plaintext highlighter-rouge">Vector3 position = new Vector3(0,1,0);</code>은 같은 동작을 한다.</li>
+      <li>Vector3.forward : new Vector3(0,0,1)</li>
+      <li>Vector3.back : new Vector3(0,0,-1)</li>
+      <li>Vector3.right : new Vector3(1,0,0)</li>
+      <li>Vector3.left : new Vector3(-1,0,0)</li>
+      <li>Vector3.up : new Vector3(0,1,0)</li>
+      <li>Vector3.down : new Vector3(0,-1,0)</li>
+      <li>모두 크기가 1인 방향벡터다.</li>
+    </ul>
+  </li>
+  <li>트랜스폼의 방향
+    <ul>
+      <li>transform.forward : 자신의 앞쪽 방향벡트</li>
+      <li>transform.right : 자신의 오른쪽 방향벡트</li>
+      <li>transform.up : 자신의 위쪽 방향벡트</li>
+      <li>-1 를 곱해서 반대방향으로 표현</li>
+      <li>-1 * transform.forward</li>
+      <li>-1 * transform.right</li>
+      <li>-1 * transform.up</li>
+    </ul>
+  </li>
+  <li>벡터연산의 평행이동
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">transform.Translate(new Vector3(0,1,0));</code> 를 <code class="language-plaintext highlighter-rouge">transform.position = transform.position + transform.up * 1;</code> 표현할 수 있다.</li>
+      <li>전역공간을 기준으로 <code class="language-plaintext highlighter-rouge">transform.Translate(new Vector3(0,1,0), Space.World);</code> 를 <code class="language-plaintext highlighter-rouge">transform.position = transform.position + Vector3.up * 1;</code> 표현할 수 있다.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />]]></content><author><name></name></author><category term="Unity" /><category term="retr0" /><summary type="html"><![CDATA[유니티 공간, 오브젝트 이동/회전, 평행이동]]></summary></entry><entry><title type="html">[Unity] 방향,크기,회전</title><link href="/2024/unity/Unity-retr0-07-Direction-Size-Rotation/" rel="alternate" type="text/html" title="[Unity] 방향,크기,회전" /><published>2024-10-06T11:54:00+00:00</published><updated>2024-10-06T11:54:00+00:00</updated><id>/2024/unity/Unity-retr0-07-Direction-Size-Rotation</id><content type="html" xml:base="/2024/unity/Unity-retr0-07-Direction-Size-Rotation/"><![CDATA[<h3 id="벡터-수학">벡터 수학</h3>
+<ul>
+  <li>대부분 2D 벡터(x,y) 기준으로 설명</li>
+  <li>원소 수와 상관없이 벡터의 성질은 동일하기 때문에 3D 벡터(x,y,z),4D 벡터(x,y,z,w)에도 완전히 똑같은 수식이 적용된다.</li>
+</ul>
+
+<ol>
+  <li>벡터 정의
+    <ul>
+      <li>물리학자, 공학자, 게임 개발자, 데이터를 다루는 프로그래머, 수학자 등 관점이 다르다.</li>
+      <li>(10,5,0) 오른쪽 10, 위쪽 5만큼 이동일수도, 나열된 숫자의 데이터, 벡터 연산을 만족하는 정해진 개수의 원소 등.</li>
+      <li>게임 개발에서의 벡터는 주로 위치, 방향, 속도를 나타내는 데 사용된다.</li>
+      <li>유니티는 3D벡터를 나타내는 Vector3를 3D공간에서의 x,y,z 좌표를 표현한다.</li>
+    </ul>
+  </li>
+  <li>상대좌표/절대좌표
+    <ul>
+      <li>상대좌표 : (내가 어디 있는지 모르겠지만) 현재 좌표에서 (1,1)만큼 더 가는 좌표</li>
+      <li>절대좌표 : 나의 좌표가 (1,1)이다.</li>
+      <li>절대적인 좌표와 상대적인 방향과 크기(길이)를 나타낸다.</li>
+    </ul>
+  </li>
+  <li>크기, 스칼라 곱
+    <ul>
+      <li>벡터의 크기
+        <ul>
+          <li>(-3,4) 벡터의 크기는 5 이다. (피타고라스 정리), 모든 원소를 제곱해서 더한 값의 제곱근.</li>
+          <li>(-3,4) 크기는 5, (-6,8) 크기는 10</li>
+          <li>(-6,8) 크기는 (-3,4)의 2배수이다.</li>
+          <li>벡터에서는 배수를 취하는 숫자를 곱할 수 있으며 이것을 스칼라 곱이라고 한다.</li>
+          <li>스칼라 값은 기존 벡터를 잡아 늘리거나 줄이는 배율이다.</li>
+          <li>벡터의 방향은 변경할 수 없다.</li>
+        </ul>
+      </li>
+      <li>벡터의 방향
+        <ul>
+          <li>방향벡터는 크기가 1인 벡터로, 정규화된 벡터(Normalized Vector)라 부른다.</li>
+          <li>크기가 1이므로 방향은 같지만 크기가 서로 다른 벡터를 비교하는 기준으로 삼는다.</li>
+          <li>(3,-3)을 정규화해서 얻은 방향벡터는 대략 (0.71, -0.71)이다.</li>
+          <li>벡터는 방향과 크기를 동시에 표현, ‘방향벡터 x 스칼라 곱’으로 표현</li>
+          <li>방향벡터는 크기를 1로 늘리거나 줄여서 정규화를 통해서 얻을 수 있다.</li>
+        </ul>
+      </li>
+      <li>벡터의 덧셈, 뺄셈, 내적, 외적
+        <ul>
+          <li>덧셈: 두 벡터의 같은 자리의 성분끼리 덧셈</li>
+          <li>뺄셈: 두 벡터의 같은 자리의 성분끼리 뺄셈</li>
+          <li>내적: 어떤 벡터B를 다른 벡터 A로 투영?, 벡터B에 벡터A의 크기를 곱</li>
+          <li>덧셈: 두 벡터를 모두 수직으로 통과하는 벡터를 구하는 연산, 벡터A를 벡터B로 외적표현은 A x B</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="유니티-c-벡터">유니티 C# 벡터</h3>
+<ul>
+  <li>Vector 타입
+    <ul>
+      <li>new Vector2(x,y);</li>
+      <li>new Vector3(x,y,z);</li>
+      <li>new Vector4(x,y,z,w);</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 스칼라 곱</span>
+<span class="n">Vector3</span> <span class="n">a</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">6</span><span class="p">,</span><span class="m">9</span><span class="p">);</span>
+<span class="n">a</span> <span class="p">=</span> <span class="n">a</span> <span class="p">*</span> <span class="m">10</span><span class="p">;</span> <span class="c1">// a = (30,60,90)</span>
+
+<span class="c1">// 덧셈, 뺄셈</span>
+<span class="n">Vector3</span> <span class="n">a</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">8</span><span class="p">);</span>
+<span class="n">Vector3</span> <span class="n">b</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">6</span><span class="p">,</span><span class="m">9</span><span class="p">);</span>
+<span class="n">Vector3</span> <span class="n">c</span> <span class="p">=</span> <span class="n">a</span> <span class="p">+</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// c = (5,10,17)</span>
+<span class="n">Vector3</span> <span class="n">d</span> <span class="p">=</span> <span class="n">a</span> <span class="p">-</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// c = (-1,-2,-1)</span>
+
+<span class="c1">// 벡터 정규화(방향벡터)</span>
+<span class="n">Vector3</span> <span class="n">a</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">3</span><span class="p">);</span>
+<span class="n">Vector3</span> <span class="n">b</span> <span class="p">=</span> <span class="n">a</span><span class="p">.</span><span class="n">normalized</span><span class="p">;</span> <span class="c1">// b = (0.6,0.6,0.6)</span>
+
+<span class="c1">// 벡터의 크기</span>
+<span class="n">Vector3</span> <span class="n">a</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">3</span><span class="p">);</span>
+<span class="n">Vector3</span> <span class="n">b</span> <span class="p">=</span> <span class="n">a</span><span class="p">.</span><span class="n">magnitude</span><span class="p">;</span> <span class="c1">// b = 대략 5.19..</span>
+
+<span class="c1">// 벡터의 내적</span>
+<span class="n">Vector3</span> <span class="n">a</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">);</span> <span class="c1">// 위로 향하는 벡터</span>
+<span class="n">Vector3</span> <span class="n">b</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">);</span> <span class="c1">// 오른쪽으로 향하는 벡터</span>
+<span class="kt">float</span> <span class="n">c</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="nf">Dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span> <span class="c1">// 수직인 벡터끼리 내적하면 결과는 0</span>
+
+<span class="c1">// 벡터의 외적</span>
+<span class="n">Vector3</span> <span class="n">a</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">);</span> <span class="c1">// 앞으로 향하는 벡터</span>
+<span class="n">Vector3</span> <span class="n">b</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">);</span> <span class="c1">// 오른쪽으로 향하는 벡터</span>
+<span class="kt">float</span> <span class="n">c</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="nf">Cross</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span> <span class="c1">// c = (0,1,0)</span>
+
+<span class="c1">// 벡터 응용</span>
+<span class="c1">// currentPos : 현재위치</span>
+<span class="c1">// destPos : 목적지</span>
+<span class="n">Vector3</span> <span class="n">currentPos</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">);</span> <span class="c1">// 현재위치</span>
+<span class="n">Vector3</span> <span class="n">destPos</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">5</span><span class="p">);</span> <span class="c1">// 목적지</span>
+
+<span class="n">Vector3</span> <span class="n">delta</span> <span class="p">=</span> <span class="n">destPos</span> <span class="p">-</span> <span class="n">currentPos</span><span class="p">;</span>
+
+<span class="kt">float</span> <span class="n">distance</span> <span class="p">=</span> <span class="n">delta</span><span class="p">.</span><span class="n">magnitude</span><span class="p">;</span> <span class="c1">// 거리(크기)</span>
+
+<span class="c1">// 내장함수 Distance();</span>
+<span class="kt">float</span> <span class="n">distance</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="nf">Distance</span><span class="p">(</span><span class="n">currentPos</span><span class="p">,</span> <span class="n">destPos</span><span class="p">);</span>
+
+<span class="n">Vector3</span> <span class="n">direction</span> <span class="p">=</span> <span class="p">(</span><span class="n">destPos</span> <span class="p">-</span> <span class="n">currentPos</span><span class="p">).</span><span class="n">normalized</span><span class="p">;</span> <span class="c1">// 방향벡터</span>
+<span class="n">Vector3</span> <span class="n">newPos</span> <span class="p">=</span> <span class="n">currentPos</span> <span class="p">+</span> <span class="n">direction</span> <span class="p">*</span> <span class="m">10</span><span class="p">;</span> <span class="c1">//10만큼 위치한 새로운 위치</span>
+</code></pre></div></div>
+<h3 id="쿼터니언">쿼터니언</h3>
+<ul>
+  <li>회전을 나타내는 타입이다.</li>
+  <li>인스펙터(Inspector) 창의 트랜스폼(Transform) 컴포넌트
+    <ul>
+      <li>Position, Scale 은 Vector3 이다.</li>
+      <li>Rotation 은 Vector3 가 아닌 Quaternion 이다.</li>
+      <li>Rotation 은 Vector3 일 경우, 짐벌락(Gimbal Lock) 현상.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">transform</span><span class="p">.</span><span class="n">position</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">10</span><span class="p">);</span>
+<span class="n">transform</span><span class="p">.</span><span class="n">localScale</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">);</span>
+
+<span class="n">Quaternion</span> <span class="n">rotation</span> <span class="p">=</span> <span class="n">Quaternion</span><span class="p">.</span><span class="nf">Euler</span><span class="p">(</span><span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">60</span><span class="p">,</span><span class="m">0</span><span class="p">));</span>
+<span class="n">Vector3</span> <span class="n">eulerRotation</span> <span class="p">=</span> <span class="n">rotation</span><span class="p">.</span><span class="n">enlerAngles</span><span class="p">;</span> <span class="c1">// (0,60,0)</span>
+
+<span class="c1">// (30,0,0) 화전 후 (0,60,0) 더 회전하기</span>
+<span class="c1">// (30,60,0) 회전하는 것과 다르다.</span>
+<span class="n">Quaternion</span> <span class="n">a</span> <span class="p">=</span> <span class="n">Quaternion</span><span class="p">.</span><span class="nf">Euler</span><span class="p">(</span><span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">30</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">));</span>
+<span class="n">Quaternion</span> <span class="n">b</span> <span class="p">=</span> <span class="n">Quaternion</span><span class="p">.</span><span class="nf">Euler</span><span class="p">(</span><span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">60</span><span class="p">,</span><span class="m">0</span><span class="p">));</span>
+
+<span class="n">Quaternion</span> <span class="n">rotation</span> <span class="p">=</span> <span class="n">a</span> <span class="p">*</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// a회전 후 b 회전 표현</span>
+</code></pre></div></div>
+
+<hr />]]></content><author><name></name></author><category term="Unity" /><category term="retr0" /><summary type="html"><![CDATA[벡터 수학, 유니티 C# 벡터, 쿼터니언]]></summary></entry><entry><title type="html">[Unity] 닷지 게임 - 최종(UI,매니저)</title><link href="/2024/unity/Unity-retr0-06-Dodge-Game3/" rel="alternate" type="text/html" title="[Unity] 닷지 게임 - 최종(UI,매니저)" /><published>2024-10-06T06:30:00+00:00</published><updated>2024-10-06T06:30:00+00:00</updated><id>/2024/unity/Unity-retr0-06-Dodge-Game3</id><content type="html" xml:base="/2024/unity/Unity-retr0-06-Dodge-Game3/"><![CDATA[<h3 id="닷지-게임">닷지 게임</h3>
+
+<ul>
+  <li>예제소스 : <a href="https://github.com/IJEMIN/Unity-Programming-Essence-2021">https://github.com/IJEMIN/Unity-Programming-Essence-2021</a></li>
+  <li>예제번호 : 06, 07, 08</li>
+</ul>
+
+<ol>
+  <li>정리
+    <ul>
+      <li>프로젝트(Project) 창에서 + &gt; Folder 클릭
+        <ul>
+          <li>폴더명 : Scripts, Materials, Prefabs 생성</li>
+          <li>각 에셋파일을 폴더에 드래그&amp;드랍</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>바닥회전
+    <ul>
+      <li>프로젝트(Project) 창에서 + &gt; C# Script
+        <div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+<span class="cm">/**/</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Rotator</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+ <span class="k">public</span> <span class="kt">float</span> <span class="n">rotationSpeed</span> <span class="p">=</span> <span class="m">60f</span><span class="p">;</span>
+ <span class="k">void</span> <span class="nf">Update</span><span class="p">()</span> 
+ <span class="p">{</span>
+   <span class="n">transform</span><span class="p">.</span><span class="nf">Rotate</span><span class="p">(</span><span class="m">0f</span><span class="p">,</span> <span class="n">rotationSpeed</span> <span class="p">*</span> <span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">,</span> <span class="m">0f</span><span class="p">);</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>UI 제작
+    <ul>
+      <li>씬(Scene) 창에서 2D 클릭 : 2D 편집모드로 전환</li>
+      <li>하이어리키(Hierarchy) 창 + &gt; UI &gt; Text</li>
+      <li>인스펙터(Inspector) 창
+        <ul>
+          <li>이름 변경</li>
+          <li>앵커 프리셋(Anchor Presets) 클릭</li>
+          <li>alt + Top Center 클릭</li>
+          <li>Text 필드 내용 수정</li>
+          <li>Text 컴포넌트 Alignment를 Center, Middle 변경, Color, Font Size 변경</li>
+          <li>Horizontal, Vertical 을 Overflow</li>
+          <li>그림자 효과 추가(Add Component &gt; UI &gt; Effects &gt; Shadow)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>게임 매니저
+    <ul>
+      <li>게임오버 상태, 생존시간, UI 갱신, 게임 재시작</li>
+      <li>하이어리키(Hierarchy) 창 + &gt; Create Empty
+        <ul>
+          <li>아래 만든 스크립트 파일을 컴포넌트로 추가</li>
+        </ul>
+      </li>
+      <li>프로젝트(Project) 창에서 + &gt; C# Script
+        <div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">UnityEngine.UI</span><span class="p">;</span> <span class="c1">// UI 관련 라이브러리</span>
+<span class="k">using</span> <span class="nn">UnityEngine.SceneManagement</span><span class="p">;</span> <span class="c1">// 씬 관리 라이브러리</span>
+<span class="cm">/**/</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">GameManager</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+ <span class="k">public</span> <span class="n">GameObject</span> <span class="n">gameoverText</span><span class="p">;</span> <span class="c1">//게임종료 활성화 텍스트 오브젝트</span>
+ <span class="k">public</span> <span class="n">Text</span> <span class="n">timeText</span><span class="p">;</span> <span class="c1">// 생존시간 텍스트</span>
+ <span class="k">public</span> <span class="n">Text</span> <span class="n">recordText</span><span class="p">;</span> <span class="c1">// 최고 기록 텍스트</span>
+ <span class="c1">//</span>
+ <span class="k">private</span> <span class="kt">float</span> <span class="n">surviveTime</span><span class="p">;</span> <span class="c1">// 생존시간</span>
+ <span class="k">private</span> <span class="kt">bool</span> <span class="n">isGameover</span><span class="p">;</span> <span class="c1">// 게임 상태</span>
+ <span class="c1">// Start is called before the first frame update</span>
+ <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
+ <span class="p">{</span>
+   <span class="c1">// 초기화</span>
+   <span class="n">surviveTime</span> <span class="p">=</span> <span class="m">0f</span><span class="p">;</span>
+   <span class="n">isGameover</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+ <span class="p">}</span>
+ <span class="c1">// Update is called once per frame</span>
+ <span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
+ <span class="p">{</span>
+   <span class="k">if</span> <span class="p">(!</span><span class="n">isGameover</span><span class="p">)</span>
+   <span class="p">{</span>
+       <span class="n">surviveTime</span> <span class="p">+=</span> <span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">;</span>
+       <span class="n">timeText</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="s">"Time: "</span> <span class="p">+</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">surviveTime</span><span class="p">;</span>
+   <span class="p">}</span>
+   <span class="k">else</span>
+   <span class="p">{</span>
+       <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKeyDown</span><span class="p">(</span><span class="n">KeyCode</span><span class="p">.</span><span class="n">R</span><span class="p">))</span>
+       <span class="p">{</span>
+           <span class="c1">// 씬 로드</span>
+           <span class="n">SceneManager</span><span class="p">.</span><span class="nf">LoadScene</span><span class="p">(</span><span class="s">"SampleScene"</span><span class="p">);</span>
+       <span class="p">}</span>
+   <span class="p">}</span>
+ <span class="p">}</span>
+ <span class="c1">// 현재 게임을 게임오버 상태로 변경</span>
+ <span class="k">public</span> <span class="k">void</span> <span class="nf">EndGame</span><span class="p">()</span> <span class="p">{</span>
+   <span class="n">isGameover</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span> <span class="c1">// 게임오버 전환</span>
+   <span class="n">gameoverText</span><span class="p">.</span><span class="nf">SetActive</span><span class="p">(</span><span class="k">true</span><span class="p">);</span> <span class="c1">// 텍스트 오브젝트 활성화</span>
+
+   <span class="kt">float</span> <span class="n">bestTime</span> <span class="p">=</span> <span class="n">PlayerPrefs</span><span class="p">.</span><span class="nf">GetFloat</span><span class="p">(</span><span class="s">"BestTime"</span><span class="p">);</span>
+
+   <span class="k">if</span><span class="p">(</span><span class="n">surviveTime</span> <span class="p">&gt;</span> <span class="n">bestTime</span><span class="p">)</span>
+   <span class="p">{</span>
+       <span class="n">bestTime</span> <span class="p">=</span> <span class="n">surviveTime</span><span class="p">;</span>
+       <span class="n">PlayerPrefs</span><span class="p">.</span><span class="nf">SetFloat</span><span class="p">(</span><span class="s">"BestTime"</span><span class="p">,</span> <span class="n">surviveTime</span><span class="p">);</span>
+   <span class="p">}</span>
+
+   <span class="n">recordText</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="s">"Best Time: "</span> <span class="p">+</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">bestTime</span><span class="p">;</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<ul>
+  <li>PlayerPrefs
+    <ul>
+      <li>Player Preference(플레이어 설정), 유니티 내장 클래스</li>
+      <li>키-값 단위로 데이터를 로컬에 저장한다.</li>
+    </ul>
+  </li>
+  <li>PlayerController 스크립트
+    <div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">public</span> <span class="k">void</span> <span class="nf">Die</span><span class="p">(){</span>
+      <span class="c1">// 자신의 오브젝트 비활성화</span>
+      <span class="n">gameObject</span><span class="p">.</span><span class="nf">SetActive</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+
+      <span class="n">GameManager</span> <span class="n">gameManager</span> <span class="p">=</span> <span class="n">FindObjectOfType</span><span class="p">&lt;</span><span class="n">GameManager</span><span class="p">&gt;();</span>
+      <span class="n">gameManager</span><span class="p">.</span><span class="nf">EndGame</span><span class="p">();</span>
+  <span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>빌드하기</li>
+  <li>유니티 상단 메뉴 File &gt; Build Settings…
+    <ul>
+      <li>Build and Run 클릭 -&gt; 파일 탐색기가 실행됨.(빌드할 폴더 선택)</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/img/image_dodge.png" alt="image_dodge" width="30%" height="30%" class="center" />
+<img src="/assets/img/image_dodge2.png" alt="image_dodge2" width="30%" height="30%" class="center" /></p>
+
+<hr />]]></content><author><name></name></author><category term="Unity" /><category term="retr0" /><summary type="html"><![CDATA[유니티의 닷지 게임을 만들며 익히기]]></summary></entry><entry><title type="html">[Unity] 닷지 게임 - 탄알/탄알생성기</title><link href="/2024/unity/Unity-retr0-05-Dodge-Game2/" rel="alternate" type="text/html" title="[Unity] 닷지 게임 - 탄알/탄알생성기" /><published>2024-10-05T05:50:00+00:00</published><updated>2024-10-05T05:50:00+00:00</updated><id>/2024/unity/Unity-retr0-05-Dodge-Game2</id><content type="html" xml:base="/2024/unity/Unity-retr0-05-Dodge-Game2/"><![CDATA[<h3 id="닷지-게임">닷지 게임</h3>
+
+<ul>
+  <li>예제소스 : <a href="https://github.com/IJEMIN/Unity-Programming-Essence-2021">https://github.com/IJEMIN/Unity-Programming-Essence-2021</a></li>
+  <li>예제번호 : 06, 07, 08</li>
+</ul>
+
+<ol>
+  <li>탄알 오브젝트 준비
+    <ul>
+      <li>하이어리키(Hierarchy) 창 &gt; 3D Object &gt; Sphere</li>
+      <li>인스펙터(Inspector) 창
+        <ul>
+          <li>이름, 위치, 스케일 수정</li>
+          <li>리지드바디(Rigidbody) 컴포넌트 추가 : 상호작용 오브젝트이므로, 중력을 무시할 수 있게, Use Gravitiy 체크 해제</li>
+        </ul>
+      </li>
+      <li>프로젝트(Project) 창 &gt; Material
+        <ul>
+          <li>색상을 선택하고, 하이어리키(Hierarchy) 창에 있는 탄알 오브젝트에 드래그&amp;드랍으로 색상 적용</li>
+        </ul>
+      </li>
+      <li>콜라이더 : 콜라이더를 가진 오브젝트와 충돌하면 튕겨나간다.
+        <ul>
+          <li>
+            <dl>
+              <dt>트리거 콜라이더</dt>
+              <dd>충돌한 물체를 밀어내는 표면이 없다.</dd>
+              <dd>그래서 다른 일반 콜라이더와 겹치거나 서로를 뚫고 지나갈 수 있지만 충돌 자체는 감지한다.</dd>
+              <dd>ex) 플레이어가 특정 영역으로 진입했는지 검사할 때 사용을 많이 한다.
+보이지 않는 트리거 콜라이더를 배치하고, 플레이어가 통과하면 새로운 적, 컷씬을 재생하는 방식으로 사용한다.</dd>
+            </dl>
+          </li>
+        </ul>
+      </li>
+      <li>프리탭 : 언제든지 재사용할 수 있는 미리 만들어진 게임 오브젝트 에셋(파일)이다.</li>
+      <li>프리탭 만들기 : 하이어리키(Hierarchy) 창에 있는 탄알 오브젝트를 프로젝트(Project) 창으로 드래그&amp;드랍한다.</li>
+    </ul>
+  </li>
+  <li>스크립트 준비
+    <ul>
+      <li>프로젝트(Project) 창 &gt; C# Script
+        <div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+<span class="cm">/**/</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Bullet</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+ <span class="k">public</span> <span class="kt">float</span> <span class="n">speed</span> <span class="p">=</span> <span class="m">8f</span><span class="p">;</span> <span class="c1">// 속도</span>
+ <span class="k">private</span> <span class="n">Rigidbody</span> <span class="n">bulletRigidbody</span><span class="p">;</span> <span class="c1">// 리지드바디 컴포넌트</span>
+ <span class="c1">// Start is called before the first frame update</span>
+ <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
+ <span class="p">{</span>
+   <span class="c1">// 리지드바디 컴포넌트 할당</span>
+   <span class="n">bulletRigidbody</span> <span class="p">=</span> <span class="n">GetComponent</span><span class="p">&lt;</span><span class="n">Rigidbody</span><span class="p">&gt;();</span> 
+   <span class="c1">// 리지드바디 속도 = 앞쪽 방향 * 속도</span>
+   <span class="n">bulletRigidbody</span><span class="p">.</span><span class="n">velocity</span> <span class="p">=</span> <span class="n">transform</span><span class="p">.</span><span class="n">forward</span> <span class="p">*</span> <span class="n">speed</span><span class="p">;</span> 
+
+   <span class="c1">// 3초 뒤에 자신의 오브젝트 파괴</span>
+   <span class="nf">Destroy</span><span class="p">(</span><span class="n">gameObject</span><span class="p">,</span> <span class="m">3f</span><span class="p">);</span>
+ <span class="p">}</span>
+ <span class="c1">// 트리거 충돌시 자동 실행</span>
+ <span class="k">void</span> <span class="nf">OnTriggerEnter</span><span class="p">(</span><span class="n">Collider</span> <span class="n">other</span><span class="p">)</span> <span class="p">{</span>
+   <span class="c1">// 충돌한 상태 오브젝트 태그정보 가져 오기</span>
+   <span class="k">if</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">tag</span> <span class="p">==</span> <span class="s">"Player"</span><span class="p">)</span> <span class="p">{</span>
+       <span class="c1">// 상대방 PlayerController 컴포넌트 가져오기</span>
+       <span class="n">PlayerController</span> <span class="n">playerController</span> <span class="p">=</span> <span class="n">other</span><span class="p">.</span><span class="n">GetComponent</span><span class="p">&lt;</span><span class="n">PlayerController</span><span class="p">&gt;();</span>
+       <span class="c1">// </span>
+       <span class="k">if</span><span class="p">(</span><span class="n">playerController</span> <span class="p">!=</span> <span class="k">null</span><span class="p">){</span>
+           <span class="c1">// 상대방 오브젝트 Die() 실행</span>
+           <span class="n">playerController</span><span class="p">.</span><span class="nf">Die</span><span class="p">();</span>
+       <span class="p">}</span>
+   <span class="p">}</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>충돌처리
+    <ul>
+      <li>오브젝트 A,B가 충돌하면, A와 B는 자신이 충돌했다는 사실을 모른다.</li>
+      <li>그 대신 충돌했음을 알려주는 메시지를 A,B에 보낸다.</li>
+      <li>A에는 충돌한 상대방 B정보를 전달.</li>
+      <li>B에는 충돌한 상대방 A정보를 전달.</li>
+      <li>메시지 기반 방식</li>
+      <li>리지드바디 컴포넌트를 가지고 있어야 한다.</li>
+      <li>충돌 메시지에 대응하는 메소드를 충돌 이벤트 메서드라고 부른다.</li>
+      <li>충돌 이벤트 메소드</li>
+      <li>OnCollision 계열 : 일반 충돌
+        <ul>
+          <li>OnCollisionEnter(Collision collision) : 충돌한 순간</li>
+          <li>OnCollisionStay(Collision collision) : 충돌하는 동안</li>
+          <li>OnCollisionExit(Collision collision) : 충돌했다가 분리되는 순간</li>
+        </ul>
+      </li>
+      <li>OnTrigger 계열 : 트리거 계열
+        <ul>
+          <li>OnTriggerEnter(Collider other) : 충돌한 순간</li>
+          <li>OnTriggerStay(Collider other) : 충돌하는 동안</li>
+          <li>OnTriggerExit(Collider other) : 충돌했다가 분리되는 순간</li>
+          <li>트리거 충돌은 일반적인 충돌과 달리 서로를 밀어내지 않고 그대로 통과한다.</li>
+        </ul>
+      </li>
+      <li>충돌 감지 구현</li>
+      <li>OnTriggerEnter() 메서드 작성</li>
+      <li>프로젝트(Project) 창의 탄알 스크립트를 하이어리키(Hierarchy) 창에 탄알 오브젝트에 드래그&amp;드랍</li>
+      <li>하이어리키(Hierarchy) 창에 탄알 오브젝트를 선택하고, 인스펙터(Inspector) 창에 Overrides &gt; Apply All 클릭.</li>
+      <li>Apply All 을 클릭하면 프리팹과 연동된 게임 오브젝트의 변경 사항이 프리팹에 반영된다.</li>
+      <li>탄알 생성기로 탄알이 생성하므로, 하이어리키(Hierarchy) 창에 탄알 오브젝트는 삭제한다.</li>
+    </ul>
+  </li>
+  <li>탄알 생성기 오브젝트 만들기
+    <ul>
+      <li>탄알을 생성하고 플레이어를 향해 발사한다.</li>
+      <li>하이어리키(Hierarchy) 창 &gt; 3D Object &gt; Cylinder</li>
+      <li>인스펙터(Inspector) 창
+        <ul>
+          <li>이름, 위치, 스케일 수정</li>
+        </ul>
+      </li>
+      <li>프로젝트(Project) 창 &gt; Material
+        <ul>
+          <li>Bullet 색상을 선택하고, 하이어리키(Hierarchy) 창에 있는 탄알 생성기 오브젝트에 드래그&amp;드랍으로 색상 적용</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>탄알 생성기 스크립트
+    <ul>
+      <li>프로젝트(Project) 창 &gt; C# Script
+        <div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+<span class="cm">/**/</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">BulletSpawner</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+ <span class="k">public</span> <span class="n">GameObject</span> <span class="n">bulletPrefab</span><span class="p">;</span> <span class="c1">// 생성할 탄알의 원본 프리팹</span>
+ <span class="k">public</span> <span class="kt">float</span> <span class="n">spawnRateMin</span> <span class="p">=</span> <span class="m">0.5f</span><span class="p">;</span> <span class="c1">// 최소 생성주기</span>
+ <span class="k">public</span> <span class="kt">float</span> <span class="n">spawnRateMax</span> <span class="p">=</span> <span class="m">3f</span><span class="p">;</span> <span class="c1">// 최대 생성주기</span>
+ <span class="c1">//</span>
+ <span class="k">private</span> <span class="n">Transform</span> <span class="n">target</span><span class="p">;</span> <span class="c1">// 발사대상</span>
+ <span class="k">private</span> <span class="kt">float</span> <span class="n">spawnRate</span><span class="p">;</span> <span class="c1">// 생성주기</span>
+ <span class="k">private</span> <span class="kt">float</span> <span class="n">timeAfterSpawn</span><span class="p">;</span> <span class="c1">// 최근 생성시점에서 지난 시간</span>
+ <span class="c1">// Start is called before the first frame update</span>
+ <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
+ <span class="p">{</span>
+   <span class="c1">// 최근 생성 이후의 누적 시간을 0 초기화</span>
+   <span class="n">timeAfterSpawn</span> <span class="p">=</span> <span class="m">0f</span><span class="p">;</span>
+   <span class="c1">// 탄알 생성간격, 랜덤지정</span>
+   <span class="n">spawnRate</span> <span class="p">=</span> <span class="n">Random</span><span class="p">.</span><span class="nf">Range</span><span class="p">(</span><span class="n">spawnRateMin</span><span class="p">,</span> <span class="n">spawnRateMax</span><span class="p">);</span>
+   <span class="c1">// PlayerController 컴포넌트를 찾아 조준 대상으로 설정</span>
+   <span class="n">target</span> <span class="p">=</span> <span class="n">FindObjectOfType</span><span class="p">&lt;</span><span class="n">PlayerController</span><span class="p">&gt;().</span><span class="n">transform</span><span class="p">;</span>
+ <span class="p">}</span>
+ <span class="c1">// Update is called once per frame</span>
+ <span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
+ <span class="p">{</span>
+   <span class="c1">// 갱신</span>
+   <span class="n">timeAfterSpawn</span> <span class="p">+=</span> <span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">;</span>
+
+   <span class="k">if</span><span class="p">(</span><span class="n">timeAfterSpawn</span> <span class="p">&gt;=</span> <span class="n">spawnRate</span><span class="p">){</span>
+       <span class="c1">// 초기화            </span>
+       <span class="n">timeAfterSpawn</span> <span class="p">=</span> <span class="m">0f</span><span class="p">;</span>
+       <span class="c1">// bulletPrefab 의 복제본을 위치, 회전으로 생성</span>
+       <span class="n">GameObject</span> <span class="n">bullet</span> <span class="p">=</span> <span class="nf">Instantiate</span><span class="p">(</span><span class="n">bulletPrefab</span><span class="p">,</span> <span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">,</span> <span class="n">transform</span><span class="p">.</span><span class="n">rotation</span><span class="p">);</span>
+       <span class="c1">// 생성한 탄알을 정면 방향이 target을 향하도록 회전</span>
+       <span class="n">bullet</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="nf">LookAt</span><span class="p">(</span><span class="n">target</span><span class="p">);</span>
+       <span class="c1">// 다음 생성간격</span>
+       <span class="n">spawnRate</span> <span class="p">=</span> <span class="n">Random</span><span class="p">.</span><span class="nf">Range</span><span class="p">(</span><span class="n">spawnRateMin</span><span class="p">,</span> <span class="n">spawnRateMax</span><span class="p">);</span>
+   <span class="p">}</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<ul>
+  <li>Time.deltaTime : 이전 프레임과 현재 프레임 사이의 시간 간격이 자동으로 할당된다.</li>
+  <li>Instantiate() : 게임 도중 실시간으로 오브젝트를 생성할 때, 사용한다. 원본 오브젝트를 주면 복제한 오브젝트를 생성한다.</li>
+</ul>
+
+<hr />]]></content><author><name></name></author><category term="Unity" /><category term="retr0" /><summary type="html"><![CDATA[유니티의 닷지 게임을 만들며 익히기]]></summary></entry><entry><title type="html">[Unity] 닷지 게임 - 플레이어</title><link href="/2024/unity/Unity-retr0-04-Dodge-Game/" rel="alternate" type="text/html" title="[Unity] 닷지 게임 - 플레이어" /><published>2024-09-26T12:15:00+00:00</published><updated>2024-09-26T12:15:00+00:00</updated><id>/2024/unity/Unity-retr0-04-Dodge-Game</id><content type="html" xml:base="/2024/unity/Unity-retr0-04-Dodge-Game/"><![CDATA[<h3 id="닷지-게임">닷지 게임</h3>
+
+<ul>
+  <li>예제소스 : <a href="https://github.com/IJEMIN/Unity-Programming-Essence-2021">https://github.com/IJEMIN/Unity-Programming-Essence-2021</a></li>
+  <li>
+    <p>예제번호 : 06, 07, 08</p>
+  </li>
+  <li>1차코드
+    <div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+<span class="cm">/**/</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">PlayerController</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+  <span class="k">public</span> <span class="n">Rigidbody</span> <span class="n">playerRigidbody</span><span class="p">;</span> <span class="c1">// 이동에 사용할 리지드바디 컴포넌트</span>
+  <span class="k">public</span> <span class="kt">float</span> <span class="n">speed</span> <span class="p">=</span> <span class="m">8f</span><span class="p">;</span> <span class="c1">// 이동속도</span>
+
+  <span class="c1">// Start is called before the first frame update</span>
+  <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
+  <span class="p">{</span>
+        
+  <span class="p">}</span>
+
+  <span class="c1">// Update is called once per frame</span>
+  <span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
+  <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKey</span><span class="p">(</span><span class="n">KeyCode</span><span class="p">.</span><span class="n">UpArrow</span><span class="p">)</span> <span class="p">==</span> <span class="k">true</span><span class="p">){</span>
+          <span class="c1">// 위쪽 z 방향</span>
+          <span class="n">playerRigidbody</span><span class="p">.</span><span class="nf">AddForce</span><span class="p">(</span><span class="m">0f</span><span class="p">,</span> <span class="m">0f</span><span class="p">,</span> <span class="n">speed</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKey</span><span class="p">(</span><span class="n">KeyCode</span><span class="p">.</span><span class="n">DownArrow</span><span class="p">)</span> <span class="p">==</span> <span class="k">true</span><span class="p">){</span>
+          <span class="c1">// 위쪽 -z 방향</span>
+          <span class="n">playerRigidbody</span><span class="p">.</span><span class="nf">AddForce</span><span class="p">(</span><span class="m">0f</span><span class="p">,</span> <span class="m">0f</span><span class="p">,</span> <span class="p">-</span><span class="n">speed</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKey</span><span class="p">(</span><span class="n">KeyCode</span><span class="p">.</span><span class="n">RightArrow</span><span class="p">)</span> <span class="p">==</span> <span class="k">true</span><span class="p">){</span>
+          <span class="c1">// 위쪽 x 방향</span>
+          <span class="n">playerRigidbody</span><span class="p">.</span><span class="nf">AddForce</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="m">0f</span><span class="p">,</span> <span class="m">0f</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKey</span><span class="p">(</span><span class="n">KeyCode</span><span class="p">.</span><span class="n">LeftArrow</span><span class="p">)</span> <span class="p">==</span> <span class="k">true</span><span class="p">){</span>
+          <span class="c1">// 위쪽 -x 방향</span>
+          <span class="n">playerRigidbody</span><span class="p">.</span><span class="nf">AddForce</span><span class="p">(-</span><span class="n">speed</span><span class="p">,</span> <span class="m">0f</span><span class="p">,</span> <span class="m">0f</span><span class="p">);</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">Die</span><span class="p">(){</span>
+      <span class="c1">// 자신의 오브젝트 비활성화</span>
+      <span class="n">gameObject</span><span class="p">.</span><span class="nf">SetActive</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>스크립트 개선하기
+    <ul>
+      <li>조작이 게임에 즉시 반영되지 않는다.</li>
+      <li>입력 감지 코드가 복잡하다</li>
+      <li>playerRigidbody에 컴포넌트를 드래그&amp;드롭으로 할당한다.</li>
+    </ul>
+  </li>
+  <li>2차코드
+    <div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+<span class="cm">/**/</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">PlayerController</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+  <span class="k">private</span> <span class="n">Rigidbody</span> <span class="n">playerRigidbody</span><span class="p">;</span> <span class="c1">// 이동에 사용할 리지드바디 컴포넌트</span>
+  <span class="k">public</span> <span class="kt">float</span> <span class="n">speed</span> <span class="p">=</span> <span class="m">8f</span><span class="p">;</span> <span class="c1">// 이동속도</span>
+
+  <span class="c1">// Start is called before the first frame update</span>
+  <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
+  <span class="p">{</span>
+      <span class="n">playerRigidbody</span> <span class="p">=</span> <span class="n">GetComponent</span><span class="p">&lt;</span><span class="n">Rigidbody</span><span class="p">&gt;();</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Update is called once per frame</span>
+  <span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
+  <span class="p">{</span>
+      <span class="c1">// 수평축, 수직축의 입력값 감지(-1.0, 0, 1.0)</span>
+      <span class="kt">float</span> <span class="n">xInput</span> <span class="p">=</span> <span class="n">Input</span><span class="p">.</span><span class="nf">GetAxis</span><span class="p">(</span><span class="s">"Horizontal"</span><span class="p">);</span>
+      <span class="kt">float</span> <span class="n">zInput</span> <span class="p">=</span> <span class="n">Input</span><span class="p">.</span><span class="nf">GetAxis</span><span class="p">(</span><span class="s">"Vertical"</span><span class="p">);</span>
+
+      <span class="c1">// 실제 이동 속도를 입력값과 이동속도를 사용해서 결정</span>
+      <span class="kt">float</span> <span class="n">xSpeed</span> <span class="p">=</span> <span class="n">xInput</span> <span class="p">*</span> <span class="n">speed</span><span class="p">;</span>
+      <span class="kt">float</span> <span class="n">zSpeed</span> <span class="p">=</span> <span class="n">zInput</span> <span class="p">*</span> <span class="n">speed</span><span class="p">;</span>
+
+      <span class="c1">// Vector3 속도를 생성</span>
+      <span class="n">Vector3</span> <span class="n">newVelocity</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="n">xSpeed</span><span class="p">,</span> <span class="m">0f</span><span class="p">,</span> <span class="n">zSpeed</span><span class="p">);</span>
+
+      <span class="c1">// 리지드바디의 속도에 할당</span>
+      <span class="n">playerRigidbody</span><span class="p">.</span><span class="n">velocity</span> <span class="p">=</span> <span class="n">newVelocity</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">Die</span><span class="p">(){</span>
+      <span class="c1">// 자신의 오브젝트 비활성화</span>
+      <span class="n">gameObject</span><span class="p">.</span><span class="nf">SetActive</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>입력 매니저
+특정 키에 직접 이벤트를 줄 경우, 단축키를 변경시, 소스 수정은 불가피하다.
+입력 이름을 통해서 동작하게 한다.
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if([마우스 왼쪽 버튼] 클릭) {
+  // 총 발사
+}
+if("발사"에 대응되는 버튼을 클릭) {
+  // 총 발사
+}
+</code></pre></div>    </div>
+  </li>
+  <li>입력 매너저 설정 창
+    <ul>
+      <li>유니티 에디터 메뉴 &gt; Edit &gt; Project Settings</li>
+      <li>Project Seetings &gt; Input Manager</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />]]></content><author><name></name></author><category term="Unity" /><category term="retr0" /><summary type="html"><![CDATA[유니티의 닷지 게임을 만들며 익히기]]></summary></entry><entry><title type="html">[Blender] 다시 시작</title><link href="/2024/blender/Blender-Goni-01-ReStart/" rel="alternate" type="text/html" title="[Blender] 다시 시작" /><published>2024-09-24T12:11:00+00:00</published><updated>2024-09-24T12:11:00+00:00</updated><id>/2024/blender/Blender-Goni-01-ReStart</id><content type="html" xml:base="/2024/blender/Blender-Goni-01-ReStart/"><![CDATA[<ul>
+  <li>결국을 책을 새로 샀다.</li>
+  <li>책/영상정보 : <a href="https://www.youtube.com/@kkamanggoniTV">https://www.youtube.com/@kkamanggoniTV</a></li>
+</ul>
+
+<h3 id="블렌더">블렌더</h3>
+<ul>
+  <li>오픈소스 3D 콘텐츠 제작 프로그램</li>
+  <li>3D 모델링 툴.</li>
+</ul>
+
+<h3 id="블렌더-설치">블렌더 설치</h3>
+
+<ul>
+  <li><a href="https://www.blender.org/">블렌더</a>에서 [Download]버튼을 클릭한다.</li>
+  <li>[Download]버튼 누르고 받으면, 상당히 느리다.</li>
+  <li><a href="https://download.blender.org/release/">https://download.blender.org/release/</a> 여기서 받으니 빠르다.</li>
+</ul>
+
+<h3 id="블렌더-ui-적응">블렌더 UI 적응</h3>
+
+<ul>
+  <li>스플래시 스크린 : 블렌더를 실행하면 항상 나타나는 대문 화면</li>
+  <li>시작 : Ctrl + N</li>
+  <li>저장 : Ctrl + S</li>
+  <li>불러오기 : Ctrl + O</li>
+  <li>종료 : Ctrl + Q</li>
+</ul>
+
+<ol>
+  <li>새 프로젝트의 레이아웃을 General 선택
+    <ul>
+      <li>4개 Area가 셋팅된다.
+        <ul>
+          <li>3D Viewport(중앙, 메인화면)</li>
+          <li>Outliner(오른쪽상단)</li>
+          <li>Properties(오른쪽하단)</li>
+          <li>Timeline(하단)</li>
+        </ul>
+      </li>
+      <li>Area 조절 : Area 경계라인에 마우스 크기조절 아이콘이 나오면, 오른쪽 마우스 클릭해서 분할 및 합치기를 할 수 있다.</li>
+    </ul>
+  </li>
+  <li>Workspace
+    <ul>
+      <li>화면 상단 기본 메뉴 옆에 위치한다.</li>
+      <li>Workspace 전환 : Ctrl + PageUp/Down</li>
+      <li>Workspace 추가 : [+]탭 + [Duplicat Current]메뉴</li>
+      <li>Workspace 이름변경 : 마우스 더블클릭</li>
+      <li>Workspace 삭제 : 마우스 오른쪽 클릭 - [Delete]메뉴</li>
+    </ul>
+  </li>
+  <li>화면동작
+    <ul>
+      <li>화면 회전
+        <ul>
+          <li>마우스 휠 클릭&amp;드래그</li>
+          <li>기즈모 마우스 클릭&amp;드래그</li>
+          <li>Alt + 휠 클릭&amp;드래그</li>
+        </ul>
+      </li>
+      <li>화면 확대&amp;축소
+        <ul>
+          <li>휠 업/다운</li>
+          <li>Ctrl + 휠 클릭&amp;드래그</li>
+        </ul>
+      </li>
+      <li>화면 전체보기
+        <ul>
+          <li>3D Viewport 메뉴</li>
+          <li>[View] - [Frame All]메뉴</li>
+          <li>Home 키</li>
+        </ul>
+      </li>
+      <li>선택한 오브젝트 보기
+        <ul>
+          <li>[View] - [Frame Selected]메뉴</li>
+          <li>숫자 키패드 [.]</li>
+        </ul>
+      </li>
+      <li>선택한 오브젝트 단독 보기
+        <ul>
+          <li>다수의 오브젝트에서 선택한 오브젝트만 보기</li>
+          <li>[View] - [Local View] - [Toggle Local View]메뉴</li>
+          <li>[/]키</li>
+        </ul>
+      </li>
+      <li>뷰 파이 메뉴</li>
+      <li>오브젝트를 바라보는 위치
+        <ul>
+          <li>[View] - [Viewpoint]메뉴</li>
+          <li>[`] 키</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>단축키 정리
+    <ul>
+      <li>ESC : 취소</li>
+      <li>A : 전체 선택</li>
+      <li>Alt + A : 전체 선택 해제</li>
+      <li>Ctrl + I : 반전 선택</li>
+      <li>Shift + A : 오브젝트 추가</li>
+      <li>Shift + D + [x,y,z]: 오브젝트 복사</li>
+      <li>Delete : 오브젝트 삭제</li>
+      <li>X : 오브젝트 삭제</li>
+      <li>T : 톨바</li>
+      <li>N : 사이드바</li>
+      <li>G : 오브젝트 이동</li>
+      <li>R : 오브젝트 회전</li>
+      <li>S : 오브젝트 스케일</li>
+      <li>[G,R,S] + [x,y,z] : (공통) 축 기준으로 이동/회전/스케일</li>
+      <li>Alt + [G,R,S] : 초기화</li>
+      <li>Tab : 오브젝트 모드 - 에디터 모드 전환</li>
+    </ul>
+  </li>
+  <li>실습</li>
+</ol>]]></content><author><name></name></author><category term="Blender" /><category term="Goni" /><summary type="html"><![CDATA[블렌더로 3D모델링을 시작하다.]]></summary></entry><entry><title type="html">[Blender] 시작</title><link href="/2024/blender/Blender-onebook-01-Start/" rel="alternate" type="text/html" title="[Blender] 시작" /><published>2024-09-23T11:35:00+00:00</published><updated>2024-09-23T11:35:00+00:00</updated><id>/2024/blender/Blender-onebook-01-Start</id><content type="html" xml:base="/2024/blender/Blender-onebook-01-Start/"><![CDATA[<h3 id="블렌더">블렌더</h3>
+<ul>
+  <li>오픈소스 3D 콘텐츠 제작 프로그램</li>
+  <li>3D 모델링 툴.</li>
+</ul>
+
+<h3 id="블렌더-설치">블렌더 설치</h3>
+
+<ul>
+  <li><a href="https://www.blender.org/">블렌더</a>에서 [Download]버튼을 클릭한다.</li>
+  <li>[Download]버튼 누르고 받으면, 상당히 느리다.</li>
+  <li><a href="https://download.blender.org/release/">https://download.blender.org/release/</a> 여기서 받으니 빠르다.</li>
+</ul>
+
+<h3 id="블렌더-둘러보기">블렌더 둘러보기</h3>
+
+<ul>
+  <li>아… 책을 잘못샀나?</li>
+  <li>먼가 책을 보다가 막힌다.</li>
+  <li>알려주지도 않은 것이 나왔다가, 뒤에 가서야 설명해주고,</li>
+  <li>생초보는 책을 보다가 막힌다.</li>
+  <li>흟어보듯이 간단하게 보고 넘기자.</li>
+</ul>
+
+<ol>
+  <li>UI
+    <ul>
+      <li>메뉴(최상단) : 기본메뉴</li>
+      <li>워크스페이스(최상단) :  메뉴 바로 옆 3D작업메뉴(?)</li>
+      <li>메인 레기온/3D 뷰포트(메인화면) : 작업공간, 패널(?)
+        <ul>
+          <li>툴바(Toolbar, T)</li>
+          <li>사이드바(Sidebar, N)</li>
+          <li>네비게이트(Navigate)</li>
+          <li>오퍼레이션(Operation)</li>
+        </ul>
+      </li>
+      <li>헤더 : 메인레기온/3D뷰포트 상단 메뉴(?), 각 패널 옵션</li>
+      <li>아웃라이너(오른쪽상단) : 오브젝트 리스트</li>
+      <li>프로퍼티(오른쪽하단) : 오브젝트 설정</li>
+      <li>타임라인(하단) : 애니메이션 제어</li>
+      <li>패널 분할/합치기
+        <ul>
+          <li>패널 경계라인에 마우스 크기조절 아이콘이 나오면, 오른쪽 마우스 클릭해서 분할 및 합치기를 할 수 있다.</li>
+        </ul>
+      </li>
+      <li>화면 이동/크기/회전
+        <ul>
+          <li>이동 : 시프트(shift) + 휠마우스 클릭</li>
+          <li>크기 : 횔 위아래</li>
+          <li>회전 : 휠마우스 클릭</li>
+        </ul>
+      </li>
+      <li>모드
+        <ul>
+          <li>탭(Tab)을 눌러 모드 전환할 수 있다.</li>
+          <li>Object Mode : 덩어리로 움직인다.</li>
+          <li>Edit Mode : 오브젝트의 작은 부분과 메시(표면)을 자세히 수정/변경 가능하다.</li>
+          <li>에디터 모드에서는 툴바(Toolbar)가 추가된다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Move, Rotate, Scale, Delete
+    <ul>
+      <li>오브젝트 선택하고, 단축키 G(Move)</li>
+      <li>오브젝트 선택하고, 단축키 R(Rotate)</li>
+      <li>오브젝트 선택하고, 단축키 S(Scale)</li>
+      <li>오브젝트 선택하고, 단축키 G + X, G + Y, G + Z 하면 해당 축으로만 움직인다.(Move, Rotate, Scale 동일)</li>
+      <li>오브젝트 선택하고, 단축키 G + [X, Y, Z] + [숫자] 하면 해당 축으로 숫자만큼 이동한다.(Move, Rotate, Scale 동일)</li>
+      <li>Ctrl 을 누르면 정확한 수치로 동작.</li>
+      <li>오브젝트 선택하고, 단축키 X 는 삭제(Delete)를 물어본다.</li>
+      <li>키패드없는 키보드일경우,
+        <ul>
+          <li>[~] 누르면, 관련 UI가 나온다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>]]></content><author><name></name></author><category term="Blender" /><category term="onebook" /><summary type="html"><![CDATA[블렌더로 3D모델링을 시작하다.]]></summary></entry><entry><title type="html">[Unity] C# 프로그래밍</title><link href="/2024/unity/Unity-retr0-03-C-Programming/" rel="alternate" type="text/html" title="[Unity] C# 프로그래밍" /><published>2024-09-22T04:55:00+00:00</published><updated>2024-09-22T04:55:00+00:00</updated><id>/2024/unity/Unity-retr0-03-C#-Programming</id><content type="html" xml:base="/2024/unity/Unity-retr0-03-C-Programming/"><![CDATA[<h3 id="c-프로그래밍">C# 프로그래밍</h3>
+
+<ol>
+  <li>스크립트 작성하기
+    <ul>
+      <li>유니티 프로젝트를 만든다.</li>
+      <li>프로젝트(Project)창에서 [+]버튼을 클릭하고, C# Script 파일 만든다.</li>
+      <li>Assets 폴더에 C# 파일이 생성되며, 원하는 파일명으로 한다.</li>
+      <li>C#파일을 더블클릭하면, Visual Studio 가 실행된다.
+        <ul>
+          <li>비주얼 스튜디오는 마이크로소프트 로그인여부에 따라 사용기간이 있다.</li>
+          <li>비로그인일 경우, 60일(?), 로그인일 경우 무료사용가능하다.</li>
+        </ul>
+      </li>
+      <li>간혹 C#파일 더블클릭해도 비주얼 스튜디오가 안열린다.(트러블슈팅-검색으로 해결할것!)
+        <ul>
+          <li>필자도 열리지 않아서 별도로 비주얼 스튜디오를 실행해서 파일을 드래그앤드랍으로 열었다.</li>
+        </ul>
+      </li>
+      <li>C#파일을 수정하고 저장하면 유니티 에디터에 반영된다.</li>
+      <li>예제 소스 샘플
+        <div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">HelloCode</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+ <span class="c1">// Start is called before the first frame update</span>
+ <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
+ <span class="p">{</span>
+   <span class="c1">// Debug.Log("Hello World!");</span>
+   <span class="kt">string</span> <span class="n">characterName</span> <span class="p">=</span> <span class="s">"라라"</span><span class="p">;</span>
+   <span class="kt">char</span> <span class="n">bloodType</span> <span class="p">=</span> <span class="sc">'A'</span><span class="p">;</span>
+   <span class="kt">int</span> <span class="n">age</span> <span class="p">=</span> <span class="m">27</span><span class="p">;</span>
+   <span class="kt">float</span> <span class="n">height</span> <span class="p">=</span> <span class="m">161.9f</span><span class="p">;</span> <span class="c1">// float:32bit // 3.1234567 // 7자리소수점까지정확히..</span>
+   <span class="kt">bool</span> <span class="n">isFemale</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+
+   <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"characterName: "</span> <span class="p">+</span> <span class="n">characterName</span><span class="p">);</span>
+   <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"bloodType: "</span> <span class="p">+</span> <span class="n">bloodType</span><span class="p">);</span>
+   <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"age: "</span> <span class="p">+</span> <span class="n">age</span><span class="p">);</span>
+   <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"height: "</span> <span class="p">+</span> <span class="n">height</span><span class="p">);</span>
+   <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"isFemale: "</span> <span class="p">+</span> <span class="n">isFemale</span><span class="p">);</span>
+   <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"---------------------------"</span><span class="p">);</span>
+
+   <span class="kt">float</span> <span class="n">distance</span> <span class="p">=</span> <span class="nf">GetDistance</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">6</span><span class="p">);</span>
+   <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"(2,2) ~ (5,6)까지의 거리: "</span> <span class="p">+</span> <span class="n">distance</span><span class="p">);</span>
+ <span class="p">}</span>
+<span class="cm">/**/</span>
+ <span class="kt">float</span> <span class="nf">GetDistance</span><span class="p">(</span><span class="kt">float</span> <span class="n">x1</span><span class="p">,</span> <span class="kt">float</span> <span class="n">y1</span><span class="p">,</span> <span class="kt">float</span> <span class="n">x2</span><span class="p">,</span> <span class="kt">float</span> <span class="n">y2</span><span class="p">)</span>
+ <span class="p">{</span>
+   <span class="kt">float</span> <span class="n">width</span> <span class="p">=</span> <span class="n">x2</span> <span class="p">-</span> <span class="n">x1</span><span class="p">;</span>
+   <span class="kt">float</span> <span class="n">height</span> <span class="p">=</span> <span class="n">y2</span> <span class="p">-</span> <span class="n">y1</span><span class="p">;</span>
+   <span class="kt">float</span> <span class="n">distance</span> <span class="p">=</span> <span class="p">(</span><span class="n">width</span> <span class="p">*</span> <span class="n">width</span><span class="p">)</span> <span class="p">+</span> <span class="p">(</span><span class="n">height</span> <span class="p">*</span> <span class="n">height</span><span class="p">);</span>
+
+   <span class="n">distance</span> <span class="p">=</span> <span class="n">Mathf</span><span class="p">.</span><span class="nf">Sqrt</span><span class="p">(</span><span class="n">distance</span><span class="p">);</span>
+   <span class="k">return</span> <span class="n">distance</span><span class="p">;</span>
+ <span class="p">}</span>
+<span class="cm">/**/</span>
+ <span class="c1">// Update is called once per frame</span>
+ <span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
+ <span class="p">{</span>
+   <span class="c1">// update</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>C#스크립트와 오브젝트 연결
+    <ul>
+      <li>하이어리키(Hierarchy)창에서 [+]버튼으로 Create Empty로 빈오브젝트 생성</li>
+      <li>오브젝트명:GameObject 가 만들어진다.</li>
+      <li>프로젝트(Project)창에 C#파일을 드래그해서 GameObject에 드랍한다.</li>
+      <li>인스펙터(Inspector)창에서 컴포넌트가 추가된 것을 볼수 있다.</li>
+      <li>게임플레이(중앙상단) 버튼을 클릭해서 Console 로그를 확인한다.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="게임-오브젝트">게임 오브젝트</h3>
+
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">Animal</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">name</span><span class="p">;</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">sound</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">PlaySound</span><span class="p">(){</span>
+        <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="n">name</span> <span class="p">+</span> <span class="s">" : "</span> <span class="p">+</span> <span class="n">sound</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">Zoo</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+    <span class="c1">// Start is called before the first frame update</span>
+    <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Animal</span> <span class="n">tom</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Animal</span><span class="p">();</span>
+        <span class="n">tom</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="s">"톰"</span><span class="p">;</span>
+        <span class="n">tom</span><span class="p">.</span><span class="n">sound</span> <span class="p">=</span> <span class="s">"냐옹!"</span><span class="p">;</span>
+        
+        <span class="n">tom</span><span class="p">.</span><span class="nf">PlaySound</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<ul>
+  <li>오브젝트 연결
+    <ul>
+      <li>하이어리키(Hierarchy)창에서 [+]버튼으로 Create Empty로 빈오브젝트 생성</li>
+      <li>프로젝트(Project)창에 Zoo 스크립트를 드래그해서 GameObject에 드랍한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">Jumper</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="n">Rigidbody</span> <span class="n">myRigidbody</span><span class="p">;</span>
+
+    <span class="c1">// Start is called before the first frame update</span>
+    <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">myRigidbody</span><span class="p">.</span><span class="nf">AddForce</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">500</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<ul>
+  <li>변수로 컴포넌트 사용하기
+    <ul>
+      <li>하이어리키(Hierarchy)창에서 [+]버튼으로 3D Object - Cube 생성</li>
+      <li>인스펙터(Inspector)창에 Rigidbody 컴포넌트를 추가한다.</li>
+      <li>프로젝트(Project)창에 Jumper 스크립트를 Cube에 드래그앤드랍한다.</li>
+      <li>인스펙터(Inspector)창에 Rigidbody 컴포넌트를 Jumper 컴포넌트의 My Rigidbody 에 드래그앤드랍한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />]]></content><author><name></name></author><category term="Unity" /><category term="retr0" /><summary type="html"><![CDATA[유니티의 C# 프로그래밍]]></summary></entry><entry><title type="html">[Unity] 유니티 엔진 동작 원리</title><link href="/2024/unity/Unity-retr0-02-Engine/" rel="alternate" type="text/html" title="[Unity] 유니티 엔진 동작 원리" /><published>2024-09-22T04:50:00+00:00</published><updated>2024-09-22T04:50:00+00:00</updated><id>/2024/unity/Unity-retr0-02-Engine</id><content type="html" xml:base="/2024/unity/Unity-retr0-02-Engine/"><![CDATA[<h3 id="유니티-엔진-동작-원리">유니티 엔진 동작 원리</h3>
+
+<ol>
+  <li>상속과 재사용
+    <ul>
+      <li>class Monster
+        <ul>
+          <li>몬스터 필수 기능</li>
+          <li>인공지능, 애니메이션, 공격과 방어, 물리, 기타 필수</li>
+        </ul>
+      </li>
+      <li>class Orc : Monster
+        <ul>
+          <li>초록색 피부, 오크 애니메이션, 오크 스킬, 오크 고유기능</li>
+        </ul>
+      </li>
+      <li>class OrcChieftan : Orc
+        <ul>
+          <li>대장모자, 새로운 무기, 스킬, 대장 고유기능</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>컴포넌트 패턴:조립
+    <ul>
+      <li>상속에만 의존하여 게임을 개발시 생기는 문제점 보완</li>
+      <li>컴포지션 패턴이라고도 부른다.(?)</li>
+      <li>부품에 대표 기능을 부여</li>
+      <li>예시: 동물
+        <ul>
+          <li>동물이 사용할 부품(컴포넌트 주머니) : 폐, 아가미, 뿔, 날개, 다리, 식사, 잠자리, 등등</li>
+          <li>코뿔소 : 폐, 다리, 식사, 뿔</li>
+        </ul>
+      </li>
+      <li>컴포넌트마다 한가지 기능을 가진다.</li>
+      <li>미리 만들어진 컴포넌트를 빈 껍데기인 게임 오브젝트에 조립하는 방식</li>
+      <li>유니티에서의 컴포넌트
+        <ul>
+          <li>인스펙터(Inspector)창에서 오브젝트별 컴포넌트를 추가할 수 있다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>메시지와 브로드캐스팅
+    <ul>
+      <li>컴포넌트 구조에서 전체방송을 통해서 컴포넌트의 특정 기능을 간접적으로 실행할 수 있다.</li>
+      <li>전체방송을 브로드캐스팅이라고 부른다.</li>
+      <li>MonoBehaviour : 유니티의 모든 컴포넌트는 MonoBehaviour 클래스를 상속한다.</li>
+      <li>메시지 기반 방식
+        <ul>
+          <li>유니티는 발동시키고 싶은 기능의 이름을 담아 게임 세상에 메시지를 뿌린다.</li>
+          <li>게임 세상 오브젝트들은 모두 메시지를 받는다.</li>
+          <li>메시지를 받은 오브젝트들은 명시된 기능을 가지고 있으면 해당 기능을 실행한다. 없다면 무시한다.</li>
+        </ul>
+      </li>
+      <li>브로드캐스팅</li>
+      <li>유니티 이벤트 메서드</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />]]></content><author><name></name></author><category term="Unity" /><category term="retr0" /><summary type="html"><![CDATA[유니티의 동작 원리를 파악하다.]]></summary></entry></feed>

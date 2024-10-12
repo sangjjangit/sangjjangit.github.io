@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[Unity] 방향,크기,회전 | Sangjjangit</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="[Unity] 방향,크기,회전" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="벡터 수학, 유니티 C# 벡터, 쿼터니언" />
+<meta property="og:description" content="벡터 수학, 유니티 C# 벡터, 쿼터니언" />
+<link rel="canonical" href="/2024/unity/Unity-retr0-07-Direction-Size-Rotation/" />
+<meta property="og:url" content="/2024/unity/Unity-retr0-07-Direction-Size-Rotation/" />
+<meta property="og:site_name" content="Sangjjangit" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-10-06T11:54:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[Unity] 방향,크기,회전" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-10-06T11:54:00+00:00","datePublished":"2024-10-06T11:54:00+00:00","description":"벡터 수학, 유니티 C# 벡터, 쿼터니언","headline":"[Unity] 방향,크기,회전","mainEntityOfPage":{"@type":"WebPage","@id":"/2024/unity/Unity-retr0-07-Direction-Size-Rotation/"},"url":"/2024/unity/Unity-retr0-07-Direction-Size-Rotation/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sangjjangit</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/nav-menu.css">
+    <link rel="stylesheet" href="/assets/css/md2.css">
+    <link rel="stylesheet" href="/assets/css/post-list.css">
+    <link rel="stylesheet" href="/assets/css/syntax.css">
+    <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script> -->
+
+</head>
+<body>
+<header>
+    <h1>
+        <a href="/">Sangjjangit</a>
+    </h1>
+    <small>요약/실습</small>
+<!--    <p>summy reading books</p>-->
+    <nav>
+        <ul class="nav-menu">
+            
+            <li><a href="/">All</a></li>
+            
+            <li><a href="/category/Unity/">Unity</a></li>
+            
+            <li><a href="/category/Blender/">Blender</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <article>
+    <h1>[Unity] 방향,크기,회전</h1>
+    <p><em>Posted on 2024-10-06 11:54:00</em></p>
+    <div>
+        <h3 id="벡터-수학">벡터 수학</h3>
+<ul>
+  <li>대부분 2D 벡터(x,y) 기준으로 설명</li>
+  <li>원소 수와 상관없이 벡터의 성질은 동일하기 때문에 3D 벡터(x,y,z),4D 벡터(x,y,z,w)에도 완전히 똑같은 수식이 적용된다.</li>
+</ul>
+
+<ol>
+  <li>벡터 정의
+    <ul>
+      <li>물리학자, 공학자, 게임 개발자, 데이터를 다루는 프로그래머, 수학자 등 관점이 다르다.</li>
+      <li>(10,5,0) 오른쪽 10, 위쪽 5만큼 이동일수도, 나열된 숫자의 데이터, 벡터 연산을 만족하는 정해진 개수의 원소 등.</li>
+      <li>게임 개발에서의 벡터는 주로 위치, 방향, 속도를 나타내는 데 사용된다.</li>
+      <li>유니티는 3D벡터를 나타내는 Vector3를 3D공간에서의 x,y,z 좌표를 표현한다.</li>
+    </ul>
+  </li>
+  <li>상대좌표/절대좌표
+    <ul>
+      <li>상대좌표 : (내가 어디 있는지 모르겠지만) 현재 좌표에서 (1,1)만큼 더 가는 좌표</li>
+      <li>절대좌표 : 나의 좌표가 (1,1)이다.</li>
+      <li>절대적인 좌표와 상대적인 방향과 크기(길이)를 나타낸다.</li>
+    </ul>
+  </li>
+  <li>크기, 스칼라 곱
+    <ul>
+      <li>벡터의 크기
+        <ul>
+          <li>(-3,4) 벡터의 크기는 5 이다. (피타고라스 정리), 모든 원소를 제곱해서 더한 값의 제곱근.</li>
+          <li>(-3,4) 크기는 5, (-6,8) 크기는 10</li>
+          <li>(-6,8) 크기는 (-3,4)의 2배수이다.</li>
+          <li>벡터에서는 배수를 취하는 숫자를 곱할 수 있으며 이것을 스칼라 곱이라고 한다.</li>
+          <li>스칼라 값은 기존 벡터를 잡아 늘리거나 줄이는 배율이다.</li>
+          <li>벡터의 방향은 변경할 수 없다.</li>
+        </ul>
+      </li>
+      <li>벡터의 방향
+        <ul>
+          <li>방향벡터는 크기가 1인 벡터로, 정규화된 벡터(Normalized Vector)라 부른다.</li>
+          <li>크기가 1이므로 방향은 같지만 크기가 서로 다른 벡터를 비교하는 기준으로 삼는다.</li>
+          <li>(3,-3)을 정규화해서 얻은 방향벡터는 대략 (0.71, -0.71)이다.</li>
+          <li>벡터는 방향과 크기를 동시에 표현, ‘방향벡터 x 스칼라 곱’으로 표현</li>
+          <li>방향벡터는 크기를 1로 늘리거나 줄여서 정규화를 통해서 얻을 수 있다.</li>
+        </ul>
+      </li>
+      <li>벡터의 덧셈, 뺄셈, 내적, 외적
+        <ul>
+          <li>덧셈: 두 벡터의 같은 자리의 성분끼리 덧셈</li>
+          <li>뺄셈: 두 벡터의 같은 자리의 성분끼리 뺄셈</li>
+          <li>내적: 어떤 벡터B를 다른 벡터 A로 투영?, 벡터B에 벡터A의 크기를 곱</li>
+          <li>덧셈: 두 벡터를 모두 수직으로 통과하는 벡터를 구하는 연산, 벡터A를 벡터B로 외적표현은 A x B</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="유니티-c-벡터">유니티 C# 벡터</h3>
+<ul>
+  <li>Vector 타입
+    <ul>
+      <li>new Vector2(x,y);</li>
+      <li>new Vector3(x,y,z);</li>
+      <li>new Vector4(x,y,z,w);</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 스칼라 곱</span>
+<span class="n">Vector3</span> <span class="n">a</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">6</span><span class="p">,</span><span class="m">9</span><span class="p">);</span>
+<span class="n">a</span> <span class="p">=</span> <span class="n">a</span> <span class="p">*</span> <span class="m">10</span><span class="p">;</span> <span class="c1">// a = (30,60,90)</span>
+
+<span class="c1">// 덧셈, 뺄셈</span>
+<span class="n">Vector3</span> <span class="n">a</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">8</span><span class="p">);</span>
+<span class="n">Vector3</span> <span class="n">b</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">6</span><span class="p">,</span><span class="m">9</span><span class="p">);</span>
+<span class="n">Vector3</span> <span class="n">c</span> <span class="p">=</span> <span class="n">a</span> <span class="p">+</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// c = (5,10,17)</span>
+<span class="n">Vector3</span> <span class="n">d</span> <span class="p">=</span> <span class="n">a</span> <span class="p">-</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// c = (-1,-2,-1)</span>
+
+<span class="c1">// 벡터 정규화(방향벡터)</span>
+<span class="n">Vector3</span> <span class="n">a</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">3</span><span class="p">);</span>
+<span class="n">Vector3</span> <span class="n">b</span> <span class="p">=</span> <span class="n">a</span><span class="p">.</span><span class="n">normalized</span><span class="p">;</span> <span class="c1">// b = (0.6,0.6,0.6)</span>
+
+<span class="c1">// 벡터의 크기</span>
+<span class="n">Vector3</span> <span class="n">a</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">3</span><span class="p">);</span>
+<span class="n">Vector3</span> <span class="n">b</span> <span class="p">=</span> <span class="n">a</span><span class="p">.</span><span class="n">magnitude</span><span class="p">;</span> <span class="c1">// b = 대략 5.19..</span>
+
+<span class="c1">// 벡터의 내적</span>
+<span class="n">Vector3</span> <span class="n">a</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">);</span> <span class="c1">// 위로 향하는 벡터</span>
+<span class="n">Vector3</span> <span class="n">b</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">);</span> <span class="c1">// 오른쪽으로 향하는 벡터</span>
+<span class="kt">float</span> <span class="n">c</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="nf">Dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span> <span class="c1">// 수직인 벡터끼리 내적하면 결과는 0</span>
+
+<span class="c1">// 벡터의 외적</span>
+<span class="n">Vector3</span> <span class="n">a</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">);</span> <span class="c1">// 앞으로 향하는 벡터</span>
+<span class="n">Vector3</span> <span class="n">b</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">);</span> <span class="c1">// 오른쪽으로 향하는 벡터</span>
+<span class="kt">float</span> <span class="n">c</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="nf">Cross</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span> <span class="c1">// c = (0,1,0)</span>
+
+<span class="c1">// 벡터 응용</span>
+<span class="c1">// currentPos : 현재위치</span>
+<span class="c1">// destPos : 목적지</span>
+<span class="n">Vector3</span> <span class="n">currentPos</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">);</span> <span class="c1">// 현재위치</span>
+<span class="n">Vector3</span> <span class="n">destPos</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">5</span><span class="p">);</span> <span class="c1">// 목적지</span>
+
+<span class="n">Vector3</span> <span class="n">delta</span> <span class="p">=</span> <span class="n">destPos</span> <span class="p">-</span> <span class="n">currentPos</span><span class="p">;</span>
+
+<span class="kt">float</span> <span class="n">distance</span> <span class="p">=</span> <span class="n">delta</span><span class="p">.</span><span class="n">magnitude</span><span class="p">;</span> <span class="c1">// 거리(크기)</span>
+
+<span class="c1">// 내장함수 Distance();</span>
+<span class="kt">float</span> <span class="n">distance</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="nf">Distance</span><span class="p">(</span><span class="n">currentPos</span><span class="p">,</span> <span class="n">destPos</span><span class="p">);</span>
+
+<span class="n">Vector3</span> <span class="n">direction</span> <span class="p">=</span> <span class="p">(</span><span class="n">destPos</span> <span class="p">-</span> <span class="n">currentPos</span><span class="p">).</span><span class="n">normalized</span><span class="p">;</span> <span class="c1">// 방향벡터</span>
+<span class="n">Vector3</span> <span class="n">newPos</span> <span class="p">=</span> <span class="n">currentPos</span> <span class="p">+</span> <span class="n">direction</span> <span class="p">*</span> <span class="m">10</span><span class="p">;</span> <span class="c1">//10만큼 위치한 새로운 위치</span>
+</code></pre></div></div>
+<h3 id="쿼터니언">쿼터니언</h3>
+<ul>
+  <li>회전을 나타내는 타입이다.</li>
+  <li>인스펙터(Inspector) 창의 트랜스폼(Transform) 컴포넌트
+    <ul>
+      <li>Position, Scale 은 Vector3 이다.</li>
+      <li>Rotation 은 Vector3 가 아닌 Quaternion 이다.</li>
+      <li>Rotation 은 Vector3 일 경우, 짐벌락(Gimbal Lock) 현상.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">transform</span><span class="p">.</span><span class="n">position</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">10</span><span class="p">);</span>
+<span class="n">transform</span><span class="p">.</span><span class="n">localScale</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">);</span>
+
+<span class="n">Quaternion</span> <span class="n">rotation</span> <span class="p">=</span> <span class="n">Quaternion</span><span class="p">.</span><span class="nf">Euler</span><span class="p">(</span><span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">60</span><span class="p">,</span><span class="m">0</span><span class="p">));</span>
+<span class="n">Vector3</span> <span class="n">eulerRotation</span> <span class="p">=</span> <span class="n">rotation</span><span class="p">.</span><span class="n">enlerAngles</span><span class="p">;</span> <span class="c1">// (0,60,0)</span>
+
+<span class="c1">// (30,0,0) 화전 후 (0,60,0) 더 회전하기</span>
+<span class="c1">// (30,60,0) 회전하는 것과 다르다.</span>
+<span class="n">Quaternion</span> <span class="n">a</span> <span class="p">=</span> <span class="n">Quaternion</span><span class="p">.</span><span class="nf">Euler</span><span class="p">(</span><span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">30</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">));</span>
+<span class="n">Quaternion</span> <span class="n">b</span> <span class="p">=</span> <span class="n">Quaternion</span><span class="p">.</span><span class="nf">Euler</span><span class="p">(</span><span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">60</span><span class="p">,</span><span class="m">0</span><span class="p">));</span>
+
+<span class="n">Quaternion</span> <span class="n">rotation</span> <span class="p">=</span> <span class="n">a</span> <span class="p">*</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// a회전 후 b 회전 표현</span>
+</code></pre></div></div>
+
+<hr />
+
+    </div>
+    
+    <div class="back-to-home">
+        <!-- <a href="/">Back to Home</a> -->
+        <a href="javascript:window.history.back();">Back to Previous Page</a>
+    </div>
+</article>
+</main>
+
+<footer>
+    <p>&copy; 2024 Sangjjangit</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,40 @@
+/* 목록 스타일 */
+.post-list {
+  list-style: none; /* 기본 목록 스타일 제거 */
+  padding: 0;
+  margin: 20px auto;
+  max-width: 800px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 목록 항목 스타일 */
+.post-item {
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* 날짜 스타일 */
+.post-date {
+  color: #888;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+/* 링크 스타일 */
+.post-title {
+  /* color: #3498db; */
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.post-link:hover {
+  color: #2980b9;
+}
+
+/* 마지막 목록 항목의 아래쪽 경계선 제거 */
+.post-item:last-child {
+  border-bottom: none;
+}

@@ -1,0 +1,108 @@
+h1, h2, h3 {
+  color: #333;
+}
+
+h1 {
+  border-bottom: 2px solid #333;
+  padding-bottom: 10px;
+}
+
+p {
+  margin: 10px 0;
+}
+
+ul, ol {
+  margin: 10px 20px;
+}
+
+pre {
+  background-color: #222222; /* 배경색 */
+  padding: 10px; /* 패딩 */
+  border-radius: 5px; /* 모서리 둥글게 */
+  overflow: auto; /* 넘칠 경우 스크롤 */
+  margin: 10px 0; /* 위 아래 여백 */
+  overflow-x: auto; /* 가로 스크롤 추가 */
+  white-space: pre-wrap; /* 긴 줄이 있으면 자동으로 줄바꿈 */
+  word-wrap: break-word; /* 긴 단어는 줄바꿈 */
+  max-width: 100%; /* 부모 요소의 너비에 맞게 조정 */
+  font-family: monospace; /* 고정폭 폰트 */
+  code {
+    /*background: #eaeaea; !* 인라인 코드 배경색 *!*/
+    color:#ffffff;
+    display: block;
+  }
+}
+code {
+  background-color: #222222; /* 배경색 */
+  color:#ffffff;
+  padding: 3px; /* 패딩 */
+  border-radius: 3px; /* 모서리 둥글게 */
+  font-family: monospace; /* 고정폭 폰트 */
+}
+
+/* blockquote {
+  border-left: 4px solid #ccc;
+  padding: 10px 20px;
+  color: #555;
+  margin: 10px 0;
+} */
+
+/* article 스타일 */
+article {
+  /* padding: 10px; */
+  /* background-color: #fafafa; */
+  /* border-radius: 8px; */
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
+  /* margin-bottom: 20px; */
+  max-width: 800px;
+  margin: 20px auto; /* 중앙 정렬 */
+  width: 800px;
+}
+
+article h1, article h2, article h3 {
+  margin-top: 0;
+}
+
+article p {
+  line-height: 1.6;
+}
+
+article img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+article hr {
+  margin: 30px 0px 30px 0px;
+}
+
+/* article a {
+  color: #3498db;
+  text-decoration: none;
+} */
+
+/* article a:hover {
+  text-decoration: underline;
+} */
+
+
+.back-to-home {
+  text-align: right; /* 오른쪽 정렬 */
+  margin-top: 20px; /* 위쪽 여백 추가 */
+  margin-right: 20px
+}
+
+
+/* 반응형 */
+@media (max-width: 768px) {
+  article {
+    /* padding: 15px;
+    margin: 10px; */
+    width: auto;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+}

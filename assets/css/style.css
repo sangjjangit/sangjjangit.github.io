@@ -1,0 +1,68 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: grid;
+    grid-template-rows: auto 1fr auto; /* header, main, footer 순서 */
+}
+
+header {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    position: relative; /* header를 정렬하기 위해 상대적 위치 */
+    z-index: 1000; /* 다른 요소 위에 표시 */
+}
+
+header h1 a {
+  color: #fff; /* 링크 텍스트 색상 */
+  text-decoration: none; /* 링크 밑줄 제거 */
+}
+
+header small {
+  color: #ddd; /* 요약 텍스트 색상 */
+  font-size: 0.9rem;
+}
+
+main {
+    display: grid;
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-items: center; /* 수평 중앙 정렬 */
+    padding: 1rem; /* padding 추가 */
+}
+
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    /* margin-top: auto; - grid에서는 필요 없음 */
+}
+
+/******************************** a tag */
+a {
+    color: #3498db; /* 링크 색상 */
+    text-decoration: none; /* 기본 밑줄 제거 */
+    transition: color 0.3s ease, border-bottom 0.3s ease; /* 색상과 밑줄 전환 효과 */
+}
+
+a:hover {
+    color: #2c3e50; /* 마우스 오버 시 색상 변경 */
+    border-bottom: 2px solid #2c3e50; /* 마우스 오버 시 밑줄 추가 */
+}
+
+a:visited {
+    color: #3498db; /* 방문한 링크 색상 */
+}
+
+a:active {
+    color: #c0392b; /* 클릭 시 색상 */
+}

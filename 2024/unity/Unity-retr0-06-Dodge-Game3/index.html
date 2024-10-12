@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[Unity] 닷지 게임 - 최종(UI,매니저) | Sangjjangit</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="[Unity] 닷지 게임 - 최종(UI,매니저)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="유니티의 닷지 게임을 만들며 익히기" />
+<meta property="og:description" content="유니티의 닷지 게임을 만들며 익히기" />
+<link rel="canonical" href="/2024/unity/Unity-retr0-06-Dodge-Game3/" />
+<meta property="og:url" content="/2024/unity/Unity-retr0-06-Dodge-Game3/" />
+<meta property="og:site_name" content="Sangjjangit" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-10-06T06:30:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[Unity] 닷지 게임 - 최종(UI,매니저)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-10-06T06:30:00+00:00","datePublished":"2024-10-06T06:30:00+00:00","description":"유니티의 닷지 게임을 만들며 익히기","headline":"[Unity] 닷지 게임 - 최종(UI,매니저)","mainEntityOfPage":{"@type":"WebPage","@id":"/2024/unity/Unity-retr0-06-Dodge-Game3/"},"url":"/2024/unity/Unity-retr0-06-Dodge-Game3/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sangjjangit</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/nav-menu.css">
+    <link rel="stylesheet" href="/assets/css/md2.css">
+    <link rel="stylesheet" href="/assets/css/post-list.css">
+    <link rel="stylesheet" href="/assets/css/syntax.css">
+    <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script> -->
+
+</head>
+<body>
+<header>
+    <h1>
+        <a href="/">Sangjjangit</a>
+    </h1>
+    <small>요약/실습</small>
+<!--    <p>summy reading books</p>-->
+    <nav>
+        <ul class="nav-menu">
+            
+            <li><a href="/">All</a></li>
+            
+            <li><a href="/category/Unity/">Unity</a></li>
+            
+            <li><a href="/category/Blender/">Blender</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <article>
+    <h1>[Unity] 닷지 게임 - 최종(UI,매니저)</h1>
+    <p><em>Posted on 2024-10-06 06:30:00</em></p>
+    <div>
+        <h3 id="닷지-게임">닷지 게임</h3>
+
+<ul>
+  <li>예제소스 : <a href="https://github.com/IJEMIN/Unity-Programming-Essence-2021">https://github.com/IJEMIN/Unity-Programming-Essence-2021</a></li>
+  <li>예제번호 : 06, 07, 08</li>
+</ul>
+
+<ol>
+  <li>정리
+    <ul>
+      <li>프로젝트(Project) 창에서 + &gt; Folder 클릭
+        <ul>
+          <li>폴더명 : Scripts, Materials, Prefabs 생성</li>
+          <li>각 에셋파일을 폴더에 드래그&amp;드랍</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>바닥회전
+    <ul>
+      <li>프로젝트(Project) 창에서 + &gt; C# Script
+        <div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+<span class="cm">/**/</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Rotator</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+ <span class="k">public</span> <span class="kt">float</span> <span class="n">rotationSpeed</span> <span class="p">=</span> <span class="m">60f</span><span class="p">;</span>
+ <span class="k">void</span> <span class="nf">Update</span><span class="p">()</span> 
+ <span class="p">{</span>
+   <span class="n">transform</span><span class="p">.</span><span class="nf">Rotate</span><span class="p">(</span><span class="m">0f</span><span class="p">,</span> <span class="n">rotationSpeed</span> <span class="p">*</span> <span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">,</span> <span class="m">0f</span><span class="p">);</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>UI 제작
+    <ul>
+      <li>씬(Scene) 창에서 2D 클릭 : 2D 편집모드로 전환</li>
+      <li>하이어리키(Hierarchy) 창 + &gt; UI &gt; Text</li>
+      <li>인스펙터(Inspector) 창
+        <ul>
+          <li>이름 변경</li>
+          <li>앵커 프리셋(Anchor Presets) 클릭</li>
+          <li>alt + Top Center 클릭</li>
+          <li>Text 필드 내용 수정</li>
+          <li>Text 컴포넌트 Alignment를 Center, Middle 변경, Color, Font Size 변경</li>
+          <li>Horizontal, Vertical 을 Overflow</li>
+          <li>그림자 효과 추가(Add Component &gt; UI &gt; Effects &gt; Shadow)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>게임 매니저
+    <ul>
+      <li>게임오버 상태, 생존시간, UI 갱신, 게임 재시작</li>
+      <li>하이어리키(Hierarchy) 창 + &gt; Create Empty
+        <ul>
+          <li>아래 만든 스크립트 파일을 컴포넌트로 추가</li>
+        </ul>
+      </li>
+      <li>프로젝트(Project) 창에서 + &gt; C# Script
+        <div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">UnityEngine.UI</span><span class="p">;</span> <span class="c1">// UI 관련 라이브러리</span>
+<span class="k">using</span> <span class="nn">UnityEngine.SceneManagement</span><span class="p">;</span> <span class="c1">// 씬 관리 라이브러리</span>
+<span class="cm">/**/</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">GameManager</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+ <span class="k">public</span> <span class="n">GameObject</span> <span class="n">gameoverText</span><span class="p">;</span> <span class="c1">//게임종료 활성화 텍스트 오브젝트</span>
+ <span class="k">public</span> <span class="n">Text</span> <span class="n">timeText</span><span class="p">;</span> <span class="c1">// 생존시간 텍스트</span>
+ <span class="k">public</span> <span class="n">Text</span> <span class="n">recordText</span><span class="p">;</span> <span class="c1">// 최고 기록 텍스트</span>
+ <span class="c1">//</span>
+ <span class="k">private</span> <span class="kt">float</span> <span class="n">surviveTime</span><span class="p">;</span> <span class="c1">// 생존시간</span>
+ <span class="k">private</span> <span class="kt">bool</span> <span class="n">isGameover</span><span class="p">;</span> <span class="c1">// 게임 상태</span>
+ <span class="c1">// Start is called before the first frame update</span>
+ <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
+ <span class="p">{</span>
+   <span class="c1">// 초기화</span>
+   <span class="n">surviveTime</span> <span class="p">=</span> <span class="m">0f</span><span class="p">;</span>
+   <span class="n">isGameover</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+ <span class="p">}</span>
+ <span class="c1">// Update is called once per frame</span>
+ <span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
+ <span class="p">{</span>
+   <span class="k">if</span> <span class="p">(!</span><span class="n">isGameover</span><span class="p">)</span>
+   <span class="p">{</span>
+       <span class="n">surviveTime</span> <span class="p">+=</span> <span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">;</span>
+       <span class="n">timeText</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="s">"Time: "</span> <span class="p">+</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">surviveTime</span><span class="p">;</span>
+   <span class="p">}</span>
+   <span class="k">else</span>
+   <span class="p">{</span>
+       <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKeyDown</span><span class="p">(</span><span class="n">KeyCode</span><span class="p">.</span><span class="n">R</span><span class="p">))</span>
+       <span class="p">{</span>
+           <span class="c1">// 씬 로드</span>
+           <span class="n">SceneManager</span><span class="p">.</span><span class="nf">LoadScene</span><span class="p">(</span><span class="s">"SampleScene"</span><span class="p">);</span>
+       <span class="p">}</span>
+   <span class="p">}</span>
+ <span class="p">}</span>
+ <span class="c1">// 현재 게임을 게임오버 상태로 변경</span>
+ <span class="k">public</span> <span class="k">void</span> <span class="nf">EndGame</span><span class="p">()</span> <span class="p">{</span>
+   <span class="n">isGameover</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span> <span class="c1">// 게임오버 전환</span>
+   <span class="n">gameoverText</span><span class="p">.</span><span class="nf">SetActive</span><span class="p">(</span><span class="k">true</span><span class="p">);</span> <span class="c1">// 텍스트 오브젝트 활성화</span>
+
+   <span class="kt">float</span> <span class="n">bestTime</span> <span class="p">=</span> <span class="n">PlayerPrefs</span><span class="p">.</span><span class="nf">GetFloat</span><span class="p">(</span><span class="s">"BestTime"</span><span class="p">);</span>
+
+   <span class="k">if</span><span class="p">(</span><span class="n">surviveTime</span> <span class="p">&gt;</span> <span class="n">bestTime</span><span class="p">)</span>
+   <span class="p">{</span>
+       <span class="n">bestTime</span> <span class="p">=</span> <span class="n">surviveTime</span><span class="p">;</span>
+       <span class="n">PlayerPrefs</span><span class="p">.</span><span class="nf">SetFloat</span><span class="p">(</span><span class="s">"BestTime"</span><span class="p">,</span> <span class="n">surviveTime</span><span class="p">);</span>
+   <span class="p">}</span>
+
+   <span class="n">recordText</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="s">"Best Time: "</span> <span class="p">+</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">bestTime</span><span class="p">;</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<ul>
+  <li>PlayerPrefs
+    <ul>
+      <li>Player Preference(플레이어 설정), 유니티 내장 클래스</li>
+      <li>키-값 단위로 데이터를 로컬에 저장한다.</li>
+    </ul>
+  </li>
+  <li>PlayerController 스크립트
+    <div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">public</span> <span class="k">void</span> <span class="nf">Die</span><span class="p">(){</span>
+      <span class="c1">// 자신의 오브젝트 비활성화</span>
+      <span class="n">gameObject</span><span class="p">.</span><span class="nf">SetActive</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+
+      <span class="n">GameManager</span> <span class="n">gameManager</span> <span class="p">=</span> <span class="n">FindObjectOfType</span><span class="p">&lt;</span><span class="n">GameManager</span><span class="p">&gt;();</span>
+      <span class="n">gameManager</span><span class="p">.</span><span class="nf">EndGame</span><span class="p">();</span>
+  <span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>빌드하기</li>
+  <li>유니티 상단 메뉴 File &gt; Build Settings…
+    <ul>
+      <li>Build and Run 클릭 -&gt; 파일 탐색기가 실행됨.(빌드할 폴더 선택)</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/img/image_dodge.png" alt="image_dodge" width="30%" height="30%" class="center" />
+<img src="/assets/img/image_dodge2.png" alt="image_dodge2" width="30%" height="30%" class="center" /></p>
+
+<hr />
+
+    </div>
+    
+    <div class="back-to-home">
+        <!-- <a href="/">Back to Home</a> -->
+        <a href="javascript:window.history.back();">Back to Previous Page</a>
+    </div>
+</article>
+</main>
+
+<footer>
+    <p>&copy; 2024 Sangjjangit</p>
+</footer>
+</body>
+</html>
