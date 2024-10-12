@@ -1,0 +1,22 @@
+/* 네비게이션 메뉴 스타일 */
+.nav-menu {
+  list-style: none; /* 기본 목록 스타일 제거 */
+  display: flex; /* 가로 정렬 */
+  gap: 20px; /* 메뉴 아이템 사이의 간격 */
+}
+
+.nav-menu li {
+  margin: 0;
+}
+
+.nav-menu a {
+  color: #fff; /* 링크 색상 */
+  text-decoration: none; /* 링크 밑줄 제거 */
+  padding: 0.5rem 1rem; /* 메뉴 아이템의 패딩 */
+  transition: background-color 0.3s ease; /* 배경색 전환 효과 */
+}
+
+.nav-menu a:hover {
+  background-color: #555; /* 마우스를 올렸을 때 배경색 */
+  border-radius: 5px; /* 마우스를 올렸을 때 둥근 모서리 */
+}

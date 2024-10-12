@@ -1,15 +1,10 @@
-<!-- <div>
-    <ul>
-        {% for post in site.posts %}
-        <li>
-            {{ post.date | date: "%F" }} - <a href="{{ post.url }}">{{ post.title }}</a>
-        </li>
-        {% endfor %}
-    </ul>
-</div> -->
+---
+layout: index
+---
+
 <section class="archive">
     <ul class="post-list">
-        {% for post in site.posts %}
+      {% for post in site.categories[page.title] %}
         <li class="post-item">
             <a href="{{ post.url }}">
                 <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
