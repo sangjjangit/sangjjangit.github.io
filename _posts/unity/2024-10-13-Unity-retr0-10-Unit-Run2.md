@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "[Unity] 2D 러너 게임"
-date: 2024-10-12 19:50:00 +0900 
+date: 2024-10-20 14:22:00 +0900 
 categories: Unity
 book: 레트로의 유니티 게임 프로그래밍 에센스
 tag: retr0
-excerpt: "플레이어 제작"
+excerpt: "배경, 게임 매니저"
 ---
 
 ### 유니런 2D 게임
@@ -220,7 +220,5 @@ public class PlayerController : MonoBehaviour {
     - Death Clip 필드 옆의 선택 버튼 > 선택 창에서 die 오디오 더블 클릭
 
 - 테스트.끝
-
-[![테스트](https://img.youtube.com/vi/KCgQm6rp838/0.jpg)](https://youtu.be/KCgQm6rp838){:target="_blank"}
 
 ---
