@@ -1,4 +1,171 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2024-10-13T08:08:08+00:00</updated><id>/feed.xml</id><title type="html">Sangjjangit</title><subtitle>summy reading books</subtitle><entry><title type="html">[Unity] 2D 러너 게임</title><link href="/2024/unity/Unity-retr0-10-Unit-Run2/" rel="alternate" type="text/html" title="[Unity] 2D 러너 게임" /><published>2024-10-13T05:22:00+00:00</published><updated>2024-10-13T05:22:00+00:00</updated><id>/2024/unity/Unity-retr0-10-Unit-Run2</id><content type="html" xml:base="/2024/unity/Unity-retr0-10-Unit-Run2/"><![CDATA[<h3 id="유니런-2d-게임">유니런 2D 게임</h3>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2024-10-13T11:52:27+00:00</updated><id>/feed.xml</id><title type="html">Sangjjangit</title><subtitle>summy reading books</subtitle><entry><title type="html">[Unity] 2D 러너 게임</title><link href="/2024/unity/Unity-retr0-11-Unit-Run3/" rel="alternate" type="text/html" title="[Unity] 2D 러너 게임" /><published>2024-10-13T10:47:00+00:00</published><updated>2024-10-13T10:47:00+00:00</updated><id>/2024/unity/Unity-retr0-11-Unit-Run3</id><content type="html" xml:base="/2024/unity/Unity-retr0-11-Unit-Run3/"><![CDATA[<h3 id="유니런-2d-게임">유니런 2D 게임</h3>
+
+<ul>
+  <li>예제소스 : <a href="https://github.com/IJEMIN/Unity-Programming-Essence-2021">https://github.com/IJEMIN/Unity-Programming-Essence-2021</a></li>
+  <li>예제번호 : 11, 12, 13</li>
+  <li>씬과 코드는 를 제외한 모든 에엣은 준비된 상태에서 코딩과 기능 구현에 집중한다.</li>
+</ul>
+
+<h3 id="발판">발판</h3>
+<ul>
+  <li>프로젝트 창 &gt; Prefabs 폴더의 Platform 프리팹을 하이어라키 창으로 드래그앤드랍</li>
+  <li>하이어라키 창에 생성된 Platform 오브젝트 인스펙터 창
+    <ul>
+      <li>Sprite Renderer 컴포넌트의 Sorting Layer를 Foreground 변경</li>
+    </ul>
+  </li>
+  <li>하이어라키 창에 생성된 Platform 오브젝트의 자식 오브젝트 선택(Shift + 클릭)</li>
+  <li>Platform 오브젝트의 자식 오브젝트 인스펙터 창
+    <ul>
+      <li>Sprite Renderer 컴포넌트의 Sorting Layer를 Middleground 변경</li>
+    </ul>
+  </li>
+  <li>프로젝트 창에 Scripts 폴더 &gt; Platform 스크립트를 하이어라키 창의 Platform 오브젝트로 드래그앤드랍</li>
+  <li>Platform 스크립트
+    <div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+<span class="cm">/** */</span>
+<span class="c1">// 발판으로서 필요한 동작을 담은 스크립트</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Platform</span> <span class="p">:</span> <span class="n">MonoBehaviour</span> <span class="p">{</span>
+  <span class="k">public</span> <span class="n">GameObject</span><span class="p">[]</span> <span class="n">obstacles</span><span class="p">;</span> <span class="c1">// 장애물 오브젝트들</span>
+  <span class="k">private</span> <span class="kt">bool</span> <span class="n">stepped</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span> <span class="c1">// 플레이어 캐릭터가 밟았었는가</span>
+
+  <span class="c1">// 컴포넌트가 활성화될때 마다 매번 실행되는 메서드</span>
+  <span class="c1">// 유니티 이벤트 메서드</span>
+  <span class="c1">// 컴포넌트가 활성화될때마다 실행된다.</span>
+  <span class="k">private</span> <span class="k">void</span> <span class="nf">OnEnable</span><span class="p">()</span> <span class="p">{</span>
+      <span class="c1">// 발판을 리셋하는 처리</span>
+      <span class="n">stepped</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">obstacles</span><span class="p">.</span><span class="n">Length</span><span class="p">;</span> <span class="n">i</span><span class="p">++){</span>
+          <span class="k">if</span><span class="p">(</span><span class="n">Random</span><span class="p">.</span><span class="nf">Range</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">3</span><span class="p">)</span> <span class="p">==</span> <span class="m">0</span><span class="p">){</span> <span class="c1">// 1/3의 확률</span>
+              <span class="n">obstacles</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="nf">SetActive</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+          <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+              <span class="n">obstacles</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="nf">SetActive</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+          <span class="p">}</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">void</span> <span class="nf">OnCollisionEnter2D</span><span class="p">(</span><span class="n">Collision2D</span> <span class="n">collision</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// 플레이어 캐릭터가 자신을 밟았을때 점수를 추가하는 처리</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">collision</span><span class="p">.</span><span class="n">collider</span><span class="p">.</span><span class="n">tag</span> <span class="p">==</span> <span class="s">"Player"</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">stepped</span><span class="p">){</span>
+          <span class="n">stepped</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+          <span class="n">GameManager</span><span class="p">.</span><span class="n">instance</span><span class="p">.</span><span class="nf">AddScore</span><span class="p">(</span><span class="m">1</span><span class="p">);</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>하이어라키 창에 Platform 오브젝트의 인스펙트 창
+    <ul>
+      <li>Platform 컴포넌트의 Obstacles 배열크기 3 변경 &gt; Obstacles 펼치기</li>
+      <li>하이어라키 창에 Platform 오브젝트의 자식 오브젝트를 할당</li>
+    </ul>
+  </li>
+  <li>Platform 프리팹 갱신</li>
+  <li>하이어라키 창에 Platform 오브젝트의 인스펙트 창
+    <ul>
+      <li>Overrides &gt; Apply All 클릭</li>
+    </ul>
+  </li>
+  <li>하이어라키 창에 Platform 오브젝트 삭제(Delete)</li>
+</ul>
+
+<h3 id="발판-생성기">발판 생성기</h3>
+<ul>
+  <li>오브젝트 폴링 방식</li>
+  <li>3개의 발판 오브젝트를 미리 생성 및 보이지 않는 곳에 배치</li>
+  <li>일정 시간 후 발판을 리셋하고 재배치</li>
+  <li>PlatformSpawner 스크립트</li>
+  <li>하이어라키 창에 + &gt; Create Empty</li>
+  <li>생성한 빈 게임 오브젝트의 인스펙트 창
+    <ul>
+      <li>이름: Platform Spawner</li>
+    </ul>
+  </li>
+  <li>프로젝트 창에 Scripts 폴더 &gt; PlatformSpawner 스크립트를 하이어라키 창의 Platform Spawner 오브젝트로 드래그앤드랍</li>
+  <li>PlatformSpawner 스크립트 더블 클릭
+    <div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+<span class="cm">/** */</span>
+<span class="c1">// 발판을 생성하고 주기적으로 재배치하는 스크립트</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">PlatformSpawner</span> <span class="p">:</span> <span class="n">MonoBehaviour</span> <span class="p">{</span>
+  <span class="k">public</span> <span class="n">GameObject</span> <span class="n">platformPrefab</span><span class="p">;</span> <span class="c1">// 생성할 발판의 원본 프리팹</span>
+  <span class="k">public</span> <span class="kt">int</span> <span class="n">count</span> <span class="p">=</span> <span class="m">3</span><span class="p">;</span> <span class="c1">// 생성할 발판의 개수</span>
+
+  <span class="k">public</span> <span class="kt">float</span> <span class="n">timeBetSpawnMin</span> <span class="p">=</span> <span class="m">1.25f</span><span class="p">;</span> <span class="c1">// 다음 배치까지의 시간 간격 최솟값</span>
+  <span class="k">public</span> <span class="kt">float</span> <span class="n">timeBetSpawnMax</span> <span class="p">=</span> <span class="m">2.25f</span><span class="p">;</span> <span class="c1">// 다음 배치까지의 시간 간격 최댓값</span>
+  <span class="k">private</span> <span class="kt">float</span> <span class="n">timeBetSpawn</span><span class="p">;</span> <span class="c1">// 다음 배치까지의 시간 간격</span>
+
+  <span class="k">public</span> <span class="kt">float</span> <span class="n">yMin</span> <span class="p">=</span> <span class="p">-</span><span class="m">3.5f</span><span class="p">;</span> <span class="c1">// 배치할 위치의 최소 y값</span>
+  <span class="k">public</span> <span class="kt">float</span> <span class="n">yMax</span> <span class="p">=</span> <span class="m">1.5f</span><span class="p">;</span> <span class="c1">// 배치할 위치의 최대 y값</span>
+  <span class="k">private</span> <span class="kt">float</span> <span class="n">xPos</span> <span class="p">=</span> <span class="m">20f</span><span class="p">;</span> <span class="c1">// 배치할 위치의 x 값</span>
+
+  <span class="k">private</span> <span class="n">GameObject</span><span class="p">[]</span> <span class="n">platforms</span><span class="p">;</span> <span class="c1">// 미리 생성한 발판들</span>
+  <span class="k">private</span> <span class="kt">int</span> <span class="n">currentIndex</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="c1">// 사용할 현재 순번의 발판</span>
+
+  <span class="k">private</span> <span class="n">Vector2</span> <span class="n">poolPosition</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="p">-</span><span class="m">25</span><span class="p">);</span> <span class="c1">// 초반에 생성된 발판들을 화면 밖에 숨겨둘 위치</span>
+  <span class="k">private</span> <span class="kt">float</span> <span class="n">lastSpawnTime</span><span class="p">;</span> <span class="c1">// 마지막 배치 시점</span>
+
+
+  <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span> <span class="p">{</span>
+      <span class="c1">// 변수들을 초기화하고 사용할 발판들을 미리 생성</span>
+      <span class="n">platforms</span> <span class="p">=</span> <span class="k">new</span> <span class="n">GameObject</span><span class="p">[</span><span class="n">count</span><span class="p">];</span>
+      <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">count</span><span class="p">;</span> <span class="n">i</span><span class="p">++){</span>
+          <span class="n">platforms</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="nf">Instantiate</span><span class="p">(</span><span class="n">platformPrefab</span><span class="p">,</span> <span class="n">poolPosition</span><span class="p">,</span> <span class="n">Quaternion</span><span class="p">.</span><span class="n">identity</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="n">lastSpawnTime</span> <span class="p">=</span> <span class="m">0f</span><span class="p">;</span>
+      <span class="n">timeBetSpawn</span> <span class="p">=</span> <span class="m">0f</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">void</span> <span class="nf">Update</span><span class="p">()</span> <span class="p">{</span>
+      <span class="c1">// 순서를 돌아가며 주기적으로 발판을 배치</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">GameManager</span><span class="p">.</span><span class="n">instance</span><span class="p">.</span><span class="n">isGameover</span><span class="p">){</span>
+          <span class="k">return</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">Time</span><span class="p">.</span><span class="n">time</span> <span class="p">&gt;=</span> <span class="n">lastSpawnTime</span> <span class="p">+</span> <span class="n">timeBetSpawn</span><span class="p">){</span>
+          <span class="n">lastSpawnTime</span> <span class="p">=</span> <span class="n">Time</span><span class="p">.</span><span class="n">time</span><span class="p">;</span>
+          <span class="n">timeBetSpawn</span> <span class="p">=</span> <span class="n">Random</span><span class="p">.</span><span class="nf">Range</span><span class="p">(</span><span class="n">timeBetSpawnMin</span><span class="p">,</span> <span class="n">timeBetSpawnMax</span><span class="p">);</span>
+          <span class="kt">float</span> <span class="n">yPos</span> <span class="p">=</span> <span class="n">Random</span><span class="p">.</span><span class="nf">Range</span><span class="p">(</span><span class="n">yMin</span><span class="p">,</span> <span class="n">yMax</span><span class="p">);</span>
+          <span class="n">platforms</span><span class="p">[</span><span class="n">currentIndex</span><span class="p">].</span><span class="nf">SetActive</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+          <span class="n">platforms</span><span class="p">[</span><span class="n">currentIndex</span><span class="p">].</span><span class="nf">SetActive</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+          <span class="n">platforms</span><span class="p">[</span><span class="n">currentIndex</span><span class="p">].</span><span class="n">transform</span><span class="p">.</span><span class="n">position</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector2</span><span class="p">(</span><span class="n">xPos</span><span class="p">,</span> <span class="n">yPos</span><span class="p">);</span>
+          <span class="n">currentIndex</span><span class="p">++;</span>
+
+          <span class="k">if</span><span class="p">(</span><span class="n">currentIndex</span> <span class="p">&gt;=</span> <span class="n">count</span><span class="p">){</span>
+              <span class="n">currentIndex</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+          <span class="p">}</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>하이어라키 창에 Platform Spawner 오브젝트의 인스펙터 창
+    <ul>
+      <li>프로젝트 창에 Prefabs 폴더 &gt; Platform 프리팹을 PlatformSpawner 컴포넌트의 Platform Prefab 필드로 드래그앤드랍</li>
+    </ul>
+  </li>
+  <li>배경음악 추가</li>
+  <li>프로젝트 창에 Audio 폴더 &gt; music 오디오 클립을 하이어라키 창으로 드래그앤드랍</li>
+  <li>생성된 music 오브젝트의 인스펙터 창
+    <ul>
+      <li>Audio Source 컴포넌트의 Loop 체크</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="빌드하기">빌드하기</h3>
+<ul>
+  <li>빌드 설정 창 열기(상단메뉴 File &gt; Build Settings..)</li>
+  <li>빌드 설정 창에서 Add Open Scenes 클릭</li>
+  <li>Build and Run 클릭</li>
+  <li>탐색 창에서 빌드를 저장할 폴더 선택</li>
+  <li>
+    <p>Save 클릭</p>
+  </li>
+  <li>테스트.끝</li>
+</ul>
+
+<p><a href="https://youtu.be/UpxK7G0G6oE" target="_blank"><img src="https://img.youtube.com/vi/UpxK7G0G6oE/0.jpg" alt="테스트" /></a></p>
+
+<hr />]]></content><author><name></name></author><category term="Unity" /><category term="retr0" /><summary type="html"><![CDATA[발판 반복 생성/마무리]]></summary></entry><entry><title type="html">[Unity] 2D 러너 게임</title><link href="/2024/unity/Unity-retr0-10-Unit-Run2/" rel="alternate" type="text/html" title="[Unity] 2D 러너 게임" /><published>2024-10-13T05:22:00+00:00</published><updated>2024-10-13T05:22:00+00:00</updated><id>/2024/unity/Unity-retr0-10-Unit-Run2</id><content type="html" xml:base="/2024/unity/Unity-retr0-10-Unit-Run2/"><![CDATA[<h3 id="유니런-2d-게임">유니런 2D 게임</h3>
 
 <ul>
   <li>예제소스 : <a href="https://github.com/IJEMIN/Unity-Programming-Essence-2021">https://github.com/IJEMIN/Unity-Programming-Essence-2021</a></li>
@@ -1469,141 +1636,4 @@ if("발사"에 대응되는 버튼을 클릭) {
       </li>
     </ul>
   </li>
-</ol>]]></content><author><name></name></author><category term="Blender" /><category term="onebook" /><summary type="html"><![CDATA[블렌더로 3D모델링을 시작하다.]]></summary></entry><entry><title type="html">[Unity] C# 프로그래밍</title><link href="/2024/unity/Unity-retr0-03-C-Programming/" rel="alternate" type="text/html" title="[Unity] C# 프로그래밍" /><published>2024-09-22T04:55:00+00:00</published><updated>2024-09-22T04:55:00+00:00</updated><id>/2024/unity/Unity-retr0-03-C#-Programming</id><content type="html" xml:base="/2024/unity/Unity-retr0-03-C-Programming/"><![CDATA[<h3 id="c-프로그래밍">C# 프로그래밍</h3>
-
-<ol>
-  <li>스크립트 작성하기
-    <ul>
-      <li>유니티 프로젝트를 만든다.</li>
-      <li>프로젝트(Project)창에서 [+]버튼을 클릭하고, C# Script 파일 만든다.</li>
-      <li>Assets 폴더에 C# 파일이 생성되며, 원하는 파일명으로 한다.</li>
-      <li>C#파일을 더블클릭하면, Visual Studio 가 실행된다.
-        <ul>
-          <li>비주얼 스튜디오는 마이크로소프트 로그인여부에 따라 사용기간이 있다.</li>
-          <li>비로그인일 경우, 60일(?), 로그인일 경우 무료사용가능하다.</li>
-        </ul>
-      </li>
-      <li>간혹 C#파일 더블클릭해도 비주얼 스튜디오가 안열린다.(트러블슈팅-검색으로 해결할것!)
-        <ul>
-          <li>필자도 열리지 않아서 별도로 비주얼 스튜디오를 실행해서 파일을 드래그앤드랍으로 열었다.</li>
-        </ul>
-      </li>
-      <li>C#파일을 수정하고 저장하면 유니티 에디터에 반영된다.</li>
-      <li>예제 소스 샘플
-        <div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
-<span class="k">public</span> <span class="k">class</span> <span class="nc">HelloCode</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
-<span class="p">{</span>
- <span class="c1">// Start is called before the first frame update</span>
- <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
- <span class="p">{</span>
-   <span class="c1">// Debug.Log("Hello World!");</span>
-   <span class="kt">string</span> <span class="n">characterName</span> <span class="p">=</span> <span class="s">"라라"</span><span class="p">;</span>
-   <span class="kt">char</span> <span class="n">bloodType</span> <span class="p">=</span> <span class="sc">'A'</span><span class="p">;</span>
-   <span class="kt">int</span> <span class="n">age</span> <span class="p">=</span> <span class="m">27</span><span class="p">;</span>
-   <span class="kt">float</span> <span class="n">height</span> <span class="p">=</span> <span class="m">161.9f</span><span class="p">;</span> <span class="c1">// float:32bit // 3.1234567 // 7자리소수점까지정확히..</span>
-   <span class="kt">bool</span> <span class="n">isFemale</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
-
-   <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"characterName: "</span> <span class="p">+</span> <span class="n">characterName</span><span class="p">);</span>
-   <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"bloodType: "</span> <span class="p">+</span> <span class="n">bloodType</span><span class="p">);</span>
-   <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"age: "</span> <span class="p">+</span> <span class="n">age</span><span class="p">);</span>
-   <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"height: "</span> <span class="p">+</span> <span class="n">height</span><span class="p">);</span>
-   <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"isFemale: "</span> <span class="p">+</span> <span class="n">isFemale</span><span class="p">);</span>
-   <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"---------------------------"</span><span class="p">);</span>
-
-   <span class="kt">float</span> <span class="n">distance</span> <span class="p">=</span> <span class="nf">GetDistance</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">6</span><span class="p">);</span>
-   <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"(2,2) ~ (5,6)까지의 거리: "</span> <span class="p">+</span> <span class="n">distance</span><span class="p">);</span>
- <span class="p">}</span>
-<span class="cm">/**/</span>
- <span class="kt">float</span> <span class="nf">GetDistance</span><span class="p">(</span><span class="kt">float</span> <span class="n">x1</span><span class="p">,</span> <span class="kt">float</span> <span class="n">y1</span><span class="p">,</span> <span class="kt">float</span> <span class="n">x2</span><span class="p">,</span> <span class="kt">float</span> <span class="n">y2</span><span class="p">)</span>
- <span class="p">{</span>
-   <span class="kt">float</span> <span class="n">width</span> <span class="p">=</span> <span class="n">x2</span> <span class="p">-</span> <span class="n">x1</span><span class="p">;</span>
-   <span class="kt">float</span> <span class="n">height</span> <span class="p">=</span> <span class="n">y2</span> <span class="p">-</span> <span class="n">y1</span><span class="p">;</span>
-   <span class="kt">float</span> <span class="n">distance</span> <span class="p">=</span> <span class="p">(</span><span class="n">width</span> <span class="p">*</span> <span class="n">width</span><span class="p">)</span> <span class="p">+</span> <span class="p">(</span><span class="n">height</span> <span class="p">*</span> <span class="n">height</span><span class="p">);</span>
-
-   <span class="n">distance</span> <span class="p">=</span> <span class="n">Mathf</span><span class="p">.</span><span class="nf">Sqrt</span><span class="p">(</span><span class="n">distance</span><span class="p">);</span>
-   <span class="k">return</span> <span class="n">distance</span><span class="p">;</span>
- <span class="p">}</span>
-<span class="cm">/**/</span>
- <span class="c1">// Update is called once per frame</span>
- <span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
- <span class="p">{</span>
-   <span class="c1">// update</span>
- <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-  <li>C#스크립트와 오브젝트 연결
-    <ul>
-      <li>하이어리키(Hierarchy)창에서 [+]버튼으로 Create Empty로 빈오브젝트 생성</li>
-      <li>오브젝트명:GameObject 가 만들어진다.</li>
-      <li>프로젝트(Project)창에 C#파일을 드래그해서 GameObject에 드랍한다.</li>
-      <li>인스펙터(Inspector)창에서 컴포넌트가 추가된 것을 볼수 있다.</li>
-      <li>게임플레이(중앙상단) 버튼을 클릭해서 Console 로그를 확인한다.</li>
-    </ul>
-  </li>
-</ol>
-
-<hr />
-
-<h3 id="게임-오브젝트">게임 오브젝트</h3>
-
-<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">Animal</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="kt">string</span> <span class="n">name</span><span class="p">;</span>
-    <span class="k">public</span> <span class="kt">string</span> <span class="n">sound</span><span class="p">;</span>
-
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">PlaySound</span><span class="p">(){</span>
-        <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="n">name</span> <span class="p">+</span> <span class="s">" : "</span> <span class="p">+</span> <span class="n">sound</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-</code></pre></div></div>
-<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">Zoo</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
-<span class="p">{</span>
-    <span class="c1">// Start is called before the first frame update</span>
-    <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">Animal</span> <span class="n">tom</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Animal</span><span class="p">();</span>
-        <span class="n">tom</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="s">"톰"</span><span class="p">;</span>
-        <span class="n">tom</span><span class="p">.</span><span class="n">sound</span> <span class="p">=</span> <span class="s">"냐옹!"</span><span class="p">;</span>
-        
-        <span class="n">tom</span><span class="p">.</span><span class="nf">PlaySound</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>
-<ul>
-  <li>오브젝트 연결
-    <ul>
-      <li>하이어리키(Hierarchy)창에서 [+]버튼으로 Create Empty로 빈오브젝트 생성</li>
-      <li>프로젝트(Project)창에 Zoo 스크립트를 드래그해서 GameObject에 드랍한다.</li>
-    </ul>
-  </li>
-</ul>
-
-<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">Jumper</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="n">Rigidbody</span> <span class="n">myRigidbody</span><span class="p">;</span>
-
-    <span class="c1">// Start is called before the first frame update</span>
-    <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">myRigidbody</span><span class="p">.</span><span class="nf">AddForce</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">500</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>
-<ul>
-  <li>변수로 컴포넌트 사용하기
-    <ul>
-      <li>하이어리키(Hierarchy)창에서 [+]버튼으로 3D Object - Cube 생성</li>
-      <li>인스펙터(Inspector)창에 Rigidbody 컴포넌트를 추가한다.</li>
-      <li>프로젝트(Project)창에 Jumper 스크립트를 Cube에 드래그앤드랍한다.</li>
-      <li>인스펙터(Inspector)창에 Rigidbody 컴포넌트를 Jumper 컴포넌트의 My Rigidbody 에 드래그앤드랍한다.</li>
-    </ul>
-  </li>
-</ul>
-
-<hr />]]></content><author><name></name></author><category term="Unity" /><category term="retr0" /><summary type="html"><![CDATA[유니티의 C# 프로그래밍]]></summary></entry></feed>
+</ol>]]></content><author><name></name></author><category term="Blender" /><category term="onebook" /><summary type="html"><![CDATA[블렌더로 3D모델링을 시작하다.]]></summary></entry></feed>
