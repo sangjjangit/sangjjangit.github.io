@@ -34,6 +34,7 @@ excerpt: "플레이어 제작"
 - 빈 게임 오브젝트 생성(하이어라키 창 + > Create Empty)
 - 생성한 오브젝트 인스펙터 창
   - 이름 : Deadzone
+  - 태그 : Dead
   - 위치 : (0,-8,0)
   - Box Collider 2D 컴포넌트 추가(Add Component > Physics 2D > Box Collider 2D)
   - Box Collider 2D 컴포넌트 Is Trigger 체크, Size (50,2) 변경
