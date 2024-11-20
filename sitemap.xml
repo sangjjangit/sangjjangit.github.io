@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>/2024/blog/Git-Blog-Readme/</loc>
+<loc>/2024/blog/Git-Blog-01-Readme/</loc>
 <lastmod>2024-09-21T09:07:00+00:00</lastmod>
 </url>
 <url>
@@ -61,6 +61,14 @@
 <lastmod>2024-10-13T10:47:00+00:00</lastmod>
 </url>
 <url>
+<loc>/2024/cloud/Cloud-action-01-Start/</loc>
+<lastmod>2024-11-02T06:44:00+00:00</lastmod>
+</url>
+<url>
+<loc>/2024/blog/Git-Blog-02-Pagination/</loc>
+<lastmod>2024-11-20T12:55:00+00:00</lastmod>
+</url>
+<url>
 <loc>/</loc>
 </url>
 <url>
@@ -74,5 +82,11 @@
 </url>
 <url>
 <loc>/category/Blender/</loc>
+</url>
+<url>
+<loc>/category/Cloud/</loc>
+</url>
+<url>
+<loc>/page2/</loc>
 </url>
 </urlset>
