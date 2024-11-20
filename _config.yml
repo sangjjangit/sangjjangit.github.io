@@ -42,6 +42,9 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
 
+paginate: 10 # 페이징 처리 개수
+paginate_path: "/page:num/" # URL 규칙
+
 
 # Exclude from processing.
 # The following items will not be processed, by default.

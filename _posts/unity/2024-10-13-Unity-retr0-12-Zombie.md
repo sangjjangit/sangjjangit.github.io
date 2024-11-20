@@ -57,7 +57,7 @@ excerpt: "레벨 아트와 플레이어"
 - 런타임에 컴퓨터가 감당해야 할 라이팅 연산이 줄어든다.
 
 3. 라이트맵 설정
-- 상담메뉴 Window > Rendering > Lighting 으로 라이팅 설정 창
+- 상담메뉴 Window > Rendering > Lighting 으로 라이팅 창
 - 라이팅 창 상단 Now Light Setting 클릭 > 라이트 설정 에셋 New Light Settings 생성.
 - New Light Settings의 이름을 Main Light Settings 로 변경 후 프로젝트 창의 Assets > Scenes 폴더 옮김.
 - 라이팅 창 하단 Auto Generate 체크 해제
@@ -68,6 +68,32 @@ excerpt: "레벨 아트와 플레이어"
 4. 글로벌 일루미네이션(Global Illumination)
 - 물체의 표면에 직접 들어오는 빛뿐만 아니라 다른 물체의 표면에서 반사되어 들어온 간접광까지 표현
 - GI라고 부릅니다.
+- 라이팅 창에서는 두 가지 종류의 글로벌 일루미네이션을 선택할 수 있다.
+  - 실시간 글로벌 일루미네이션(Realtime Global Illumination)
+  - 베이크된 글로벌 일루미네이션(Baked Global Illumination)
+- 베이크된 글로벌 일루미네이션(Baked Global Illumination)에는 세부 라이팅 모드가 있다.
+  - 베이크된 간접(Baked Indirect) 모드: 간접광만 구워서 미리 계산, 직사광과 그림자는 실시간으로 처리
+  - 섀도우마스크(Shadowmask) 모드: 간접광을 위한 라이트맵 이외에 그림자 맵()을 추가로 구워서 사용, 실시간 그림자와 미리 구워진 그림자가 자연스럽게 합성됨.
+  - 감산(Subtractive) 모드: 간접광, 직사광, 그림자까지 하나의 라이트맵에 모두 구워버림, 실시간 그림자와 미리 구워진 그림자가 자연스럽게 합성되지 않음, 성능이 제일 좋음.
+- 라이트 오브젝트들에는 라이트 컴포넌트가 있다.
+  - 모드: 베이크된(Baked)모드, 실시간(Realtime), 혼합(Mixed)모드가 있다.
+- 글로벌 일루미네이션 설정하기
+- 라이팅 창에서 Realtime Lighting 의 Realtime Global Illumination 체크
+- Mixed Lighting 의 Baked Global Illumination 체크
+- Lightmapping Settings
+  - Direct Samples : 16 // 직사광 연산
+  - Indirect Samples : 256 // 간접광 연산
+  - Environment Samples : 128 // 환경광 연산
+  - Indirect Resolution : 0.5 // 간접광 텍스처 해상도 유닛당 0.5 텍셀
+  - Lightmap Resolution : 10 // 라이트맵 텍스처 해상도 10 텍셀
+- Generate Lighting 클릭
+- 글로벌 일루미네이션은 정적(Static) 오브젝트에만 적용된다.
+- 정적 오브젝트는 게임 도중에 위치가 변경될 수 없다.
+
+
+
+
+
 
 
 
